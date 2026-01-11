@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="125.163 51.854 250.576 374.125" width="250.576px" height="374.125px">
+  <path style="fill: none; stroke: url(#logoGrad); stroke-width:10" d="M 375.739 250.329 L 249.884 51.854 L 125.163 250.329 L 250.135 425.979 L 296.51 359.676 L 295.477 359.322 C 263.101 348.227 254.876 306.245 280.673 283.754 C 300.255 266.681 330.24 269.964 345.664 290.868 L 375.739 250.329"/>
+  <ellipse style="fill: none; stroke: url(#prueba); stroke-width:10" cx="310" cy="320" rx="3" ry="3"/>
+  <defs>
+      <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#000;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#ed1838;stop-opacity:1" />
+      </linearGradient>
+
+    <radialGradient id="prueba"  r="2">
+      <stop offset="0%" stop-color="red" />
+      <stop offset="100%" stop-color="blue" />
+    </radialGradient>
+      
+  </defs>
+</svg>
