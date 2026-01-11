@@ -2,37 +2,38 @@
 
 ### Tipo de usuarios
 
--  Mi tio
--  Un perro
--  Cualquier ser vivo con capacidad sapiente y pulgares oponibles
+-  Usuario sin loggear (Solo vería para loggearse)
+-  Usuario común
+-  Usuario administrador
+-  Usuario jefe
 
-### Ejemplo de tabla
+### Funciones de usuarios
 
-| Función / Acción                | Usuario Normal | Admin           | Jefe            |
-|---------------------------------|----------------|----------------|----------------|
-| Ver contenido general           | ✅              | ✅              | ✅              |
-| Crear contenido                 | ✅              | ✅              | ✅              |
-| Editar contenido propio         | ✅              | ✅              | ✅              |
-| Editar contenido de otros       | ❌              | ✅              | ✅              |
-| Eliminar contenido propio       | ✅              | ✅              | ✅              |
-| Eliminar contenido de otros     | ❌              | ✅              | ✅              |
-| Gestionar usuarios              | ❌              | ✅              | ✅              |
-| Asignar roles                   | ❌              | ✅              | ✅              |
-| Aprobar proyectos / solicitudes | ❌              | ❌              | ✅              |
-| Ver reportes financieros        | ❌              | ✅              | ✅              |
-| Configuración del sistema       | ❌              | ✅              | ✅              |
-| Acceso a estadísticas avanzadas | ❌              | ✅              | ✅              |
+| Función / Acción                | Usuario sin loguearse | Usuario Normal | Admin | Jefe |
+| ------------------------------- | ---------------------- | -------------- | ----- | ---- |
+| Ver contenido general           | ❌                     | ✅              | ✅     | ✅    |
+| Crear contenido                 | ❌                     | ✅              | ✅     | ✅    |
+| Editar contenido propio         | ❌                     | ✅              | ✅     | ✅    |
+| Editar contenido de otros       | ❌                     | ❌              | ✅     | ✅    |
+| Eliminar contenido propio       | ❌                     | ✅              | ✅     | ✅    |
+| Eliminar contenido de otros     | ❌                     | ❌              | ✅     | ✅    |
+| Gestionar usuarios              | ❌                     | ❌              | ✅     | ✅    |
+| Asignar roles                   | ❌                     | ❌              | ✅     | ✅    |
+| Aprobar proyectos / solicitudes | ❌                     | ❌              | ❌     | ✅    |
+| Ver reportes financieros        | ❌                     | ❌              | ✅     | ✅    |
+| Configuración del sistema       | ❌                     | ❌              | ✅     | ✅    |
+| Acceso a estadísticas avanzadas | ❌                     | ❌              | ✅     | ✅    |
+
 
 
 ### Casos de uso
 
-... no lo sé.
+- Discutir tu tema nicho favorito con gente que le interese todo tanto como a ti
+- Observar como los demás discuten sobre algo que a ti no te interesa tanto.
 
 ---
 
 ## Capturas
-
-(Son de verdad del proyecto)
 
 #### Mockup Móvil
 ![Mockup Mobile](./img/Mobile_Version.png)

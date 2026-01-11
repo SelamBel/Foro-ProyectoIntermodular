@@ -6,12 +6,13 @@
 
 ### Explicación técnica
 
-La aplicación funciona. Probablemente.
+Pues la tendré cuando lo acabe.
 
 ### Tecnologías empleadas
 
-No sé, ya lo veré cuando me ponga de verdad la verdad.
-Como ejemplo de código con colores, aquí un hola mundo en js:
+No lo sé aún. Mi intención es usar PHP que hemos dado en clase, y React que aprenda por mi cuenta. A partir de ahí ya veré.
+
+#### Ejemplo de snippet de código
 
 ```javascript
 const saludo = "Hola mundo";

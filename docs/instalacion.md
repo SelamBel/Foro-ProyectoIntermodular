@@ -2,19 +2,17 @@
 
 ### Requisitos
 
--  Un ordenador de la NASA
--  Reloj Inteligente ID208 Plus
--  Una inteligencia suficiente para entrar a la uni, pero fracasar en ella
--  Otro ordenador de la NASA (backup)
+- Navegador web
+- Git
+- Node.js y npm (Tengo intención de usar React)
+- PHP
 
 ### Pasos de instalación
 
-1. Tirar el ordenador a la basura
-2. Replantearte todas las decisiones que has tomado para llegar aquí
-3. Lamentarte en silencio (No pasa nada)
+1. Clonar el repositorio a tu escritorio
+2. Abrir tu IDE de confianza para editar el código
+3. ??? Ya lo pensaré más adelante.
 
 ### Variables de entorno
 
--  Que llueva
--  Que la tierra sea capaz de prosperar el cultivo
--  Que no haya depredadores que acechen a toda la fauna
+Aún no lo sé
