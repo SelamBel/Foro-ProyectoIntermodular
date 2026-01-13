@@ -5,7 +5,7 @@
 -  Usuario sin loggear (Solo vería para loggearse)
 -  Usuario común
 -  Usuario administrador
--  Usuario jefe
+-  Usuario **jefe**
 
 ### Funciones de usuarios
 
