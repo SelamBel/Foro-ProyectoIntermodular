@@ -88,4 +88,21 @@ class Publication {
         $row = $stmt->fetch();
         return $row ? (int) $row['type'] : null;
     }
+
+    public function getByUser(int $userId): array {
+    $stmt = $this->db->prepare("
+        SELECT p.*,
+               COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 ELSE 0 END), 0) AS upvotes,
+               COALESCE(SUM(CASE WHEN v.type = 0 THEN 1 ELSE 0 END), 0) AS downvotes,
+               COUNT(DISTINCT c.id) AS comment_count
+        FROM publication p
+        LEFT JOIN vote v ON v.id_publication = p.id
+        LEFT JOIN comment c ON c.id_publication = p.id
+        WHERE p.id_user = ?
+        GROUP BY p.id
+        ORDER BY p.date_creation DESC
+    ");
+    $stmt->execute([$userId]);
+    return $stmt->fetchAll();
+}
 }

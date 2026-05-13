@@ -62,4 +62,10 @@ class User {
         $stmt->execute([$email]);
         return (int) $stmt->fetchColumn() > 0;
     }
+    public function update(int $id, string $name, string $surname, ?string $avatar): void {
+    $stmt = $this->db->prepare(
+        'UPDATE `user` SET name = ?, surname = ?, avatar = ? WHERE id = ?'
+    );
+    $stmt->execute([$name, $surname, $avatar, $id]);
+}
 }
