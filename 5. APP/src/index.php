@@ -1,102 +1,115 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/models/Publication.php';
+
+$order  = in_array($_GET['order'] ?? '', ['votes', 'newest', 'oldest']) ? $_GET['order'] : 'votes';
+$page   = max(1, (int) ($_GET['page'] ?? 1));
+$limit  = 10;
+$offset = ($page - 1) * $limit;
+
+$pubModel = new Publication();
+$posts    = $pubModel->getAll($order, $limit, $offset);
+$total    = $pubModel->countAll();
+$pages    = (int) ceil($total / $limit);
+
 $pageTitle  = 'Principal';
 $activePage = 'home';
-
 require_once __DIR__ . '/includes/header.php';
 ?>
 
 <div class="layout">
-
     <?php require_once __DIR__ . '/includes/sidebar.php'; ?>
 
     <main class="site-main">
 
         <div class="sort-bar">
-            <button class="sort-btn" id="sortBtn">
-                <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6 9a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zM9 13a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z" clip-rule="evenodd"/>
-                </svg>
-                Más votados
-                <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
-                </svg>
-            </button>
+            <a href="?order=votes"  class="sort-btn <?= $order === 'votes'  ? 'active' : '' ?>"><i class="fa-solid fa-arrow-up-wide-short"></i> Más votados</a>
+            <a href="?order=newest" class="sort-btn <?= $order === 'newest' ? 'active' : '' ?>"><i class="fa-solid fa-clock"></i> Más recientes</a>
+            <a href="?order=oldest" class="sort-btn <?= $order === 'oldest' ? 'active' : '' ?>"><i class="fa-solid fa-hourglass-start"></i> Más antiguos</a>
+
+            <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="/pages/create-post.php" class="btn-primary" style="margin-left:auto">
+                <i class="fa-solid fa-plus"></i> Nueva publicación
+            </a>
+            <?php endif; ?>
         </div>
 
-        <!-- Posts de prueba (hardcoded — se sustituirán por datos de BD en fase 5) -->
-        <?php
-        $demoPosts = [
-            [
-                'author'  => 'u/hormiga_reina',
-                'time'    => 'hace 3 horas',
-                'title'   => 'Título de la publicación',
-                'body'    => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique.',
-                'up'      => 18,
-                'down'    => 2,
-            ],
-            [
-                'author'  => 'u/obrera_07',
-                'time'    => 'hace 5 horas',
-                'title'   => 'Título de la publicación',
-                'body'    => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna.',
-                'up'      => 18,
-                'down'    => 2,
-            ],
-            [
-                'author'  => 'u/soldado_alpha',
-                'time'    => 'hace 1 día',
-                'title'   => 'Título de la publicación',
-                'body'    => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id.',
-                'up'      => 18,
-                'down'    => 2,
-            ],
-        ];
-        ?>
+        <?php if (empty($posts)): ?>
+            <div class="empty-state">
+                <i class="fa-solid fa-wind"></i>
+                <p>No hay publicaciones todavía. ¡Sé el primero!</p>
+            </div>
+        <?php endif; ?>
 
-        <?php foreach ($demoPosts as $post): ?>
+        <?php foreach ($posts as $post): ?>
         <article class="post">
             <div class="post-inner">
                 <div class="post-meta">
-                    <span class="author"><?= htmlspecialchars($post['author']) ?></span>
+                    <span class="author">u/<?= htmlspecialchars($post['name'] . ' ' . $post['surname']) ?></span>
                     &middot;
-                    <?= htmlspecialchars($post['time']) ?>
+                    <span class="post-date" data-date="<?= $post['date_creation'] ?>">
+                        <?= htmlspecialchars($post['date_creation']) ?>
+                    </span>
                 </div>
-                <h2 class="post-title"><?= htmlspecialchars($post['title']) ?></h2>
-                <p class="post-body"><?= htmlspecialchars($post['body']) ?></p>
+                <h2 class="post-title">
+                    <a href="/pages/post.php?id=<?= $post['id'] ?>">
+                        <?= htmlspecialchars($post['title']) ?>
+                    </a>
+                </h2>
+                <p class="post-body"><?= htmlspecialchars($post['content']) ?></p>
                 <div class="post-actions">
                     <div class="vote-group">
-                        <button class="vote-btn up" title="Voto positivo">
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 3l7 7h-4v7H7v-7H3l7-7z" clip-rule="evenodd"/>
-                            </svg>
-                            <?= (int) $post['up'] ?>
+                        <button class="vote-btn up <?= isset($_SESSION['user_id']) ? 'js-vote' : '' ?>"
+                                data-id="<?= $post['id'] ?>" data-type="1">
+                            <i class="fa-solid fa-arrow-up"></i>
+                            <span class="upvote-count"><?= $post['upvotes'] ?></span>
                         </button>
-                        <button class="vote-btn down" title="Voto negativo">
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 17l-7-7h4V3h6v7h4l-7 7z" clip-rule="evenodd"/>
-                            </svg>
-                            <?= (int) $post['down'] ?>
+                        <button class="vote-btn down <?= isset($_SESSION['user_id']) ? 'js-vote' : '' ?>"
+                                data-id="<?= $post['id'] ?>" data-type="0">
+                            <i class="fa-solid fa-arrow-down"></i>
+                            <span class="downvote-count"><?= $post['downvotes'] ?></span>
                         </button>
                     </div>
-                    <button class="action-btn">
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.842 8.842 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7z" clip-rule="evenodd"/>
-                        </svg>
-                        Comentar
+                    <a href="/pages/post.php?id=<?= $post['id'] ?>" class="action-btn">
+                        <i class="fa-solid fa-comment"></i>
+                        <?= $post['comment_count'] ?> comentarios
+                    </a>
+                    <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post['id_user']): ?>
+                    <a href="/pages/edit-post.php?id=<?= $post['id'] ?>" class="action-btn">
+                        <i class="fa-solid fa-pen"></i> Editar
+                    </a>
+                    <button class="action-btn js-delete-post" data-id="<?= $post['id'] ?>">
+                        <i class="fa-solid fa-trash"></i> Eliminar
                     </button>
-                    <button class="action-btn">
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"/>
-                        </svg>
-                        Compartir
-                    </button>
-                    <button class="more-btn" title="Más opciones">&#8230;</button>
+                    <?php endif; ?>
                 </div>
             </div>
         </article>
         <?php endforeach; ?>
+
+        <?php if ($pages > 1): ?>
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="?order=<?= $order ?>&page=<?= $page - 1 ?>" class="page-btn">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $pages; $i++): ?>
+                <a href="?order=<?= $order ?>&page=<?= $i ?>"
+                   class="page-btn <?= $i === $page ? 'active' : '' ?>">
+                    <?= $i ?>
+                </a>
+            <?php endfor; ?>
+
+            <?php if ($page < $pages): ?>
+                <a href="?order=<?= $order ?>&page=<?= $page + 1 ?>" class="page-btn">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
 
     </main>
 </div>

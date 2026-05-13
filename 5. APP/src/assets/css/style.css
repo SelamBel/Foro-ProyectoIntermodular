@@ -474,6 +474,70 @@ main {
 .auth-footer a { color: #0079d3; text-decoration: none; }
 .auth-footer a:hover { text-decoration: underline; }
 
+/* ── FEED ────────────────────────────────────────────── */
+.sort-btn.active { border-color: #0079d3; color: #0079d3; }
+
+.post-title a { color: var(--text); text-decoration: none; }
+.post-title a:hover { color: var(--primary); }
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+    font-size: 16px;
+}
+.empty-state i { font-size: 40px; display: block; margin-bottom: 12px; }
+
+.pagination {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.page-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    transition: border-color .15s;
+}
+.page-btn:hover { border-color: #0079d3; color: #0079d3; }
+.page-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+/* ── FORM CARD ───────────────────────────────────────── */
+.form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+    max-width: 740px;
+}
+.form-card__title { font-size: 18px; font-weight: 600; margin-bottom: 20px; }
+
+textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+    transition: border-color .2s;
+}
+textarea:focus { border-color: #0079d3; }
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 960px) {
     :root { --sidebar-w: 200px; }

@@ -49,5 +49,16 @@ CREATE TABLE IF NOT EXISTS `comment` (
     FOREIGN KEY (`id_comment_parent`) REFERENCES `comment`(`id`)     ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS `vote` (
+    `id`             BIGINT  NOT NULL AUTO_INCREMENT,
+    `id_user`        BIGINT  NOT NULL,
+    `id_publication` BIGINT  NOT NULL,
+    `type`           TINYINT NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `unique_vote` (`id_user`, `id_publication`),
+    FOREIGN KEY (`id_user`)        REFERENCES `user`(`id`)        ON DELETE CASCADE,
+    FOREIGN KEY (`id_publication`) REFERENCES `publication`(`id`) ON DELETE CASCADE
+);
+
 -- Datos iniciales
 INSERT INTO `role` (`role_name`) VALUES ('user'), ('moderator');

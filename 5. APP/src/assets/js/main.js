@@ -121,3 +121,30 @@ $(function () {
     });
 
 });
+
+$('#createPostForm').on('submit', function (e) {
+    let valid = true;
+    if ($('#title').val().trim().length < 5) {
+        showError('titleError', 'El título debe tener al menos 5 caracteres.');
+        valid = false;
+    } else { clearError('titleError'); }
+
+    if ($('#content').val().trim().length < 10) {
+        showError('contentError', 'El contenido debe tener al menos 10 caracteres.');
+        valid = false;
+    } else { clearError('contentError'); }
+
+    if (!valid) e.preventDefault();
+});
+
+function timeAgo(dateStr) {
+    const diff = Math.floor((new Date() - new Date(dateStr)) / 1000);
+    if (diff < 60)     return 'hace un momento';
+    if (diff < 3600)   return 'hace ' + Math.floor(diff / 60) + ' min';
+    if (diff < 86400)  return 'hace ' + Math.floor(diff / 3600) + ' h';
+    return 'hace ' + Math.floor(diff / 86400) + ' días';
+}
+
+$('.post-date').each(function () {
+    $(this).text(timeAgo($(this).data('date')));
+});
