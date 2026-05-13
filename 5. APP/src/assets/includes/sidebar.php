@@ -6,13 +6,13 @@ $activePage = $activePage ?? 'home';
 
     <div class="nav-section">
         <a href="/index.php" class="nav-item <?= $activePage === 'home' ? 'active' : '' ?>">
-            <span class="nav-icon">&#127968;</span> Principal
+            <span class="nav-icon"><i class="fa-solid fa-house"></i></span> Principal
         </a>
         <a href="/pages/popular.php" class="nav-item <?= $activePage === 'popular' ? 'active' : '' ?>">
-            <span class="nav-icon">&#128293;</span> Popular
+            <span class="nav-icon"><i class="fa-solid fa-fire"></i></span> Popular
         </a>
         <a href="/pages/explore.php" class="nav-item <?= $activePage === 'explore' ? 'active' : '' ?>">
-            <span class="nav-icon">&#128269;</span> Explorar
+            <span class="nav-icon"><i class="fa-solid fa-compass"></i></span> Explorar
         </a>
     </div>
 
@@ -20,44 +20,44 @@ $activePage = $activePage ?? 'home';
     <div class="nav-section">
         <div class="nav-label">Moderación</div>
         <a href="/pages/modmail.php" class="nav-item <?= $activePage === 'modmail' ? 'active' : '' ?>">
-            <span class="nav-icon">&#128140;</span> Mod mail
+            <span class="nav-icon"><i class="fa-solid fa-shield-halved"></i></span> Mod mail
         </a>
         <a href="/pages/moderators.php" class="nav-item">
-            <span class="nav-icon">&#128100;</span> Moderadores
+            <span class="nav-icon"><i class="fa-solid fa-user-shield"></i></span> Moderadores
         </a>
     </div>
     <?php endif; ?>
 
     <div class="nav-section">
         <a href="/pages/best-english.php" class="nav-item <?= $activePage === 'best-english' ? 'active' : '' ?>">
-            <span class="nav-icon">&#127758;</span> Lo mejor en Inglés
+            <span class="nav-icon"><i class="fa-solid fa-earth-americas"></i></span> Lo mejor en Inglés
         </a>
         <a href="/pages/best-lang.php" class="nav-item <?= $activePage === 'best-lang' ? 'active' : '' ?>">
-            <span class="nav-icon">&#128172;</span> Lo mejor en tu idioma
+            <span class="nav-icon"><i class="fa-solid fa-message"></i></span> Lo mejor en tu idioma
         </a>
         <a href="/pages/topics.php" class="nav-item <?= $activePage === 'topics' ? 'active' : '' ?>">
-            <span class="nav-icon">&#127381;</span> Temas
+            <span class="nav-icon"><i class="fa-solid fa-tags"></i></span> Temas
         </a>
     </div>
 
     <div class="nav-section">
         <a href="/pages/advertise.php" class="nav-item">
-            <span class="nav-icon">&#128227;</span> Anunciarse
+            <span class="nav-icon"><i class="fa-solid fa-bullhorn"></i></span> Anunciarse
         </a>
         <a href="/pages/help.php" class="nav-item">
-            <span class="nav-icon">&#10067;</span> Ayuda
+            <span class="nav-icon"><i class="fa-solid fa-circle-question"></i></span> Ayuda
         </a>
         <a href="/pages/rules.php" class="nav-item">
-            <span class="nav-icon">&#128203;</span> Reglas de AntHive
+            <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span> Reglas de AntHive
         </a>
         <a href="/pages/privacy.php" class="nav-item">
-            <span class="nav-icon">&#128274;</span> Política de privacidad
+            <span class="nav-icon"><i class="fa-solid fa-lock"></i></span> Política de privacidad
         </a>
         <a href="/pages/terms.php" class="nav-item">
-            <span class="nav-icon">&#128196;</span> Acuerdo de usuario
+            <span class="nav-icon"><i class="fa-solid fa-file-contract"></i></span> Acuerdo de usuario
         </a>
         <a href="/pages/accessibility.php" class="nav-item">
-            <span class="nav-icon">&#9855;</span> Accesibilidad
+            <span class="nav-icon"><i class="fa-solid fa-universal-access"></i></span> Accesibilidad
         </a>
     </div>
 
