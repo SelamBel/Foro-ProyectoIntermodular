@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $pubModel = new Publication();
         $id = $pubModel->create($_SESSION['user_id'], $title, $content);
-        header('Location: /index.php');
+        header('Location: /pages/post.php?id=' . $id);
         exit;
     }
 }
