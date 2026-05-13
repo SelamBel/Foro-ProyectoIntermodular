@@ -1,5 +1,4 @@
 <?php
-// $activePage debe estar definida en la página que incluye este archivo
 $activePage = $activePage ?? 'home';
 ?>
 <aside class="site-sidebar">
@@ -60,6 +59,17 @@ $activePage = $activePage ?? 'home';
             <span class="nav-icon"><i class="fa-solid fa-universal-access"></i></span> Accesibilidad
         </a>
     </div>
+
+    <?php if (isset($_SESSION['user_id'])): ?>
+    <div class="nav-section">
+        <a href="/pages/profile.php" class="nav-item <?= $activePage === 'profile' ? 'active' : '' ?>">
+            <span class="nav-icon"><i class="fa-solid fa-circle-user"></i></span> <?= htmlspecialchars($_SESSION['name']) ?>
+        </a>
+        <a href="/pages/logout.php" class="nav-item nav-item--danger">
+            <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Cerrar sesión
+        </a>
+    </div>
+    <?php endif; ?>
 
     <div class="sidebar-footer">
         AntHive, Inc. &copy; <?= date('Y') ?>. Todos los derechos reservados.<br>
