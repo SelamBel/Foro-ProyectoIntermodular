@@ -40,8 +40,7 @@ header {
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
-    padding: 0 20px;
-    gap: 12px;
+    padding: 20px;
     z-index: 100;
 }
 
@@ -52,6 +51,7 @@ header {
     min-width: 180px;
     text-decoration: none;
     color: var(--text);
+    min-width: var(--sidebar-w);
 }
 
 .header-logo img {
@@ -78,13 +78,14 @@ header {
     width: 100%;
     padding: 8px 16px 8px 38px;
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 10px;
     background: var(--bg);
     font-size: 14px;
     font-family: inherit;
     color: var(--text);
     outline: none;
     transition: border-color .2s, background .2s;
+    flex-grow: 1;
 }
 
 .header-search input:focus {
@@ -222,7 +223,6 @@ main {
     margin-left: var(--sidebar-w);
     flex: 1;
     padding: 20px 24px;
-    max-width: 900px;
 }
 
 /* Sort bar */

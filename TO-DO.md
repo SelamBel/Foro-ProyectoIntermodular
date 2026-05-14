@@ -23,6 +23,8 @@
 
 - [ ] Cambiar sistema de guardado de fotos. Debería guardarse con nombre diferente, y a ser posible en otra base de datos. Checkear apuntes germán.
 
+- [ ] Implementar sistema de búsqueda
+
 
 
 ### Crear páginas:
@@ -31,7 +33,6 @@
 - [ ] Moderadores
 - [ ] Temas
 - [ ] Ayuda
-- [ ] Anunciarse
 - [ ] Reglas
 - [ ] Política de privacidad
 - [ ] Acuerdo de usuario

@@ -13,6 +13,9 @@ $activePage = $activePage ?? 'home';
         <a href="/pages/explore.php" class="nav-item <?= $activePage === 'explore' ? 'active' : '' ?>">
             <span class="nav-icon"><i class="fa-solid fa-compass"></i></span> Explorar
         </a>
+        <a href="/pages/topics.php" class="nav-item <?= $activePage === 'topics' ? 'active' : '' ?>">
+            <span class="nav-icon"><i class="fa-solid fa-tags"></i></span> Temas
+        </a>
     </div>
 
     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'moderator'): ?>
@@ -28,21 +31,6 @@ $activePage = $activePage ?? 'home';
     <?php endif; ?>
 
     <div class="nav-section">
-        <a href="/pages/best-english.php" class="nav-item <?= $activePage === 'best-english' ? 'active' : '' ?>">
-            <span class="nav-icon"><i class="fa-solid fa-earth-americas"></i></span> Lo mejor en Inglés
-        </a>
-        <a href="/pages/best-lang.php" class="nav-item <?= $activePage === 'best-lang' ? 'active' : '' ?>">
-            <span class="nav-icon"><i class="fa-solid fa-message"></i></span> Lo mejor en tu idioma
-        </a>
-        <a href="/pages/topics.php" class="nav-item <?= $activePage === 'topics' ? 'active' : '' ?>">
-            <span class="nav-icon"><i class="fa-solid fa-tags"></i></span> Temas
-        </a>
-    </div>
-
-    <div class="nav-section">
-        <a href="/pages/advertise.php" class="nav-item">
-            <span class="nav-icon"><i class="fa-solid fa-bullhorn"></i></span> Anunciarse
-        </a>
         <a href="/pages/help.php" class="nav-item">
             <span class="nav-icon"><i class="fa-solid fa-circle-question"></i></span> Ayuda
         </a>

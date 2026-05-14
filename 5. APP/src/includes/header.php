@@ -18,7 +18,7 @@ $pageTitle = $pageTitle ?? 'AntHive';
 
     <header class="site-header">
         <a href="/index.php" class="header-logo">
-            <img src="/assets/img/Logo Finished Base.svg" alt="AntHive logo"
+            <img src="/assets/img/logos/logo plain weight.svg" alt="AntHive logo"
                 onerror="this.style.display='none'">
             <span>AntHive</span>
         </a>
