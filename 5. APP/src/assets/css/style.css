@@ -25,6 +25,10 @@ body {
     font-size: 14px;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* ── HEADER ─────────────────────────────────────────── */
 header {
     position: fixed;

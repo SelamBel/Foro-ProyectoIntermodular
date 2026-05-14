@@ -46,4 +46,24 @@ class Comment
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
+
+    public function getAll(int $limit, int $offset): array
+    {
+        $stmt = $this->db->prepare("
+        SELECT c.*, u.name, u.surname
+        FROM comment c
+        INNER JOIN user u ON c.id_user = u.id
+        ORDER BY c.date_creation DESC
+        LIMIT :limit OFFSET :offset
+    ");
+        $stmt->bindValue(':limit',  $limit,  PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function countAll(): int
+    {
+        return (int) $this->db->query('SELECT COUNT(*) FROM comment')->fetchColumn();
+    }
 }
