@@ -22,7 +22,7 @@ class Publication
 
         $stmt = $this->db->prepare("
             SELECT p.*,
-                   u.name, u.surname,
+                   u.username,
                    COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 ELSE 0 END), 0) AS upvotes,
                    COALESCE(SUM(CASE WHEN v.type = 0 THEN 1 ELSE 0 END), 0) AS downvotes,
                    COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 WHEN v.type = 0 THEN -1 ELSE 0 END), 0) AS votes,
@@ -45,7 +45,7 @@ class Publication
     {
         $stmt = $this->db->prepare("
             SELECT p.*,
-                   u.name, u.surname,
+                   u.username,
                    COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 ELSE 0 END), 0) AS upvotes,
                    COALESCE(SUM(CASE WHEN v.type = 0 THEN 1 ELSE 0 END), 0) AS downvotes,
                    COUNT(DISTINCT c.id) AS comment_count
@@ -127,7 +127,7 @@ class Publication
         $where = $search ? "WHERE p.title LIKE :search OR p.content LIKE :search2" : '';
 
         $stmt = $this->db->prepare("
-        SELECT p.*, u.name, u.surname,
+        SELECT p.*, u.username,
                COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 ELSE 0 END), 0) AS upvotes,
                COALESCE(SUM(CASE WHEN v.type = 0 THEN 1 ELSE 0 END), 0) AS downvotes,
                COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 WHEN v.type = 0 THEN -1 ELSE 0 END), 0) AS votes,

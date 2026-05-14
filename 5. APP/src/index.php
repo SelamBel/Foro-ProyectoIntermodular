@@ -46,7 +46,7 @@ require_once __DIR__ . '/includes/header.php';
         <article class="post">
             <div class="post-inner">
                 <div class="post-meta">
-                    <span class="author">u/<?= htmlspecialchars($post['name'] . ' ' . $post['surname']) ?></span>
+                    <span class="author">u/<?= htmlspecialchars($post['username']) ?></span>
                     &middot;
                     <span class="post-date" data-date="<?= $post['date_creation'] ?>">
                         <?= htmlspecialchars($post['date_creation']) ?>

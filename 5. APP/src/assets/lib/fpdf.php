@@ -1643,7 +1643,7 @@ protected function _putfonts()
 			if(isset($font['enc']))
 				$cmapkey = $font['enc'];
 			else
-				$cmapkey = $font['name'];
+				$cmapkey = $font['username'];
 			if(!isset($this->cmaps[$cmapkey]))
 			{
 				$cmap = $this->_tounicodecmap($font['uv']);
@@ -1654,7 +1654,7 @@ protected function _putfonts()
 		// Font object
 		$this->fonts[$k]['n'] = $this->n+1;
 		$type = $font['type'];
-		$name = $font['name'];
+		$name = $font['username'];
 		if($font['subsetted'])
 			$name = 'AAAAAA+'.$name;
 		if($type=='Core')

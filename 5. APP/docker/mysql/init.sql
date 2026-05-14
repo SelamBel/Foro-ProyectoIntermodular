@@ -1,5 +1,7 @@
 -- AntHive - Esquema inicial de base de datos
 
+DROP TABLE IF EXISTS vote, comment, publication, user_has_role, user, role;
+
 CREATE TABLE IF NOT EXISTS `role` (
     `id`        BIGINT      NOT NULL AUTO_INCREMENT,
     `role_name` VARCHAR(50) NOT NULL UNIQUE,
@@ -9,11 +11,10 @@ CREATE TABLE IF NOT EXISTS `role` (
 CREATE TABLE IF NOT EXISTS `user` (
     `id`              BIGINT       NOT NULL AUTO_INCREMENT,
     `email`           VARCHAR(255) NOT NULL UNIQUE,
-    `name`            VARCHAR(100) NOT NULL,
-    `surname`         VARCHAR(100) NOT NULL,
+    `username`        VARCHAR(100) NOT NULL,
     `password`        VARCHAR(255) NOT NULL,
     `avatar`          VARCHAR(255) NULL,
-    `date_registered` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP
+    `date_registered` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 );
 
@@ -61,5 +62,4 @@ CREATE TABLE IF NOT EXISTS `vote` (
     FOREIGN KEY (`id_publication`) REFERENCES `publication`(`id`) ON DELETE CASCADE
 );
 
--- Datos iniciales
 INSERT INTO `role` (`role_name`) VALUES ('user'), ('moderator');

@@ -43,21 +43,15 @@ $(function () {
 
     function validateRegister() {
         let valid = true;
-        const name = $('#name').val().trim();
-        const surname = $('#surname').val().trim();
+        const username = $('#username').val().trim();
         const email = $('#email').val().trim();
         const password = $('#password').val().trim();
         const confirm = $('#confirm').val().trim();
 
-        if (name.length < 2) {
-            showError('nameError', 'El nombre debe tener al menos 2 caracteres.');
+        if (username.length < 2) {
+            showError('usernameError', 'El nombre de usuario debe tener al menos 2 caracteres.');
             valid = false;
-        } else { clearError('nameError'); }
-
-        if (surname.length < 2) {
-            showError('surnameError', 'Los apellidos deben tener al menos 2 caracteres.');
-            valid = false;
-        } else { clearError('surnameError'); }
+        } else { clearError('usernameError'); }
 
         if (!emailRegex.test(email)) {
             showError('emailError', 'Introduce un email válido.');

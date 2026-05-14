@@ -19,22 +19,21 @@ $error   = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name    = trim($_POST['name']    ?? '');
-    $surname = trim($_POST['surname'] ?? '');
+    $username    = trim($_POST['username']    ?? '');
 
-    if (strlen($name) < 2 || strlen($surname) < 2) {
-        $error = 'Nombre y apellidos deben tener al menos 2 caracteres.';
+    if (strlen($username) < 3 ) {
+        $error = 'Nombre de usuario debe tener al menos 3 caracteres.';
     } else {
         $avatarPath = $user['avatar'] ?? null;
 
-        if (!empty($_FILES['avatar']['name'])) {
+        if (!empty($_FILES['avatar']['username'])) {
             $allowed   = ['image/jpeg', 'image/png', 'image/webp'];
             $mimeType  = mime_content_type($_FILES['avatar']['tmp_name']);
 
             if (!in_array($mimeType, $allowed)) {
                 $error = 'Solo se permiten imágenes JPG, PNG o WEBP.';
             } else {
-                $ext        = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+                $ext        = pathinfo($_FILES['avatar']['username'], PATHINFO_EXTENSION);
                 $filename   = 'avatar_' . $_SESSION['user_id'] . '.' . $ext;
                 $uploadPath = __DIR__ . '/../assets/img/avatars/' . $filename;
 
@@ -48,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (!$error) {
-            $userModel->update($_SESSION['user_id'], $name, $surname, $avatarPath);
-            $_SESSION['name'] = $name;
+            $userModel->update($_SESSION['user_id'], $username,  $avatarPath);
+            $_SESSION['username'] = $username;
             $user = $userModel->findById($_SESSION['user_id']);
             $success = 'Perfil actualizado correctamente.';
         }
@@ -76,7 +75,7 @@ require_once __DIR__ . '/../includes/header.php';
                     <?php endif; ?>
                 </div>
                 <div class="profile-info">
-                    <h1><?= htmlspecialchars($user['name'] . ' ' . $user['surname']) ?></h1>
+                    <h1><?= htmlspecialchars($user['username']) ?></h1>
                     <span class="profile-role"><?= htmlspecialchars($_SESSION['role']) ?></span>
                     <span class="profile-since">Miembro desde <?= date('d/m/Y', strtotime($user['date_registered'])) ?></span>
                 </div>
@@ -96,16 +95,10 @@ require_once __DIR__ . '/../includes/header.php';
             <form method="POST" enctype="multipart/form-data" id="profileForm" novalidate>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" name="name"
-                            value="<?= htmlspecialchars($user['name']) ?>">
+                        <label for="username">Nombre</label>
+                        <input type="text" id="username" name="username"
+                            value="<?= htmlspecialchars($user['username']) ?>">
                         <span class="field-error" id="nameError"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="surname">Apellidos</label>
-                        <input type="text" id="surname" name="surname"
-                            value="<?= htmlspecialchars($user['surname']) ?>">
-                        <span class="field-error" id="surnameError"></span>
                     </div>
                 </div>
                 <div class="form-group">

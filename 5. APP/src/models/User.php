@@ -26,13 +26,13 @@ class User
         return $stmt->fetch();
     }
 
-    public function create(string $email, string $name, string $surname, string $password): int
+    public function create(string $email, string $username, string $password): int
     {
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $stmt = $this->db->prepare(
-            'INSERT INTO `user` (email, name, surname, password) VALUES (?, ?, ?, ?)'
+            'INSERT INTO `user` (email, username, password) VALUES (?, ?, ?)'
         );
-        $stmt->execute([$email, $name, $surname, $hash]);
+        $stmt->execute([$email, $username, $hash]);
         $userId = (int) $this->db->lastInsertId();
 
         // Asignar rol 'user' por defecto (id = 1)
@@ -71,11 +71,11 @@ class User
         $stmt->execute([$email]);
         return (int) $stmt->fetchColumn() > 0;
     }
-    public function update(int $id, string $name, string $surname, ?string $avatar): void
+    public function update(int $id, string $username, ?string $avatar): void
     {
         $stmt = $this->db->prepare(
-            'UPDATE `user` SET name = ?, surname = ?, avatar = ? WHERE id = ?'
+            'UPDATE `user` SET username = ?, avatar = ? WHERE id = ?'
         );
-        $stmt->execute([$name, $surname, $avatar, $id]);
+        $stmt->execute([$username, $avatar, $id]);
     }
 }

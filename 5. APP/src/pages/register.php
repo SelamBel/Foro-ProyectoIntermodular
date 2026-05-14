@@ -12,13 +12,12 @@ $error   = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name     = trim($_POST['name']     ?? '');
-    $surname  = trim($_POST['surname']  ?? '');
+    $username     = trim($_POST['username']     ?? '');
     $email    = trim($_POST['email']    ?? '');
     $password = trim($_POST['password'] ?? '');
     $confirm  = trim($_POST['confirm']  ?? '');
 
-    if (empty($name) || empty($surname) || empty($email) || empty($password) || empty($confirm)) {
+    if (empty($username) || empty($email) || empty($password) || empty($confirm)) {
         $error = 'Por favor, rellena todos los campos.';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = 'El email no es válido.';
@@ -32,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($userModel->emailExists($email)) {
             $error = 'Este email ya está registrado.';
         } else {
-            $userModel->create($email, $name, $surname, $password);
+            $userModel->create($email, $username, $password);
             $success = '¡Cuenta creada! Ya puedes iniciar sesión.';
         }
     }
@@ -62,23 +61,13 @@ require_once __DIR__ . '/../includes/header.php';
         <?php endif; ?>
 
         <form method="POST" action="/pages/register.php" id="registerForm" novalidate>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" id="name" name="name"
-                        value="<?= htmlspecialchars($_POST['name'] ?? '') ?>"
-                        placeholder="Tu nombre" autocomplete="given-name">
-                    <span class="field-error" id="nameError"></span>
-                </div>
-                <div class="form-group">
-                    <label for="surname">Apellidos</label>
-                    <input type="text" id="surname" name="surname"
-                        value="<?= htmlspecialchars($_POST['surname'] ?? '') ?>"
-                        placeholder="Tus apellidos" autocomplete="family-name">
-                    <span class="field-error" id="surnameError"></span>
-                </div>
+            <div class="form-group">
+                <label for="username">Nombre</label>
+                <input type="text" id="username" name="username"
+                    value="<?= htmlspecialchars($_POST['username'] ?? '') ?>"
+                    placeholder="Tu nombre de usuario" autocomplete="given-username">
+                <span class="field-error" id="nameError"></span>
             </div>
-
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email"
@@ -86,7 +75,6 @@ require_once __DIR__ . '/../includes/header.php';
                     placeholder="tu@email.com" autocomplete="email">
                 <span class="field-error" id="emailError"></span>
             </div>
-
             <div class="form-group">
                 <label for="password">Contraseña</label>
                 <div class="input-icon-right">

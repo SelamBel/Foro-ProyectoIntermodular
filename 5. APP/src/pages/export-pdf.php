@@ -20,7 +20,7 @@ $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 16);
 $pdf->Cell(0, 10, 'AntHive - Listado de publicaciones', 0, 1, 'C');
 $pdf->SetFont('Arial', '', 9);
-$pdf->Cell(0, 6, 'Generado el ' . date('d/m/Y H:i') . ' por ' . $_SESSION['name'], 0, 1, 'C');
+$pdf->Cell(0, 6, 'Generado el ' . date('d/m/Y H:i') . ' por ' . $_SESSION['username'], 0, 1, 'C');
 $pdf->Ln(4);
 
 $pdf->SetFont('Arial', 'B', 10);
@@ -40,7 +40,7 @@ foreach ($items as $i => $post) {
     $date  = date('d/m/Y', strtotime($post['date_creation']));
     $pdf->Cell(10,  7, $i + 1, 1, 0, 'C', $fill);
     $pdf->Cell(70,  7, iconv('UTF-8', 'windows-1252//TRANSLIT', mb_strimwidth($post['title'], 0, 50, '...')), 1, 0, 'L', $fill);
-    $pdf->Cell(40,  7, iconv('UTF-8', 'windows-1252//TRANSLIT', $post['name'] . ' ' . $post['surname']), 1, 0, 'L', $fill);
+    $pdf->Cell(40,  7, iconv('UTF-8', 'windows-1252//TRANSLIT', $post['username']), 1, 0, 'L', $fill);
     $pdf->Cell(20,  7, $votes, 1, 0, 'C', $fill);
     $pdf->Cell(25,  7, $post['comment_count'], 1, 0, 'C', $fill);
     $pdf->Cell(25,  7, $date, 1, 1, 'C', $fill);

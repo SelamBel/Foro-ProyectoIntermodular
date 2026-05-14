@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $roles = $userModel->getRoles($user['id']);
 
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['name']    = $user['name'];
+            $_SESSION['username']    = $user['username'];
             $_SESSION['email']   = $user['email'];
             $_SESSION['role']    = in_array('moderator', $roles) ? 'moderator' : 'user';
 
