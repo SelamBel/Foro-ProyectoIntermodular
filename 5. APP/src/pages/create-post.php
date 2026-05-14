@@ -49,15 +49,15 @@ require_once __DIR__ . '/../includes/header.php';
                 <div class="form-group">
                     <label for="title">Título</label>
                     <input type="text" id="title" name="title" maxlength="300"
-                           value="<?= htmlspecialchars($_POST['title'] ?? '') ?>"
-                           placeholder="¿De qué trata tu publicación?">
+                        value="<?= htmlspecialchars($_POST['title'] ?? '') ?>"
+                        placeholder="¿De qué trata tu publicación?">
                     <span class="field-error" id="titleError"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="content">Contenido</label>
                     <textarea id="content" name="content" rows="10"
-                              placeholder="Escribe aquí tu publicación..."><?= htmlspecialchars($_POST['content'] ?? '') ?></textarea>
+                        placeholder="Escribe aquí tu publicación..."><?= htmlspecialchars($_POST['content'] ?? '') ?></textarea>
                     <span class="field-error" id="contentError"></span>
                 </div>
 

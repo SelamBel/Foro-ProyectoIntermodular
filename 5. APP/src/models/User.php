@@ -2,27 +2,32 @@
 
 require_once __DIR__ . '/../config/database.php';
 
-class User {
+class User
+{
 
     private PDO $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = getDB();
     }
 
-    public function findByEmail(string $email): array|false {
+    public function findByEmail(string $email): array|false
+    {
         $stmt = $this->db->prepare('SELECT * FROM `user` WHERE email = ? LIMIT 1');
         $stmt->execute([$email]);
         return $stmt->fetch();
     }
 
-    public function findById(int $id): array|false {
+    public function findById(int $id): array|false
+    {
         $stmt = $this->db->prepare('SELECT * FROM `user` WHERE id = ? LIMIT 1');
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
 
-    public function create(string $email, string $name, string $surname, string $password): int {
+    public function create(string $email, string $name, string $surname, string $password): int
+    {
         $hash = password_hash($password, PASSWORD_BCRYPT);
         $stmt = $this->db->prepare(
             'INSERT INTO `user` (email, name, surname, password) VALUES (?, ?, ?, ?)'
@@ -36,14 +41,16 @@ class User {
         return $userId;
     }
 
-    public function assignRole(int $userId, int $roleId): void {
+    public function assignRole(int $userId, int $roleId): void
+    {
         $stmt = $this->db->prepare(
             'INSERT IGNORE INTO user_has_role (id_user, id_role) VALUES (?, ?)'
         );
         $stmt->execute([$userId, $roleId]);
     }
 
-    public function getRoles(int $userId): array {
+    public function getRoles(int $userId): array
+    {
         $stmt = $this->db->prepare(
             'SELECT r.role_name FROM role r
              INNER JOIN user_has_role uhr ON r.id = uhr.id_role
@@ -53,19 +60,22 @@ class User {
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function verifyPassword(string $password, string $hash): bool {
+    public function verifyPassword(string $password, string $hash): bool
+    {
         return password_verify($password, $hash);
     }
 
-    public function emailExists(string $email): bool {
+    public function emailExists(string $email): bool
+    {
         $stmt = $this->db->prepare('SELECT COUNT(*) FROM `user` WHERE email = ?');
         $stmt->execute([$email]);
         return (int) $stmt->fetchColumn() > 0;
     }
-    public function update(int $id, string $name, string $surname, ?string $avatar): void {
-    $stmt = $this->db->prepare(
-        'UPDATE `user` SET name = ?, surname = ?, avatar = ? WHERE id = ?'
-    );
-    $stmt->execute([$name, $surname, $avatar, $id]);
-}
+    public function update(int $id, string $name, string $surname, ?string $avatar): void
+    {
+        $stmt = $this->db->prepare(
+            'UPDATE `user` SET name = ?, surname = ?, avatar = ? WHERE id = ?'
+        );
+        $stmt->execute([$name, $surname, $avatar, $id]);
+    }
 }

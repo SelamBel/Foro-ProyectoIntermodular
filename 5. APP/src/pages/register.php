@@ -66,15 +66,15 @@ require_once __DIR__ . '/../includes/header.php';
                 <div class="form-group">
                     <label for="name">Nombre</label>
                     <input type="text" id="name" name="name"
-                           value="<?= htmlspecialchars($_POST['name'] ?? '') ?>"
-                           placeholder="Tu nombre" autocomplete="given-name">
+                        value="<?= htmlspecialchars($_POST['name'] ?? '') ?>"
+                        placeholder="Tu nombre" autocomplete="given-name">
                     <span class="field-error" id="nameError"></span>
                 </div>
                 <div class="form-group">
                     <label for="surname">Apellidos</label>
                     <input type="text" id="surname" name="surname"
-                           value="<?= htmlspecialchars($_POST['surname'] ?? '') ?>"
-                           placeholder="Tus apellidos" autocomplete="family-name">
+                        value="<?= htmlspecialchars($_POST['surname'] ?? '') ?>"
+                        placeholder="Tus apellidos" autocomplete="family-name">
                     <span class="field-error" id="surnameError"></span>
                 </div>
             </div>
@@ -82,8 +82,8 @@ require_once __DIR__ . '/../includes/header.php';
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email"
-                       value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
-                       placeholder="tu@email.com" autocomplete="email">
+                    value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
+                    placeholder="tu@email.com" autocomplete="email">
                 <span class="field-error" id="emailError"></span>
             </div>
 
@@ -91,7 +91,7 @@ require_once __DIR__ . '/../includes/header.php';
                 <label for="password">Contraseña</label>
                 <div class="input-icon-right">
                     <input type="password" id="password" name="password"
-                           placeholder="Mínimo 8 caracteres" autocomplete="new-password">
+                        placeholder="Mínimo 8 caracteres" autocomplete="new-password">
                     <button type="button" class="toggle-password" tabindex="-1">
                         <i class="fa-solid fa-eye"></i>
                     </button>
@@ -103,7 +103,7 @@ require_once __DIR__ . '/../includes/header.php';
                 <label for="confirm">Repetir contraseña</label>
                 <div class="input-icon-right">
                     <input type="password" id="confirm" name="confirm"
-                           placeholder="Repite la contraseña" autocomplete="new-password">
+                        placeholder="Repite la contraseña" autocomplete="new-password">
                     <button type="button" class="toggle-password" tabindex="-1">
                         <i class="fa-solid fa-eye"></i>
                     </button>

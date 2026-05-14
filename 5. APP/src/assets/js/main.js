@@ -1,7 +1,7 @@
 $(function () {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passRegex  = /.{8,}/;
+    const passRegex = /.{8,}/;
 
     function showError(id, msg) {
         $('#' + id).text(msg).fadeIn(150);
@@ -13,15 +13,15 @@ $(function () {
 
     function timeAgo(dateStr) {
         const diff = Math.floor((new Date() - new Date(dateStr)) / 1000);
-        if (diff < 60)    return 'hace un momento';
-        if (diff < 3600)  return 'hace ' + Math.floor(diff / 60) + ' min';
+        if (diff < 60) return 'hace un momento';
+        if (diff < 3600) return 'hace ' + Math.floor(diff / 60) + ' min';
         if (diff < 86400) return 'hace ' + Math.floor(diff / 3600) + ' h';
         return 'hace ' + Math.floor(diff / 86400) + ' días';
     }
 
     function validateLogin() {
         let valid = true;
-        const email    = $('#email').val().trim();
+        const email = $('#email').val().trim();
         const password = $('#password').val().trim();
 
         if (!emailRegex.test(email)) {
@@ -43,11 +43,11 @@ $(function () {
 
     function validateRegister() {
         let valid = true;
-        const name     = $('#name').val().trim();
-        const surname  = $('#surname').val().trim();
-        const email    = $('#email').val().trim();
+        const name = $('#name').val().trim();
+        const surname = $('#surname').val().trim();
+        const email = $('#email').val().trim();
         const password = $('#password').val().trim();
-        const confirm  = $('#confirm').val().trim();
+        const confirm = $('#confirm').val().trim();
 
         if (name.length < 2) {
             showError('nameError', 'El nombre debe tener al menos 2 caracteres.');
@@ -79,7 +79,7 @@ $(function () {
 
     $('.toggle-password').on('click', function () {
         const input = $(this).closest('.input-icon-right').find('input');
-        const icon  = $(this).find('i');
+        const icon = $(this).find('i');
         if (input.attr('type') === 'password') {
             input.attr('type', 'text');
             icon.removeClass('fa-eye').addClass('fa-eye-slash');
@@ -156,9 +156,9 @@ $(function () {
     });
 
     $(document).on('click', '.js-vote', function () {
-        const btn   = $(this);
-        const id    = btn.data('id');
-        const type  = btn.data('type');
+        const btn = $(this);
+        const id = btn.data('id');
+        const type = btn.data('type');
         const group = btn.closest('.vote-group');
 
         $.post('/pages/vote.php', { id: id, type: type }, function (res) {
@@ -180,8 +180,8 @@ $(function () {
     });
 
     $(document).on('click', '.js-delete-comment', function () {
-        const btn    = $(this);
-        const id     = btn.data('id');
+        const btn = $(this);
+        const id = btn.data('id');
         const postId = btn.data('post');
         if (!confirm('¿Eliminar este comentario?')) return;
         $.post('/pages/delete-comment.php', { id: id }, function (res) {

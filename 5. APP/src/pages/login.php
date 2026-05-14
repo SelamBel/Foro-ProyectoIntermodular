@@ -57,8 +57,8 @@ require_once __DIR__ . '/../includes/header.php';
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email"
-                       value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
-                       placeholder="tu@email.com" autocomplete="email">
+                    value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
+                    placeholder="tu@email.com" autocomplete="email">
                 <span class="field-error" id="emailError"></span>
             </div>
 
@@ -66,7 +66,7 @@ require_once __DIR__ . '/../includes/header.php';
                 <label for="password">Contraseña</label>
                 <div class="input-icon-right">
                     <input type="password" id="password" name="password"
-                           placeholder="Tu contraseña" autocomplete="current-password">
+                        placeholder="Tu contraseña" autocomplete="current-password">
                     <button type="button" class="toggle-password" tabindex="-1">
                         <i class="fa-solid fa-eye" id="toggleIcon"></i>
                     </button>

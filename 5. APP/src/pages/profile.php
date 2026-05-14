@@ -98,13 +98,13 @@ require_once __DIR__ . '/../includes/header.php';
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input type="text" id="name" name="name"
-                               value="<?= htmlspecialchars($user['name']) ?>">
+                            value="<?= htmlspecialchars($user['name']) ?>">
                         <span class="field-error" id="nameError"></span>
                     </div>
                     <div class="form-group">
                         <label for="surname">Apellidos</label>
                         <input type="text" id="surname" name="surname"
-                               value="<?= htmlspecialchars($user['surname']) ?>">
+                            value="<?= htmlspecialchars($user['surname']) ?>">
                         <span class="field-error" id="surnameError"></span>
                     </div>
                 </div>
@@ -130,38 +130,38 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
             <?php else: ?>
                 <?php foreach ($posts as $post): ?>
-                <article class="post">
-                    <div class="post-inner">
-                        <div class="post-meta">
-                            <span class="post-date" data-date="<?= $post['date_creation'] ?>"><?= $post['date_creation'] ?></span>
-                        </div>
-                        <h2 class="post-title">
-                            <a href="/pages/post.php?id=<?= $post['id'] ?>"><?= htmlspecialchars($post['title']) ?></a>
-                        </h2>
-                        <p class="post-body"><?= htmlspecialchars($post['content']) ?></p>
-                        <div class="post-actions">
-                            <div class="vote-group">
-                                <button class="vote-btn up js-vote" data-id="<?= $post['id'] ?>" data-type="1">
-                                    <i class="fa-solid fa-arrow-up"></i>
-                                    <span class="upvote-count"><?= $post['upvotes'] ?></span>
-                                </button>
-                                <button class="vote-btn down js-vote" data-id="<?= $post['id'] ?>" data-type="0">
-                                    <i class="fa-solid fa-arrow-down"></i>
-                                    <span class="downvote-count"><?= $post['downvotes'] ?></span>
+                    <article class="post">
+                        <div class="post-inner">
+                            <div class="post-meta">
+                                <span class="post-date" data-date="<?= $post['date_creation'] ?>"><?= $post['date_creation'] ?></span>
+                            </div>
+                            <h2 class="post-title">
+                                <a href="/pages/post.php?id=<?= $post['id'] ?>"><?= htmlspecialchars($post['title']) ?></a>
+                            </h2>
+                            <p class="post-body"><?= htmlspecialchars($post['content']) ?></p>
+                            <div class="post-actions">
+                                <div class="vote-group">
+                                    <button class="vote-btn up js-vote" data-id="<?= $post['id'] ?>" data-type="1">
+                                        <i class="fa-solid fa-arrow-up"></i>
+                                        <span class="upvote-count"><?= $post['upvotes'] ?></span>
+                                    </button>
+                                    <button class="vote-btn down js-vote" data-id="<?= $post['id'] ?>" data-type="0">
+                                        <i class="fa-solid fa-arrow-down"></i>
+                                        <span class="downvote-count"><?= $post['downvotes'] ?></span>
+                                    </button>
+                                </div>
+                                <a href="/pages/post.php?id=<?= $post['id'] ?>" class="action-btn">
+                                    <i class="fa-solid fa-comment"></i> <?= $post['comment_count'] ?> comentarios
+                                </a>
+                                <a href="/pages/edit-post.php?id=<?= $post['id'] ?>" class="action-btn">
+                                    <i class="fa-solid fa-pen"></i> Editar
+                                </a>
+                                <button class="action-btn js-delete-post" data-id="<?= $post['id'] ?>">
+                                    <i class="fa-solid fa-trash"></i> Eliminar
                                 </button>
                             </div>
-                            <a href="/pages/post.php?id=<?= $post['id'] ?>" class="action-btn">
-                                <i class="fa-solid fa-comment"></i> <?= $post['comment_count'] ?> comentarios
-                            </a>
-                            <a href="/pages/edit-post.php?id=<?= $post['id'] ?>" class="action-btn">
-                                <i class="fa-solid fa-pen"></i> Editar
-                            </a>
-                            <button class="action-btn js-delete-post" data-id="<?= $post['id'] ?>">
-                                <i class="fa-solid fa-trash"></i> Eliminar
-                            </button>
                         </div>
-                    </div>
-                </article>
+                    </article>
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
