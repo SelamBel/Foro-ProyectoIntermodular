@@ -44,6 +44,9 @@ require_once __DIR__ . '/../includes/header.php';
         <div class="sort-bar" style="margin-bottom:16px">
             <a href="?tab=posts" class="sort-btn <?= $tab === 'posts'    ? 'active' : '' ?>"><i class="fa-solid fa-newspaper"></i> Publicaciones</a>
             <a href="?tab=comments" class="sort-btn <?= $tab === 'comments' ? 'active' : '' ?>"><i class="fa-solid fa-comments"></i> Comentarios</a>
+            <a href="/pages/export-pdf.php" class="btn-primary" style="margin-left:auto">
+                <i class="fa-solid fa-file-pdf"></i> Exportar PDF
+            </a>
         </div>
 
         <?php if (empty($items)): ?>

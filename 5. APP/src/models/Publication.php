@@ -115,4 +115,39 @@ class Publication
         $stmt->execute([$userId]);
         return $stmt->fetchAll();
     }
+
+    public function getAllFiltered(string $order = 'newest', string $search = ''): array
+    {
+        $orderSql = match ($order) {
+            'votes'  => 'votes DESC',
+            'oldest' => 'p.date_creation ASC',
+            default  => 'p.date_creation DESC'
+        };
+
+        $where = $search ? "WHERE p.title LIKE :search OR p.content LIKE :search2" : '';
+
+        $stmt = $this->db->prepare("
+        SELECT p.*, u.name, u.surname,
+               COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 ELSE 0 END), 0) AS upvotes,
+               COALESCE(SUM(CASE WHEN v.type = 0 THEN 1 ELSE 0 END), 0) AS downvotes,
+               COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 WHEN v.type = 0 THEN -1 ELSE 0 END), 0) AS votes,
+               COUNT(DISTINCT c.id) AS comment_count
+        FROM publication p
+        INNER JOIN user u ON p.id_user = u.id
+        LEFT JOIN vote v ON v.id_publication = p.id
+        LEFT JOIN comment c ON c.id_publication = p.id
+        $where
+        GROUP BY p.id
+        ORDER BY $orderSql
+    ");
+
+        if ($search) {
+            $like = '%' . $search . '%';
+            $stmt->bindValue(':search',  $like);
+            $stmt->bindValue(':search2', $like);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
