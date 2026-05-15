@@ -1,6 +1,5 @@
 ### TO-DO:
 - [X] Crear modo noche.
-- [ ] Editar estilos de toda la página.
 - [ ] Separar estilos por página???
 - [X] Que el nombre y apellido pase a ser solo el usuario.
 - [ ] Que en los posts se vea el avatar de quién lo ha publicado.
@@ -31,11 +30,12 @@
 - [ ] Accesibilidad
 
 ## BUF FIXES:
-- [ ] Las votaciones van raras. Si votas con una cuenta, cambias de cuenta, votas con la nueva, y empiezas a desvotar y refrescar, a veces se duplican
+- [X] Las votaciones van raras. Si votas con una cuenta, cambias de cuenta, votas con la nueva, y empiezas a desvotar y refrescar, a veces se duplican
 - [X] Puedes tanto crear usuarios como modificar usuarios existentes con un username ya en uso. Deben ser únicos.
-- [X] Aparte de Principal, el resto no te marca correctamente la sidebar cuando estás en ellos
+- [ ] Aparte de Principal, el resto no te marca correctamente la sidebar cuando estás en ellos
 
 # FINAL:
-- [X] AWS
-- [X] Docu completa en el pages
-- [X] Tags de versiones?
+- [ ] Editar estilos de toda la página.
+- [ ] AWS
+- [ ] Docu completa en el pages
+- [ ] Tags de versiones?

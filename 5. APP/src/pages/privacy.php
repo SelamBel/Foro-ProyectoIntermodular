@@ -2,7 +2,7 @@
 session_start();
 
 $pageTitle  = 'Política de privacidad';
-$activePage = '';
+$activePage = 'privacy';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 

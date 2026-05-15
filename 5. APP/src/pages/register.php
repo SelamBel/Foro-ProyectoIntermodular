@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $pageTitle  = 'Registrarse';
-$activePage = '';
+$activePage = 'register';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 

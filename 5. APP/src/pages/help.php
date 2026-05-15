@@ -2,7 +2,7 @@
 session_start();
 
 $pageTitle  = 'Ayuda';
-$activePage = '';
+$activePage = 'help';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 

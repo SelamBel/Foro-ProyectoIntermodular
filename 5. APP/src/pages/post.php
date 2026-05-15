@@ -103,7 +103,7 @@ function renderComments(array $comments, int $depth = 0): void
 
 $tree      = buildTree($comments);
 $pageTitle = htmlspecialchars($post['title']);
-$activePage = '';
+$activePage = 'post';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 

@@ -24,26 +24,26 @@ $activePage = $activePage ?? 'home';
             <a href="/pages/modmail.php" class="nav-item <?= $activePage === 'modmail' ? 'active' : '' ?>">
                 <span class="nav-icon"><i class="fa-solid fa-shield-halved"></i></span> Mod mail
             </a>
-            <a href="/pages/moderators.php" class="nav-item">
+            <a href="/pages/moderators.php" class="nav-item <?= $activePage === 'moderators' ? 'active' : '' ?>">
                 <span class="nav-icon"><i class="fa-solid fa-user-shield"></i></span> Moderadores
             </a>
         </div>
     <?php endif; ?>
 
     <div class="nav-section">
-        <a href="/pages/help.php" class="nav-item">
+        <a href="/pages/help.php" class="nav-item <?= $activePage === 'help' ? 'active' : '' ?>">
             <span class="nav-icon"><i class="fa-solid fa-circle-question"></i></span> Ayuda
         </a>
-        <a href="/pages/rules.php" class="nav-item">
+        <a href="/pages/rules.php" class="nav-item <?= $activePage === 'rules' ? 'active' : '' ?>">
             <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span> Reglas de AntHive
         </a>
-        <a href="/pages/privacy.php" class="nav-item">
+        <a href="/pages/privacy.php" class="nav-item <?= $activePage === 'privacy' ? 'active' : '' ?>">
             <span class="nav-icon"><i class="fa-solid fa-lock"></i></span> Política de privacidad
         </a>
-        <a href="/pages/terms.php" class="nav-item">
+        <a href="/pages/terms.php" class="nav-item <?= $activePage === 'terms' ? 'active' : '' ?>">
             <span class="nav-icon"><i class="fa-solid fa-file-contract"></i></span> Acuerdo de usuario
         </a>
-        <a href="/pages/accessibility.php" class="nav-item">
+        <a href="/pages/accessibility.php" class="nav-item <?= $activePage === 'accessibility' ? 'active' : '' ?>">
             <span class="nav-icon"><i class="fa-solid fa-universal-access"></i></span> Accesibilidad
         </a>
     </div>

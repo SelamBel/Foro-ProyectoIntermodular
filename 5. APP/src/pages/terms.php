@@ -2,7 +2,7 @@
 session_start();
 
 $pageTitle  = 'Acuerdo de usuario';
-$activePage = '';
+$activePage = 'terms';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 

@@ -2,7 +2,7 @@
 session_start();
 
 $pageTitle  = 'Reglas de AntHive';
-$activePage = '';
+$activePage = 'rules';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 

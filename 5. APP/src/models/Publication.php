@@ -23,15 +23,12 @@ class Publication
         $stmt = $this->db->prepare("
             SELECT p.*,
                    u.username,
-                   COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 ELSE 0 END), 0) AS upvotes,
-                   COALESCE(SUM(CASE WHEN v.type = 0 THEN 1 ELSE 0 END), 0) AS downvotes,
-                   COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 WHEN v.type = 0 THEN -1 ELSE 0 END), 0) AS votes,
-                   COUNT(DISTINCT c.id) AS comment_count
+                   (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 1) AS upvotes,
+                   (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 0) AS downvotes,
+                   (SELECT COALESCE(SUM(CASE WHEN v2.type = 1 THEN 1 ELSE -1 END), 0) FROM vote v2 WHERE v2.id_publication = p.id) AS votes,
+                   (SELECT COUNT(*) FROM comment c WHERE c.id_publication = p.id) AS comment_count
             FROM publication p
             INNER JOIN user u ON p.id_user = u.id
-            LEFT JOIN vote v ON v.id_publication = p.id
-            LEFT JOIN comment c ON c.id_publication = p.id
-            GROUP BY p.id
             ORDER BY $orderSql
             LIMIT :limit OFFSET :offset
         ");
@@ -46,15 +43,12 @@ class Publication
         $stmt = $this->db->prepare("
             SELECT p.*,
                    u.username,
-                   COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 ELSE 0 END), 0) AS upvotes,
-                   COALESCE(SUM(CASE WHEN v.type = 0 THEN 1 ELSE 0 END), 0) AS downvotes,
-                   COUNT(DISTINCT c.id) AS comment_count
+                   (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 1) AS upvotes,
+                   (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 0) AS downvotes,
+                   (SELECT COUNT(*) FROM comment c WHERE c.id_publication = p.id) AS comment_count
             FROM publication p
             INNER JOIN user u ON p.id_user = u.id
-            LEFT JOIN vote v ON v.id_publication = p.id
-            LEFT JOIN comment c ON c.id_publication = p.id
             WHERE p.id = ?
-            GROUP BY p.id
         ");
         $stmt->execute([$id]);
         return $stmt->fetch();
@@ -101,17 +95,14 @@ class Publication
     public function getByUser(int $userId): array
     {
         $stmt = $this->db->prepare("
-        SELECT p.*,
-               COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 ELSE 0 END), 0) AS upvotes,
-               COALESCE(SUM(CASE WHEN v.type = 0 THEN 1 ELSE 0 END), 0) AS downvotes,
-               COUNT(DISTINCT c.id) AS comment_count
-        FROM publication p
-        LEFT JOIN vote v ON v.id_publication = p.id
-        LEFT JOIN comment c ON c.id_publication = p.id
-        WHERE p.id_user = ?
-        GROUP BY p.id
-        ORDER BY p.date_creation DESC
-    ");
+            SELECT p.*,
+                   (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 1) AS upvotes,
+                   (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 0) AS downvotes,
+                   (SELECT COUNT(*) FROM comment c WHERE c.id_publication = p.id) AS comment_count
+            FROM publication p
+            WHERE p.id_user = ?
+            ORDER BY p.date_creation DESC
+        ");
         $stmt->execute([$userId]);
         return $stmt->fetchAll();
     }
@@ -127,19 +118,17 @@ class Publication
         $where = $search ? "WHERE p.title LIKE :search OR p.content LIKE :search2" : '';
 
         $stmt = $this->db->prepare("
-        SELECT p.*, u.username,
-               COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 ELSE 0 END), 0) AS upvotes,
-               COALESCE(SUM(CASE WHEN v.type = 0 THEN 1 ELSE 0 END), 0) AS downvotes,
-               COALESCE(SUM(CASE WHEN v.type = 1 THEN 1 WHEN v.type = 0 THEN -1 ELSE 0 END), 0) AS votes,
-               COUNT(DISTINCT c.id) AS comment_count
-        FROM publication p
-        INNER JOIN user u ON p.id_user = u.id
-        LEFT JOIN vote v ON v.id_publication = p.id
-        LEFT JOIN comment c ON c.id_publication = p.id
-        $where
-        GROUP BY p.id
-        ORDER BY $orderSql
-    ");
+            SELECT p.*,
+                   u.username,
+                   (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 1) AS upvotes,
+                   (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 0) AS downvotes,
+                   (SELECT COALESCE(SUM(CASE WHEN v2.type = 1 THEN 1 ELSE -1 END), 0) FROM vote v2 WHERE v2.id_publication = p.id) AS votes,
+                   (SELECT COUNT(*) FROM comment c WHERE c.id_publication = p.id) AS comment_count
+            FROM publication p
+            INNER JOIN user u ON p.id_user = u.id
+            $where
+            ORDER BY $orderSql
+        ");
 
         if ($search) {
             $like = '%' . $search . '%';
