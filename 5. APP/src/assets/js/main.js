@@ -182,5 +182,46 @@ $(function () {
             if (res.success) window.location.href = '/pages/post.php?id=' + postId;
         }, 'json');
     });
+    function applyTheme(dark, color) {
+        if (dark) {
+            $('body').addClass('dark');
+            $('#darkBtn').addClass('active');
+            $('#lightBtn').removeClass('active');
+        } else {
+            $('body').removeClass('dark');
+            $('#lightBtn').addClass('active');
+            $('#darkBtn').removeClass('active');
+        }
+        document.documentElement.style.setProperty('--primary', color);
+        $('.color-swatch').removeClass('active');
+        $('.color-swatch[data-color="' + color + '"]').addClass('active');
+        $('#customColor').val(color);
+    }
+
+    const savedDark = localStorage.getItem('anthive_dark') === 'true';
+    const savedColor = localStorage.getItem('anthive_color') || '#e20000';
+    applyTheme(savedDark, savedColor);
+
+    $('#darkBtn').on('click', function () {
+        localStorage.setItem('anthive_dark', 'true');
+        applyTheme(true, localStorage.getItem('anthive_color') || '#e20000');
+    });
+
+    $('#lightBtn').on('click', function () {
+        localStorage.setItem('anthive_dark', 'false');
+        applyTheme(false, localStorage.getItem('anthive_color') || '#e20000');
+    });
+
+    $(document).on('click', '.color-swatch', function () {
+        const color = $(this).data('color');
+        localStorage.setItem('anthive_color', color);
+        applyTheme(localStorage.getItem('anthive_dark') === 'true', color);
+    });
+
+    $('#customColor').on('input', function () {
+        const color = $(this).val();
+        localStorage.setItem('anthive_color', color);
+        applyTheme(localStorage.getItem('anthive_dark') === 'true', color);
+    });
 
 });

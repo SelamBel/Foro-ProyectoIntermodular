@@ -12,6 +12,32 @@
     --sidebar-w: 270px;
 }
 
+/* ── DARK MODE ───────────────────────────────────────── */
+html.dark {
+    --bg: #1a1a1b;
+    --surface: #272729;
+    --sidebar-bg: #1a1a1b;
+    --border: #343536;
+    --text: #d7dadc;
+    --muted: #818384;
+    --hover-bg: #2d2d2e;
+    --header-bg: #1a1a1b;
+}
+
+html.dark .post-body {
+    color: #b0b3b8;
+}
+
+html.dark .help-section p {
+    color: #b0b3b8;
+}
+
+html.dark textarea,
+html.dark input {
+    background: var(--surface);
+    color: var(--text);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -859,7 +885,82 @@ textarea:focus {
     text-decoration: none;
 }
 
-.help-section a:hover { text-decoration: underline; }
+.help-section a:hover {
+    text-decoration: underline;
+}
+
+/* ── TEMAS ───────────────────────────────────────────── */
+.theme-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color .15s;
+}
+
+.theme-btn:hover,
+.theme-btn.active {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.color-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.color-swatch {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: border-color .15s, transform .15s;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-swatch.active {
+    border-color: var(--text);
+}
+
+.color-custom {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-left: auto;
+}
+
+.color-custom input[type="color"] {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px;
+    cursor: pointer;
+    background: var(--surface);
+}
 
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 960px) {

@@ -8,6 +8,18 @@ $pageTitle = $pageTitle ?? 'AntHive';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars($pageTitle) ?> — AntHive</title>
+    <script>
+        (function() {
+            if (localStorage.getItem('anthive_dark') === 'true') {
+                document.documentElement.classList.add('dark');
+            }
+            const color = localStorage.getItem('anthive_color');
+            if (color) {
+                document.documentElement.style.setProperty('--primary', color);
+            }
+        })();
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">

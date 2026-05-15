@@ -1,5 +1,5 @@
 ### TO-DO:
-- [ ] Crear modo noche.
+- [X] Crear modo noche.
 - [ ] Editar estilos de toda la página.
 - [ ] Separar estilos por página???
 - [X] Que el nombre y apellido pase a ser solo el usuario.
@@ -13,12 +13,17 @@
 - [ ] Cambiar sistema de guardado de fotos. Debería guardarse con nombre diferente, y a ser posible en otra base de datos. Checkear apuntes germán.
 - [ ] Implementar sistema de búsqueda
 - [ ] Que se pueda cambiar la contraseña en perfil
+- [ ] Slideshow de imágenes con lo de jquery ese.
+- [ ] Protección en los formularios
+- [ ] Validación de tamaño máximo en subida de avatar
+- [ ] Paginación para comentarios en moderación
+- [ ] Añadir modales con mensaje para cuando votas sin sesión o creas editas un post o cambias nombre.
 
 ### Crear páginas:
 - [ ] Explorar
 - [ ] Popular
 - [ ] Moderadores
-- [ ] Temas
+- [X] Temas
 - [X] Ayuda
 - [X] Reglas
 - [X] Política de privacidad
@@ -28,3 +33,9 @@
 ## BUF FIXES:
 - [ ] Las votaciones van raras. Si votas con una cuenta, cambias de cuenta, votas con la nueva, y empiezas a desvotar y refrescar, a veces se duplican
 - [X] Puedes tanto crear usuarios como modificar usuarios existentes con un username ya en uso. Deben ser únicos.
+- [X] Aparte de Principal, el resto no te marca correctamente la sidebar cuando estás en ellos
+
+# FINAL:
+- [X] AWS
+- [X] Docu completa en el pages
+- [X] Tags de versiones?
