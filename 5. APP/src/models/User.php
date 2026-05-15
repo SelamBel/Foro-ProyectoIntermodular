@@ -91,4 +91,54 @@ class User
         $stmt->execute($params);
         return (int) $stmt->fetchColumn() > 0;
     }
+    public function getAll(): array
+    {
+        $stmt = $this->db->prepare(
+            'SELECT u.*, GROUP_CONCAT(r.role_name SEPARATOR ", ") as roles_names
+             FROM `user` u
+             LEFT JOIN user_has_role uhr ON u.id = uhr.id_user
+             LEFT JOIN role r ON uhr.id_role = r.id
+             GROUP BY u.id
+             ORDER BY u.id ASC'
+        );
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function getRoleList(): array
+    {
+        $stmt = $this->db->prepare('SELECT id, role_name FROM role ORDER BY id ASC');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function updateByMod(int $id, string $username, string $email, array $roleIds): void
+    {
+        $this->db->beginTransaction();
+        try {
+            $stmt = $this->db->prepare(
+                'UPDATE `user` SET username = ?, email = ? WHERE id = ?'
+            );
+            $stmt->execute([$username, $email, $id]);
+
+            $delStmt = $this->db->prepare('DELETE FROM user_has_role WHERE id_user = ?');
+            $delStmt->execute([$id]);
+
+            $insStmt = $this->db->prepare('INSERT INTO user_has_role (id_user, id_role) VALUES (?, ?)');
+            foreach ($roleIds as $roleId) {
+                $insStmt->execute([$id, $roleId]);
+            }
+
+            $this->db->commit();
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            throw $e;
+        }
+    }
+
+    public function delete(int $id): void
+    {
+        $stmt = $this->db->prepare('DELETE FROM `user` WHERE id = ?');
+        $stmt->execute([$id]);
+    }
 }

@@ -21,7 +21,7 @@
 ### Crear páginas:
 - [ ] Explorar
 - [ ] Popular
-- [ ] Moderadores
+- [X] Moderadores
 - [X] Temas
 - [X] Ayuda
 - [X] Reglas
