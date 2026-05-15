@@ -830,6 +830,37 @@ textarea:focus {
     color: #7193ff;
 }
 
+/* ── HELP y RULES ──────────────────────────────────────── */
+.help-section {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.help-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.help-section h2 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.help-section p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #3c3c3c;
+}
+
+.help-section a {
+    color: #0079d3;
+    text-decoration: none;
+}
+
+.help-section a:hover { text-decoration: underline; }
+
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 960px) {
     :root {
