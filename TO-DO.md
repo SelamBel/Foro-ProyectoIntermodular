@@ -19,10 +19,10 @@
 - [ ] Popular
 - [ ] Moderadores
 - [ ] Temas
-- [ ] Ayuda
-- [ ] Reglas
-- [ ] Política de privacidad
-- [ ] Acuerdo de usuario
+- [X] Ayuda
+- [X] Reglas
+- [X] Política de privacidad
+- [X] Acuerdo de usuario
 - [ ] Accesibilidad
 
 ## BUF FIXES:
