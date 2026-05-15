@@ -24,8 +24,8 @@ $activePage = $activePage ?? 'home';
             <a href="/pages/modpage.php" class="nav-item <?= $activePage === 'modpage' ? 'active' : '' ?>">
                 <span class="nav-icon"><i class="fa-solid fa-shield-halved"></i></span> Mod Page
             </a>
-            <a href="/pages/moderators.php" class="nav-item <?= $activePage === 'moderators' ? 'active' : '' ?>">
-                <span class="nav-icon"><i class="fa-solid fa-user-shield"></i></span> Moderadores
+            <a href="/pages/modusers.php" class="nav-item <?= $activePage === 'modusers' ? 'active' : '' ?>">
+                <span class="nav-icon"><i class="fa-solid fa-user-shield"></i></span> Mod Users
             </a>
         </div>
     <?php endif; ?>

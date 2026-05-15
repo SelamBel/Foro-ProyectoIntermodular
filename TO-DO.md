@@ -32,7 +32,7 @@
 ## BUF FIXES:
 - [X] Las votaciones van raras. Si votas con una cuenta, cambias de cuenta, votas con la nueva, y empiezas a desvotar y refrescar, a veces se duplican
 - [X] Puedes tanto crear usuarios como modificar usuarios existentes con un username ya en uso. Deben ser únicos.
-- [ ] Aparte de Principal, el resto no te marca correctamente la sidebar cuando estás en ellos
+- [X] Aparte de Principal, el resto no te marca correctamente la sidebar cuando estás en ellos
 
 # FINAL:
 - [ ] Editar estilos de toda la página.

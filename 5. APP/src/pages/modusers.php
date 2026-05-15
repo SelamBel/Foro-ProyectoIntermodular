@@ -41,7 +41,7 @@ $users = $userModel->getAll();
 $roles = $userModel->getRoleList();
 
 $pageTitle  = 'Moderadores';
-$activePage = 'modmail';
+$activePage = 'modusers';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 

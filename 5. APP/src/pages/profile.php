@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $avatarPath = $user['avatar'] ?? null;
 
-        if (!empty($_FILES['avatar']['username'])) {
+        if (!empty($_FILES['avatar']['name'])) {
             $allowed   = ['image/jpeg', 'image/png', 'image/webp'];
             $mimeType  = mime_content_type($_FILES['avatar']['tmp_name']);
 
