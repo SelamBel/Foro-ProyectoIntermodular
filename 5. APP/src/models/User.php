@@ -78,4 +78,17 @@ class User
         );
         $stmt->execute([$username, $avatar, $id]);
     }
+
+    public function usernameExists(string $username, ?int $excludeId = null): bool
+    {
+        $sql  = 'SELECT COUNT(*) FROM `user` WHERE username = ?';
+        $params = [$username];
+        if ($excludeId) {
+            $sql .= ' AND id != ?';
+            $params[] = $excludeId;
+        }
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($params);
+        return (int) $stmt->fetchColumn() > 0;
+    }
 }

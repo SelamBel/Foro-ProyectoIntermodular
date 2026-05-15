@@ -61,7 +61,7 @@ require_once __DIR__ . '/../includes/header.php';
                 <article class="post">
                     <div class="post-inner">
                         <div class="post-meta">
-                            <span class="author">u/<?= htmlspecialchars($post['username']) ?></span>
+                            <span class="author"><?= htmlspecialchars($post['username']) ?></span>
                             &middot;
                             <span class="post-date" data-date="<?= $post['date_creation'] ?>"><?= $post['date_creation'] ?></span>
                         </div>
@@ -86,7 +86,7 @@ require_once __DIR__ . '/../includes/header.php';
                 <div class="post">
                     <div class="post-inner">
                         <div class="post-meta">
-                            <span class="author">u/<?= htmlspecialchars($comment['username']) ?></span>
+                            <span class="author"><?= htmlspecialchars($comment['username']) ?></span>
                             &middot;
                             <span class="post-date" data-date="<?= $comment['date_creation'] ?>"><?= $comment['date_creation'] ?></span>
                             &middot;

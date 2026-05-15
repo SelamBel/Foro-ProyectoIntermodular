@@ -23,6 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (strlen($username) < 3) {
         $error = 'Nombre de usuario debe tener al menos 3 caracteres.';
+    } elseif ($userModel->usernameExists($username, $_SESSION['user_id'])) {
+        $error = 'Este nombre de usuario ya está en uso.';
     } else {
         $avatarPath = $user['avatar'] ?? null;
 

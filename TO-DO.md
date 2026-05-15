@@ -27,4 +27,4 @@
 
 ## BUF FIXES:
 - [ ] Las votaciones van raras. Si votas con una cuenta, cambias de cuenta, votas con la nueva, y empiezas a desvotar y refrescar, a veces se duplican
-- [ ] Puedes tanto crear usuarios como modificar usuarios existentes con un username ya en uso. Deben ser únicos.
+- [X] Puedes tanto crear usuarios como modificar usuarios existentes con un username ya en uso. Deben ser únicos.

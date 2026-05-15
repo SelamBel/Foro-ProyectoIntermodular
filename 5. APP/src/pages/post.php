@@ -59,7 +59,7 @@ function renderComments(array $comments, int $depth = 0): void
     foreach ($comments as $c): ?>
         <div class="comment <?= $depth > 0 ? 'comment--nested' : '' ?>">
             <div class="comment-meta">
-                <span class="author">u/<?= htmlspecialchars($c['username']) ?></span>
+                <span class="author"><?= htmlspecialchars($c['username']) ?></span>
                 &middot;
                 <span class="post-date" data-date="<?= $c['date_creation'] ?>"><?= $c['date_creation'] ?></span>
             </div>
@@ -115,7 +115,7 @@ require_once __DIR__ . '/../includes/header.php';
         <article class="post post--detail">
             <div class="post-inner">
                 <div class="post-meta">
-                    <span class="author">u/<?= htmlspecialchars($post['username']) ?></span>
+                    <span class="author"><?= htmlspecialchars($post['username']) ?></span>
                     &middot;
                     <span class="post-date" data-date="<?= $post['date_creation'] ?>"><?= $post['date_creation'] ?></span>
                     <?php if ($post['date_edited']): ?>

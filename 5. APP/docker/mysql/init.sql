@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `role` (
 CREATE TABLE IF NOT EXISTS `user` (
     `id`              BIGINT       NOT NULL AUTO_INCREMENT,
     `email`           VARCHAR(255) NOT NULL UNIQUE,
-    `username`        VARCHAR(100) NOT NULL,
+    `username`        VARCHAR(100) NOT NULL UNIQUE,
     `password`        VARCHAR(255) NOT NULL,
     `avatar`          VARCHAR(255) NULL,
     `date_registered` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,

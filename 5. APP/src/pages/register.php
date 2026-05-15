@@ -30,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($userModel->emailExists($email)) {
             $error = 'Este email ya está registrado.';
+        } elseif ($userModel->usernameExists($username)) {
+            $error = 'Este nombre de usuario ya está en uso.';
         } else {
             $userModel->create($email, $username, $password);
             $success = '¡Cuenta creada! Ya puedes iniciar sesión.';
