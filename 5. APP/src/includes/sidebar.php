@@ -21,8 +21,8 @@ $activePage = $activePage ?? 'home';
     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'moderator'): ?>
         <div class="nav-section">
             <div class="nav-label">Moderación</div>
-            <a href="/pages/modmail.php" class="nav-item <?= $activePage === 'modmail' ? 'active' : '' ?>">
-                <span class="nav-icon"><i class="fa-solid fa-shield-halved"></i></span> Mod mail
+            <a href="/pages/modpage.php" class="nav-item <?= $activePage === 'modpage' ? 'active' : '' ?>">
+                <span class="nav-icon"><i class="fa-solid fa-shield-halved"></i></span> Mod Page
             </a>
             <a href="/pages/moderators.php" class="nav-item <?= $activePage === 'moderators' ? 'active' : '' ?>">
                 <span class="nav-icon"><i class="fa-solid fa-user-shield"></i></span> Moderadores

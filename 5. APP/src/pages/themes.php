@@ -46,4 +46,5 @@ require_once __DIR__ . '/../includes/header.php';
     </main>
 </div>
 
+<script src="/assets/js/reload-theme.js"></script>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

@@ -53,6 +53,12 @@ body {
 
 a {
     text-decoration: none;
+    color: var(--primary);
+    transition: all 0.3 ease;
+}
+
+a:hover {
+    color: var(--primary);
 }
 
 /* ── HEADER ─────────────────────────────────────────── */
@@ -235,15 +241,6 @@ aside {
     border-top: 1px solid var(--border);
 }
 
-.sidebar-footer a {
-    color: var(--muted);
-    text-decoration: none;
-}
-
-.sidebar-footer a:hover {
-    text-decoration: underline;
-}
-
 /* ── MAIN FEED ───────────────────────────────────────── */
 main {
     margin-left: var(--sidebar-w);
@@ -276,7 +273,8 @@ main {
 }
 
 .sort-btn:hover {
-    border-color: #0079d3;
+    border-color: var(--primary);
+    color: var(--primary);
     background: var(--hover-bg);
 }
 
@@ -587,28 +585,10 @@ main {
     color: var(--muted);
 }
 
-.auth-footer a {
-    color: #0079d3;
-    text-decoration: none;
-}
-
-.auth-footer a:hover {
-    text-decoration: underline;
-}
-
 /* ── FEED ────────────────────────────────────────────── */
 .sort-btn.active {
     border-color: #0079d3;
     color: #0079d3;
-}
-
-.post-title a {
-    color: var(--text);
-    text-decoration: none;
-}
-
-.post-title a:hover {
-    color: var(--primary);
 }
 
 .empty-state {
@@ -698,10 +678,6 @@ textarea:focus {
 .post-title a {
     color: var(--text);
     text-decoration: none;
-}
-
-.post-title a:hover {
-    color: var(--primary);
 }
 
 /* ── COMMENTS ────────────────────────────────────────── */
@@ -839,15 +815,6 @@ textarea:focus {
     color: var(--muted);
 }
 
-.login-prompt a {
-    color: #0079d3;
-    text-decoration: none;
-}
-
-.login-prompt a:hover {
-    text-decoration: underline;
-}
-
 .vote-btn.voted {
     color: var(--primary);
 }
@@ -878,15 +845,6 @@ textarea:focus {
     font-size: 14px;
     line-height: 1.7;
     color: #3c3c3c;
-}
-
-.help-section a {
-    color: #0079d3;
-    text-decoration: none;
-}
-
-.help-section a:hover {
-    text-decoration: underline;
 }
 
 /* ── TEMAS ───────────────────────────────────────────── */

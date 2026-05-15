@@ -29,7 +29,7 @@ if ($tab === 'posts') {
 $pages = (int) ceil($total / $limit);
 
 $pageTitle  = 'Moderación';
-$activePage = 'modmail';
+$activePage = 'modpage';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 
