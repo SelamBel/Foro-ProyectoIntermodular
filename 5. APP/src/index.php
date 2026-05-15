@@ -60,12 +60,12 @@ require_once __DIR__ . '/includes/header.php';
                 <p class="post-body"><?= htmlspecialchars($post['content']) ?></p>
                 <div class="post-actions">
                     <div class="vote-group">
-                        <button class="vote-btn up <?= isset($_SESSION['user_id']) ? 'js-vote' : '' ?>"
+                        <button class="vote-btn up <?= isset($_SESSION['user_id']) ? 'js-vote' : 'js-vote-guest' ?>"
                                 data-id="<?= $post['id'] ?>" data-type="1">
                             <i class="fa-solid fa-arrow-up"></i>
                             <span class="upvote-count"><?= $post['upvotes'] ?></span>
                         </button>
-                        <button class="vote-btn down <?= isset($_SESSION['user_id']) ? 'js-vote' : '' ?>"
+                        <button class="vote-btn down <?= isset($_SESSION['user_id']) ? 'js-vote' : 'js-vote-guest' ?>"
                                 data-id="<?= $post['id'] ?>" data-type="0">
                             <i class="fa-solid fa-arrow-down"></i>
                             <span class="downvote-count"><?= $post['downvotes'] ?></span>

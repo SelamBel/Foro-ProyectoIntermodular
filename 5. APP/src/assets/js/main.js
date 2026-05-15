@@ -8,6 +8,9 @@ function openModal(title, text, onAccept) {
     $('#modalTitle').text(title);
     $('#modalText').text(text);
 
+    $('#modalAccept').text('Aceptar');
+    $('#modalReject').text('Cancelar');
+
     modal.css('display', 'flex').hide().fadeIn(200);
 
     const close = () => modal.fadeOut(200);
@@ -175,6 +178,14 @@ $(function () {
         $('#reply-' + id).slideUp(200);
     });
 
+    $(document).on('click', '.js-vote-guest', function () {
+        openModal(
+            'Inicia sesión',
+            'Debes iniciar sesión para poder votar.',
+            function () { window.location.href = '/pages/login.php'; }
+        );
+    });
+
     $(document).on('click', '.js-vote', function () {
         const btn = $(this);
         const id = btn.data('id');
@@ -209,7 +220,7 @@ $(function () {
 
     $(document).on('click', '.js-delete-comment', function () {
         const id = $(this).data('id');
-        const postId = $(this).data('post'); 
+        const postId = $(this).data('post');
 
         openModal(
             'Eliminar comentario',
@@ -291,5 +302,33 @@ $(function () {
             }
         );
     });
+
+    $(document).on('click', '#logoutBtn', function (e) {
+        e.preventDefault();
+        const logoutUrl = $(this).attr('href');
+
+        openModal(
+            'Cerrar sesión',
+            '¿Estás seguro de que deseas salir de AntHive?',
+            function () {
+                window.location.href = logoutUrl;
+            }
+        );
+        $('#modalAccept').text('Cerrar sesión');
+    });
+
+    $('.js-cancel-btn').on('click', function (e) {
+    e.preventDefault();
+    const targetUrl = $(this).attr('href');
+
+    openModal(
+        'Descartar cambios',
+        'Tienes cambios sin guardar. ¿Seguro que quieres salir?',
+        function () {
+            window.location.href = targetUrl;
+        }
+    );
+    $('#modalAccept').text('Descartar');
+});
 
 });

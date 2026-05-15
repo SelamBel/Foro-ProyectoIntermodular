@@ -85,7 +85,7 @@ function renderComments(array $comments, int $depth = 0): void
                             <textarea name="content" rows="3" placeholder="Escribe tu respuesta..."></textarea>
                         </div>
                         <div class="form-actions">
-                            <button type="button" class="btn-outline js-reply-cancel" data-id="<?= $c['id'] ?>">Cancelar</button>
+                            <button type="button" class="btn-outline js-reply-cancel js-cancel-btn" data-id="<?= $c['id'] ?>">Cancelar</button>
                             <button type="submit" class="btn-primary">Responder</button>
                         </div>
                     </form>
@@ -126,12 +126,12 @@ require_once __DIR__ . '/../includes/header.php';
                 <p class="post-body post-body--full"><?= nl2br(htmlspecialchars($post['content'])) ?></p>
                 <div class="post-actions">
                     <div class="vote-group">
-                        <button class="vote-btn up <?= isset($_SESSION['user_id']) ? 'js-vote' : '' ?>"
+                        <button class="vote-btn up <?= isset($_SESSION['user_id']) ? 'js-vote' : 'js-vote-guest' ?>"
                             data-id="<?= $post['id'] ?>" data-type="1">
                             <i class="fa-solid fa-arrow-up"></i>
                             <span class="upvote-count"><?= $post['upvotes'] ?></span>
                         </button>
-                        <button class="vote-btn down <?= isset($_SESSION['user_id']) ? 'js-vote' : '' ?>"
+                        <button class="vote-btn down <?= isset($_SESSION['user_id']) ? 'js-vote' : 'js-vote-guest' ?>"
                             data-id="<?= $post['id'] ?>" data-type="0">
                             <i class="fa-solid fa-arrow-down"></i>
                             <span class="downvote-count"><?= $post['downvotes'] ?></span>

@@ -62,7 +62,7 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
 
                 <div class="form-actions">
-                    <a href="/index.php" class="btn-outline">Cancelar</a>
+                    <a href="/index.php" class="btn-outline js-cancel-btn">Cancelar</a>
                     <button type="submit" class="btn-primary">Publicar</button>
                 </div>
             </form>

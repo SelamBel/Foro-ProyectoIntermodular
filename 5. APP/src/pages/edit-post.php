@@ -71,7 +71,7 @@ require_once __DIR__ . '/../includes/header.php';
                     <span class="field-error" id="contentError"></span>
                 </div>
                 <div class="form-actions">
-                    <a href="/pages/post.php?id=<?= $id ?>" class="btn-outline">Cancelar</a>
+                    <a href="/pages/post.php?id=<?= $id ?>" class="btn-outline js-cancel-btn">Cancelar</a>
                     <button type="submit" class="btn-primary">Guardar cambios</button>
                 </div>
             </form>

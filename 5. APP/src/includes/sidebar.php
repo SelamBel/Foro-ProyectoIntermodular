@@ -53,7 +53,7 @@ $activePage = $activePage ?? 'home';
             <a href="/pages/profile.php" class="nav-item <?= $activePage === 'profile' ? 'active' : '' ?>">
                 <span class="nav-icon"><i class="fa-solid fa-circle-user"></i></span> <?= htmlspecialchars($_SESSION['username']) ?>
             </a>
-            <a href="/pages/logout.php" class="nav-item nav-item--danger">
+            <a id="logoutBtn" href="/pages/logout.php" class="nav-item nav-item--danger">
                 <span class="nav-icon"><i class="fa-solid fa-right-from-bracket"></i></span> Cerrar sesión
             </a>
         </div>
