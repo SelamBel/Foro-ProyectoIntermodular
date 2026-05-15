@@ -1,3 +1,29 @@
+/**
+ * Lógica global para Modales Personalizados
+ */
+function openModal(title, text, onAccept) {
+    const modal = $('#customModal');
+    if (!modal.length) return;
+
+    $('#modalTitle').text(title);
+    $('#modalText').text(text);
+
+    modal.css('display', 'flex').hide().fadeIn(200);
+
+    const close = () => modal.fadeOut(200);
+
+    $('#modalClose, #modalReject').off('click').on('click', close);
+
+    $('#modalAccept').off('click').on('click', function () {
+        onAccept();
+        close();
+    });
+
+    modal.off('click').on('click', function (e) {
+        if (e.target === this) close();
+    });
+}
+
 $(function () {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -222,6 +248,33 @@ $(function () {
         const color = $(this).val();
         localStorage.setItem('anthive_color', color);
         applyTheme(localStorage.getItem('anthive_dark') === 'true', color);
+    });
+
+    $(document).on('click', '.js-delete-user', function () {
+        const userId = $(this).data('id');
+        const username = $(this).data('username');
+
+        openModal(
+            'Confirmar eliminación',
+            `¿Estás seguro de que deseas eliminar al usuario "${username}"? Esta acción no se puede deshacer.`,
+            function () {
+                const form = $('<form>', {
+                    method: 'POST',
+                    action: ''
+                }).append($('<input>', {
+                    type: 'hidden',
+                    name: 'action',
+                    value: 'delete'
+                })).append($('<input>', {
+                    type: 'hidden',
+                    name: 'id',
+                    value: userId
+                }));
+
+                $('body').append(form);
+                form.submit();
+            }
+        );
     });
 
 });
