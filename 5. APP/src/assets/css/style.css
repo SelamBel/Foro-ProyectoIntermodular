@@ -222,7 +222,7 @@ aside {
 main {
     margin-left: var(--sidebar-w);
     flex: 1;
-    padding: 20px 24px;
+    padding: 20px 50px 20px 20px;
 }
 
 /* Sort bar */
@@ -435,7 +435,6 @@ main {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    margin-bottom: 16px;
 }
 
 .form-group label {
@@ -627,7 +626,6 @@ main {
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 24px;
-    max-width: 740px;
 }
 
 .form-card__title {
@@ -679,6 +677,7 @@ textarea:focus {
 }
 
 .comments-title {
+    margin-top: 24px;
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 16px;
@@ -749,6 +748,9 @@ textarea:focus {
 
 /* ── PROFILE ─────────────────────────────────────────── */
 .profile-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 4px;

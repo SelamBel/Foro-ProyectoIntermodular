@@ -12,6 +12,7 @@
 - [ ] Crear sistema de notificaciones cuando te comentan o llega a un hito de likes.
 - [ ] Cambiar sistema de guardado de fotos. Debería guardarse con nombre diferente, y a ser posible en otra base de datos. Checkear apuntes germán.
 - [ ] Implementar sistema de búsqueda
+- [ ] Que se pueda cambiar la contraseña en perfil
 
 ### Crear páginas:
 - [ ] Explorar

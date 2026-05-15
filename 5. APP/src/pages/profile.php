@@ -21,7 +21,7 @@ $success = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username    = trim($_POST['username']    ?? '');
 
-    if (strlen($username) < 3 ) {
+    if (strlen($username) < 3) {
         $error = 'Nombre de usuario debe tener al menos 3 caracteres.';
     } else {
         $avatarPath = $user['avatar'] ?? null;
@@ -80,39 +80,39 @@ require_once __DIR__ . '/../includes/header.php';
                     <span class="profile-since">Miembro desde <?= date('d/m/Y', strtotime($user['date_registered'])) ?></span>
                 </div>
             </div>
-        </div>
+            <div class="form-card">
+                <h2 class="form-card__title">Editar perfil</h2>
 
-        <div class="form-card" style="margin-top:16px">
-            <h2 class="form-card__title">Editar perfil</h2>
+                <?php if ($error): ?>
+                    <div class="alert alert-error"><i class="fa-solid fa-circle-exclamation"></i> <?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
+                <?php if ($success): ?>
+                    <div class="alert alert-success"><i class="fa-solid fa-circle-check"></i> <?= htmlspecialchars($success) ?></div>
+                <?php endif; ?>
 
-            <?php if ($error): ?>
-                <div class="alert alert-error"><i class="fa-solid fa-circle-exclamation"></i> <?= htmlspecialchars($error) ?></div>
-            <?php endif; ?>
-            <?php if ($success): ?>
-                <div class="alert alert-success"><i class="fa-solid fa-circle-check"></i> <?= htmlspecialchars($success) ?></div>
-            <?php endif; ?>
-
-            <form method="POST" enctype="multipart/form-data" id="profileForm" novalidate>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="username">Nombre</label>
-                        <input type="text" id="username" name="username"
-                            value="<?= htmlspecialchars($user['username']) ?>">
-                        <span class="field-error" id="nameError"></span>
+                <form method="POST" enctype="multipart/form-data" id="profileForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="username">Nombre</label>
+                            <input type="text" id="username" name="username"
+                                value="<?= htmlspecialchars($user['username']) ?>">
+                            <span class="field-error" id="nameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar">Foto de perfil</label>
+                            <input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/webp">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="avatar">Foto de perfil</label>
-                    <input type="file" id="avatar" name="avatar" accept="image/jpeg,image/png,image/webp">
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary">Guardar cambios</button>
-                </div>
-            </form>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <div class="profile-posts">
-            <h2 class="comments-title" style="margin-top:24px">
+            <h2 class="comments-title">
                 <i class="fa-solid fa-newspaper"></i> Mis publicaciones
             </h2>
 
