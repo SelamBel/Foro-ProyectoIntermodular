@@ -35,6 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $userModel->create($email, $username, $password);
             $success = '¡Cuenta creada! Ya puedes iniciar sesión.';
+            header('Location: /pages/login.php?email=' . urlencode($email));
+            exit;
         }
     }
 }

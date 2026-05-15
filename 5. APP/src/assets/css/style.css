@@ -485,7 +485,14 @@ main {
 .field-error {
     font-size: 12px;
     color: var(--primary);
-    min-height: 16px;
+    min-height: 1px;
+}
+
+#registerForm,
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .alert {

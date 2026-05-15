@@ -10,6 +10,7 @@ if (isset($_SESSION['user_id'])) {
 require_once __DIR__ . '/../models/User.php';
 
 $error = '';
+$prefillEmail = htmlspecialchars($_GET['email'] ?? '');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email    = trim($_POST['email']    ?? '');
@@ -57,7 +58,7 @@ require_once __DIR__ . '/../includes/header.php';
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email"
-                    value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
+                    value="<?= htmlspecialchars($_POST['email'] ?? $_GET['email'] ?? '') ?>"
                     placeholder="tu@email.com" autocomplete="email">
                 <span class="field-error" id="emailError"></span>
             </div>
