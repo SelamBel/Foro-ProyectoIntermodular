@@ -57,4 +57,18 @@ $pageTitle = $pageTitle ?? 'AntHive';
                 <a href="/pages/register.php" class="btn-primary">Registrarse</a>
             <?php endif; ?>
         </div>
+        
+        <div id="customModal" class="modal-overlay" style="display: none;">
+            <div class="modal-card">
+                <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+                <div class="modal-content">
+                    <h2 id="modalTitle" class="form-card__title">Título del Modal</h2>
+                    <p id="modalText">Este es el texto descriptivo del modal.</p>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-outline" id="modalReject">Rechazar</button>
+                    <button type="button" class="btn-primary" id="modalAccept">Aceptar</button>
+                </div>
+            </div>
+        </div>
     </header>

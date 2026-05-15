@@ -138,7 +138,18 @@ class User
 
     public function delete(int $id): void
     {
-        $stmt = $this->db->prepare('DELETE FROM `user` WHERE id = ?');
-        $stmt->execute([$id]);
+        $this->db->beginTransaction();
+        try {
+            $stmtRoles = $this->db->prepare('DELETE FROM user_has_role WHERE id_user = ?');
+            $stmtRoles->execute([$id]);
+
+            $stmtUser = $this->db->prepare('DELETE FROM `user` WHERE id = ?');
+            $stmtUser->execute([$id]);
+
+            $this->db->commit();
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            throw $e;
+        }
     }
 }

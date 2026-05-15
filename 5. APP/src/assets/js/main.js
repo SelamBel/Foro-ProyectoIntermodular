@@ -1,3 +1,29 @@
+/**
+ * Lógica global para Modales Personalizados
+ */
+function openModal(title, text, onAccept) {
+    const modal = $('#customModal');
+    if (!modal.length) return;
+
+    $('#modalTitle').text(title);
+    $('#modalText').text(text);
+
+    modal.css('display', 'flex').hide().fadeIn(200);
+
+    const close = () => modal.fadeOut(200);
+
+    $('#modalClose, #modalReject').off('click').on('click', close);
+
+    $('#modalAccept').off('click').on('click', function () {
+        onAccept();
+        close();
+    });
+
+    modal.off('click').on('click', function (e) {
+        if (e.target === this) close();
+    });
+}
+
 $(function () {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -167,20 +193,35 @@ $(function () {
 
     $(document).on('click', '.js-delete-post', function () {
         const id = $(this).data('id');
-        if (!confirm('¿Eliminar esta publicación?')) return;
-        $.post('/pages/delete-post.php', { id: id }, function (res) {
-            if (res.success) window.location.href = '/index.php';
-        }, 'json');
+
+        openModal(
+            'Eliminar publicación',
+            '¿Estás seguro de que deseas eliminar esta publicación? Esta acción no se puede deshacer.',
+            function () {
+                $.post('/pages/delete-post.php', { id: id }, function (res) {
+                    if (res.success) {
+                        window.location.href = '/index.php';
+                    }
+                }, 'json');
+            }
+        );
     });
 
     $(document).on('click', '.js-delete-comment', function () {
-        const btn = $(this);
-        const id = btn.data('id');
-        const postId = btn.data('post');
-        if (!confirm('¿Eliminar este comentario?')) return;
-        $.post('/pages/delete-comment.php', { id: id }, function (res) {
-            if (res.success) window.location.href = '/pages/post.php?id=' + postId;
-        }, 'json');
+        const id = $(this).data('id');
+        const postId = $(this).data('post'); 
+
+        openModal(
+            'Eliminar comentario',
+            '¿Estás seguro de que quieres borrar este comentario? Esta acción no se puede deshacer.',
+            function () {
+                $.post('/pages/delete-comment.php', { id: id }, function (res) {
+                    if (res.success) {
+                        window.location.href = '/pages/post.php?id=' + postId;
+                    }
+                }, 'json');
+            }
+        );
     });
     function applyTheme(dark, color) {
         if (dark) {
@@ -222,6 +263,33 @@ $(function () {
         const color = $(this).val();
         localStorage.setItem('anthive_color', color);
         applyTheme(localStorage.getItem('anthive_dark') === 'true', color);
+    });
+
+    $(document).on('click', '.js-delete-user', function () {
+        const userId = $(this).data('id');
+        const username = $(this).data('username');
+
+        openModal(
+            'Confirmar eliminación',
+            `¿Estás seguro de que deseas eliminar al usuario "${username}"? Esta acción no se puede deshacer.`,
+            function () {
+                const form = $('<form>', {
+                    method: 'POST',
+                    action: ''
+                }).append($('<input>', {
+                    type: 'hidden',
+                    name: 'action',
+                    value: 'delete'
+                })).append($('<input>', {
+                    type: 'hidden',
+                    name: 'id',
+                    value: userId
+                }));
+
+                $('body').append(form);
+                form.submit();
+            }
+        );
     });
 
 });

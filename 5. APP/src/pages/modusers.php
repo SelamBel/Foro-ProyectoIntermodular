@@ -93,7 +93,7 @@ require_once __DIR__ . '/../includes/header.php';
                                 <i class="fa-solid fa-pen"></i>
                             </button>
                             <?php if ($u['id'] !== $_SESSION['user_id']): ?>
-                            <button class="action-btn js-delete-user" data-id="<?= $u['id'] ?>">
+                            <button class="action-btn js-delete-user" data-id="<?= $u['id'] ?>" data-username="<?= htmlspecialchars($u['username']) ?>">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                             <?php endif; ?>
