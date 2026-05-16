@@ -15,7 +15,7 @@ class Comment
     public function getByPublication(int $publicationId): array
     {
         $stmt = $this->db->prepare("
-            SELECT c.*, u.username
+            SELECT c.*, u.username, u.avatar
             FROM comment c
             INNER JOIN user u ON c.id_user = u.id
             WHERE c.id_publication = ?
@@ -50,7 +50,7 @@ class Comment
     public function getAll(int $limit, int $offset): array
     {
         $stmt = $this->db->prepare("
-        SELECT c.*, u.username
+        SELECT c.*, u.username, u.avatar
         FROM comment c
         INNER JOIN user u ON c.id_user = u.id
         ORDER BY c.date_creation DESC

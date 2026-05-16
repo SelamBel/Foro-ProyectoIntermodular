@@ -69,6 +69,7 @@ require_once __DIR__ . '/../includes/header.php';
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Avatar</th>
                         <th>Usuario</th>
                         <th>Email</th>
                         <th>Rol</th>
@@ -80,6 +81,13 @@ require_once __DIR__ . '/../includes/header.php';
                     <?php foreach ($users as $u): ?>
                     <tr id="row-<?= $u['id'] ?>">
                         <td><?= $u['id'] ?></td>
+                        <td>
+                            <?php if (!empty($u['avatar'])): ?>
+                                <img src="<?= htmlspecialchars($u['avatar']) ?>" class="meta-avatar" alt="">
+                            <?php else: ?>
+                                <i class="fa-solid fa-circle-user meta-avatar-icon" style="font-size:32px; color:var(--text-muted, #ccc);"></i>
+                            <?php endif; ?>
+                        </td>
                         <td><?= htmlspecialchars($u['username']) ?></td>
                         <td><?= htmlspecialchars($u['email']) ?></td>
                         <td><?= htmlspecialchars($u['roles_names'] ?: 'sin rol') ?></td>

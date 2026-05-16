@@ -63,3 +63,5 @@ CREATE TABLE IF NOT EXISTS `vote` (
 );
 
 INSERT INTO `role` (`role_name`) VALUES ('user'), ('moderator');
+INSERT INTO `user` (`email`, `username`, `password`) VALUES ('s@s.s', 'Sel', '$2y$10$31fJ.UgTyTb4PHrNEQzptuKBVutm4.kzX0Ko31nWDZtl5OOYx1Kzm');
+INSERT INTO `user_has_role` (`id_user`, `id_role`) VALUES (LAST_INSERT_ID(), (SELECT `id` FROM `role` WHERE `role_name` = 'moderator'));

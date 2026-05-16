@@ -22,7 +22,7 @@ class Publication
 
         $stmt = $this->db->prepare("
             SELECT p.*,
-                   u.username,
+                   u.username, u.avatar,
                    (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 1) AS upvotes,
                    (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 0) AS downvotes,
                    (SELECT COALESCE(SUM(CASE WHEN v2.type = 1 THEN 1 ELSE -1 END), 0) FROM vote v2 WHERE v2.id_publication = p.id) AS votes,
@@ -42,7 +42,7 @@ class Publication
     {
         $stmt = $this->db->prepare("
             SELECT p.*,
-                   u.username,
+                   u.username, u.avatar,
                    (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 1) AS upvotes,
                    (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 0) AS downvotes,
                    (SELECT COUNT(*) FROM comment c WHERE c.id_publication = p.id) AS comment_count

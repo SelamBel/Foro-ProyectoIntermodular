@@ -7,7 +7,7 @@ $pageTitle = $pageTitle ?? 'AntHive';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($pageTitle) ?> — AntHive</title>
+    <title><?= htmlspecialchars($pageTitle) ?> - AntHive</title>
     <script>
         (function() {
             if (localStorage.getItem('anthive_dark') === 'true') {

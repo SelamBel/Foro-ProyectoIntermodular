@@ -61,6 +61,11 @@ require_once __DIR__ . '/../includes/header.php';
                 <article class="post">
                     <div class="post-inner">
                         <div class="post-meta">
+                            <?php if (!empty($post['avatar'])): ?>
+                                <img src="<?= htmlspecialchars($post['avatar']) ?>" class="meta-avatar" alt="">
+                            <?php else: ?>
+                                <i class="fa-solid fa-circle-user meta-avatar-icon"></i>
+                            <?php endif; ?>
                             <span class="author"><?= htmlspecialchars($post['username']) ?></span>
                             &middot;
                             <span class="post-date" data-date="<?= $post['date_creation'] ?>"><?= $post['date_creation'] ?></span>
@@ -86,6 +91,11 @@ require_once __DIR__ . '/../includes/header.php';
                 <div class="post">
                     <div class="post-inner">
                         <div class="post-meta">
+                            <?php if (!empty($comment['avatar'])): ?>
+                                <img src="<?= htmlspecialchars($comment['avatar']) ?>" class="meta-avatar" alt="">
+                            <?php else: ?>
+                                <i class="fa-solid fa-circle-user meta-avatar-icon"></i>
+                            <?php endif; ?>
                             <span class="author"><?= htmlspecialchars($comment['username']) ?></span>
                             &middot;
                             <span class="post-date" data-date="<?= $comment['date_creation'] ?>"><?= $comment['date_creation'] ?></span>

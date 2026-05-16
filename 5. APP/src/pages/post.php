@@ -59,6 +59,11 @@ function renderComments(array $comments, int $depth = 0): void
     foreach ($comments as $c): ?>
         <div class="comment <?= $depth > 0 ? 'comment--nested' : '' ?>">
             <div class="comment-meta">
+                <?php if (!empty($c['avatar'])): ?>
+                    <img src="<?= htmlspecialchars($c['avatar']) ?>" class="meta-avatar" alt="">
+                <?php else: ?>
+                    <i class="fa-solid fa-circle-user meta-avatar-icon"></i>
+                <?php endif; ?>
                 <span class="author"><?= htmlspecialchars($c['username']) ?></span>
                 &middot;
                 <span class="post-date" data-date="<?= $c['date_creation'] ?>"><?= $c['date_creation'] ?></span>
@@ -115,12 +120,14 @@ require_once __DIR__ . '/../includes/header.php';
         <article class="post post--detail">
             <div class="post-inner">
                 <div class="post-meta">
+                    <?php if (!empty($post['avatar'])): ?>
+                        <img src="<?= htmlspecialchars($post['avatar']) ?>" class="meta-avatar" alt="">
+                    <?php else: ?>
+                        <i class="fa-solid fa-circle-user meta-avatar-icon"></i>
+                    <?php endif; ?>
                     <span class="author"><?= htmlspecialchars($post['username']) ?></span>
                     &middot;
                     <span class="post-date" data-date="<?= $post['date_creation'] ?>"><?= $post['date_creation'] ?></span>
-                    <?php if ($post['date_edited']): ?>
-                        &middot; <em>editado</em>
-                    <?php endif; ?>
                 </div>
                 <h1 class="post-title"><?= htmlspecialchars($post['title']) ?></h1>
                 <p class="post-body post-body--full"><?= nl2br(htmlspecialchars($post['content'])) ?></p>

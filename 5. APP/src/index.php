@@ -46,11 +46,14 @@ require_once __DIR__ . '/includes/header.php';
         <article class="post">
             <div class="post-inner">
                 <div class="post-meta">
+                    <?php if (!empty($post['avatar'])): ?>
+                        <img src="<?= htmlspecialchars($post['avatar']) ?>" class="meta-avatar" alt="">
+                    <?php else: ?>
+                        <i class="fa-solid fa-circle-user meta-avatar-icon"></i>
+                    <?php endif; ?>
                     <span class="author"><?= htmlspecialchars($post['username']) ?></span>
                     &middot;
-                    <span class="post-date" data-date="<?= $post['date_creation'] ?>">
-                        <?= htmlspecialchars($post['date_creation']) ?>
-                    </span>
+                    <span class="post-date" data-date="<?= $post['date_creation'] ?>"><?= $post['date_creation'] ?></span>
                 </div>
                 <h2 class="post-title">
                     <a href="/pages/post.php?id=<?= $post['id'] ?>">
