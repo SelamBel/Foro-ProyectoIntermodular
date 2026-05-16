@@ -318,17 +318,38 @@ $(function () {
     });
 
     $('.js-cancel-btn').on('click', function (e) {
-    e.preventDefault();
-    const targetUrl = $(this).attr('href');
+        e.preventDefault();
+        const targetUrl = $(this).attr('href');
 
-    openModal(
-        'Descartar cambios',
-        'Tienes cambios sin guardar. ¿Seguro que quieres salir?',
-        function () {
-            window.location.href = targetUrl;
-        }
-    );
-    $('#modalAccept').text('Descartar');
-});
+        openModal(
+            'Descartar cambios',
+            'Tienes cambios sin guardar. ¿Seguro que quieres salir?',
+            function () {
+                window.location.href = targetUrl;
+            }
+        );
+        $('#modalAccept').text('Descartar');
+    });
+
+    $('#passwordForm').on('submit', function (e) {
+        let valid = true;
+
+        if ($('#current_password').val().trim().length === 0) {
+            showError('currentPasswordError', 'Introduce tu contraseña actual.');
+            valid = false;
+        } else { clearError('currentPasswordError'); }
+
+        if ($('#new_password').val().trim().length < 8) {
+            showError('newPasswordError', 'La nueva contraseña debe tener al menos 8 caracteres.');
+            valid = false;
+        } else { clearError('newPasswordError'); }
+
+        if ($('#confirm_password').val().trim() !== $('#new_password').val().trim()) {
+            showError('confirmPasswordError', 'Las contraseñas no coinciden.');
+            valid = false;
+        } else { clearError('confirmPasswordError'); }
+
+        if (!valid) e.preventDefault();
+    });
 
 });

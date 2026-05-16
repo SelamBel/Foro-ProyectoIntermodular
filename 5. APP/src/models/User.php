@@ -152,4 +152,11 @@ class User
             throw $e;
         }
     }
+
+    public function updatePassword(int $id, string $newPassword): void
+    {
+        $hash = password_hash($newPassword, PASSWORD_BCRYPT);
+        $stmt = $this->db->prepare('UPDATE `user` SET password = ? WHERE id = ?');
+        $stmt->execute([$hash, $id]);
+    }
 }
