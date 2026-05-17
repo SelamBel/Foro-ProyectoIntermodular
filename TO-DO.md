@@ -8,7 +8,7 @@
 - [X] Implementar un sistema de mensajeria entre usuarios
 - [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
 - [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
-- [o] Crear sistema de notificaciones cuando te comentan o llega a un hito de likes.
+- [X] Crear sistema de notificaciones cuando te comentan o llega a un hito de likes.
 - [ ] Cambiar sistema de guardado de fotos. Debería guardarse con nombre diferente, y a ser posible en otra base de datos. Checkear apuntes germán.
 - [ ] Implementar sistema de búsqueda
 - [X] Que se pueda cambiar la contraseña en perfil
@@ -17,6 +17,7 @@
 - [ ] Validación de tamaño máximo en subida de avatar
 - [ ] Paginación para comentarios en moderación
 - [ ] Añadir modales con mensaje para cuando votas sin sesión o creas editas un post o cambias nombre.
+- [ ] Que se pueda loggear tanto como con mail como con username
 
 ### Crear páginas:
 - [ ] Explorar
@@ -33,6 +34,7 @@
 - [X] Las votaciones van raras. Si votas con una cuenta, cambias de cuenta, votas con la nueva, y empiezas a desvotar y refrescar, a veces se duplican
 - [X] Puedes tanto crear usuarios como modificar usuarios existentes con un username ya en uso. Deben ser únicos.
 - [X] Aparte de Principal, el resto no te marca correctamente la sidebar cuando estás en ellos
+- [ ] Las horas aparecen mal. Algo que acaba de salir aparece como que lleva ya 2 horas.
 
 # FINAL:
 - [ ] Editar estilos de toda la página.

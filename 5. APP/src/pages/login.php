@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username']    = $user['username'];
             $_SESSION['email']   = $user['email'];
             $_SESSION['role']    = in_array('moderator', $roles) ? 'moderator' : 'user';
+            $_SESSION['avatar'] = $user['avatar'] ?? null;
 
             header('Location: /index.php');
             exit;

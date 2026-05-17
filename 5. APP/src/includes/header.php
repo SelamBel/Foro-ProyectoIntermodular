@@ -58,7 +58,11 @@ if (isset($_SESSION['user_id'])) {
                     <?php endif; ?>
                 </a>
                 <a href="/pages/profile.php" class="icon-btn" title="Mi perfil">
-                    <i class="fa-solid fa-circle-user"></i>
+                    <?php if (!empty($_SESSION['avatar'])): ?>
+                        <img src="<?= htmlspecialchars($_SESSION['avatar']) ?>" class="meta-avatar" alt="" style="width:24px; height:24px; border-radius:50%; object-fit:cover;">
+                    <?php else: ?>
+                        <i class="fa-solid fa-circle-user"></i>
+                    <?php endif; ?>
                 </a>
             <?php else: ?>
                 <a href="/pages/login.php" class="btn-outline">Iniciar sesión</a>
