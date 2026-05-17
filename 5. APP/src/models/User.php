@@ -159,4 +159,15 @@ class User
         $stmt = $this->db->prepare('UPDATE `user` SET password = ? WHERE id = ?');
         $stmt->execute([$hash, $id]);
     }
+
+    public function search(string $query, int $excludeId): array
+    {
+        $stmt = $this->db->prepare(
+            'SELECT id, username, avatar, date_registered FROM `user`
+         WHERE username LIKE ? AND id != ?
+         LIMIT 20'
+        );
+        $stmt->execute(['%' . $query . '%', $excludeId]);
+        return $stmt->fetchAll();
+    }
 }

@@ -5,13 +5,13 @@
 - [X] Que en los posts se vea el avatar de quién lo ha publicado.
 - [X] Que en la barra superior se vea quién lo ha publicado.
 - [ ] Que los usuarios tengan un estado (ocupado siponible ausente..)
-- [o] Implementar un sistema de mensajeria entre usuarios
+- [X] Implementar un sistema de mensajeria entre usuarios
 - [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
 - [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
 - [o] Crear sistema de notificaciones cuando te comentan o llega a un hito de likes.
 - [ ] Cambiar sistema de guardado de fotos. Debería guardarse con nombre diferente, y a ser posible en otra base de datos. Checkear apuntes germán.
 - [ ] Implementar sistema de búsqueda
-- [o] Que se pueda cambiar la contraseña en perfil
+- [X] Que se pueda cambiar la contraseña en perfil
 - [ ] Slideshow de imágenes con lo de jquery ese.
 - [ ] Protección en los formularios
 - [ ] Validación de tamaño máximo en subida de avatar

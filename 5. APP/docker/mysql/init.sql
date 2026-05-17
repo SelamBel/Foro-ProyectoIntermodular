@@ -62,6 +62,18 @@ CREATE TABLE IF NOT EXISTS `vote` (
     FOREIGN KEY (`id_publication`) REFERENCES `publication`(`id`) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS `message` (
+    `id`           BIGINT   NOT NULL AUTO_INCREMENT,
+    `id_sender`    BIGINT   NOT NULL,
+    `id_receiver`  BIGINT   NOT NULL,
+    `content`      TEXT     NOT NULL,
+    `is_read`      TINYINT  NOT NULL DEFAULT 0,
+    `date_creation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`id_sender`)   REFERENCES `user`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`id_receiver`) REFERENCES `user`(`id`) ON DELETE CASCADE
+);
+
 INSERT INTO `role` (`role_name`) VALUES ('user'), ('moderator');
 INSERT INTO `user` (`email`, `username`, `password`) VALUES ('s@s.s', 'Sel', '$2y$10$31fJ.UgTyTb4PHrNEQzptuKBVutm4.kzX0Ko31nWDZtl5OOYx1Kzm');
 INSERT INTO `user_has_role` (`id_user`, `id_role`) VALUES (LAST_INSERT_ID(), (SELECT `id` FROM `role` WHERE `role_name` = 'moderator'));
