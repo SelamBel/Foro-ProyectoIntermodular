@@ -36,7 +36,8 @@
 - [X] Las votaciones van raras. Si votas con una cuenta, cambias de cuenta, votas con la nueva, y empiezas a desvotar y refrescar, a veces se duplican
 - [X] Puedes tanto crear usuarios como modificar usuarios existentes con un username ya en uso. Deben ser únicos.
 - [X] Aparte de Principal, el resto no te marca correctamente la sidebar cuando estás en ellos
-- [ ] Las horas aparecen mal. Algo que acaba de salir aparece como que lleva ya 2 horas.
+- [X] Las horas aparecen mal. Algo que acaba de salir aparece como que lleva ya 2 horas.
+- [ ] Debería en el header aparecer +1 en los mensajes cuando tienes mensajes pendientes por ver.
 
 # FINAL:
 - [ ] Editar estilos de toda la página.
