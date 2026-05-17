@@ -20,6 +20,7 @@
 - [ ] Que se pueda loggear tanto como con mail como con username
 - [ ] Subir fotos en posts o comments. Quiza también en msg privados
 
+
 ### Crear páginas:
 - [ ] Explorar
 - [ ] Popular
