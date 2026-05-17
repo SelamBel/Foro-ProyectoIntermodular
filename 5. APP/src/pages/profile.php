@@ -46,22 +46,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $avatarPath = $user['avatar'] ?? null;
 
         if (!empty($_FILES['avatar']['name'])) {
-            $allowed   = ['image/jpeg', 'image/png', 'image/webp'];
-            $mimeType  = mime_content_type($_FILES['avatar']['tmp_name']);
-
-            if (!in_array($mimeType, $allowed)) {
-                $error = 'Solo se permiten imágenes JPG, PNG o WEBP.';
+            if ($_FILES['avatar']['error'] !== UPLOAD_ERR_OK) {
+                $error = 'Error al subir el archivo.';
+            } elseif (!is_uploaded_file($_FILES['avatar']['tmp_name'])) {
+                $error = 'Archivo de subida no válido.';
             } else {
-                $ext        = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
-                $filename   = 'avatar_' . $_SESSION['user_id'] . '.' . $ext;
-                $uploadPath = __DIR__ . '/../assets/img/avatars/' . $filename;
+                $allowed   = ['image/jpeg', 'image/png', 'image/webp'];
+                $mimeType  = mime_content_type($_FILES['avatar']['tmp_name']);
 
-                if (!is_dir(dirname($uploadPath))) {
-                    mkdir(dirname($uploadPath), 0775, true);
+                if (!in_array($mimeType, $allowed)) {
+                    $error = 'Solo se permiten imágenes JPG, PNG o WEBP.';
+                } else {
+                    $ext        = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+                    $filename   = time() . '.' . $ext;
+                    $uploadPath = __DIR__ . '/../assets/img/avatars/' . $filename;
+
+                    if (!is_dir(dirname($uploadPath))) {
+                        mkdir(dirname($uploadPath), 0775, true);
+                    }
+
+                    if (move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadPath)) {
+                        $avatarPath = '/assets/img/avatars/' . $filename;
+                    } else {
+                        $error = 'Error al guardar el archivo.';
+                    }
                 }
-
-                move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadPath);
-                $avatarPath = '/assets/img/avatars/' . $filename;
             }
         }
 

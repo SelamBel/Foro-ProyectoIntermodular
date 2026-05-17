@@ -9,15 +9,16 @@
 - [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
 - [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
 - [X] Crear sistema de notificaciones cuando te comentan o llega a un hito de likes.
-- [ ] Cambiar sistema de guardado de fotos. Debería guardarse con nombre diferente, y a ser posible en otra base de datos. Checkear apuntes germán.
+- [X] Cambiar sistema de guardado de fotos. Debería guardarse con nombre diferente, y a ser posible en otra base de datos. Checkear apuntes germán.
 - [ ] Implementar sistema de búsqueda
 - [X] Que se pueda cambiar la contraseña en perfil
 - [ ] Slideshow de imágenes con lo de jquery ese.
 - [ ] Protección en los formularios
-- [ ] Validación de tamaño máximo en subida de avatar
+- [X] Validación de tamaño máximo en subida de avatar
 - [ ] Paginación para comentarios en moderación
-- [ ] Añadir modales con mensaje para cuando votas sin sesión o creas editas un post o cambias nombre.
+- [x] Añadir modales con mensaje para cuando votas sin sesión o creas editas un post o cambias nombre.
 - [ ] Que se pueda loggear tanto como con mail como con username
+- [ ] Subir fotos en posts o comments. Quiza también en msg privados
 
 ### Crear páginas:
 - [ ] Explorar
