@@ -3,6 +3,8 @@ session_start();
 
 require_once __DIR__ . '/../models/Publication.php';
 require_once __DIR__ . '/../models/Comment.php';
+require_once __DIR__ . '/../models/Notification.php';
+
 
 $id = (int) ($_GET['id'] ?? 0);
 if (!$id) {
@@ -13,6 +15,7 @@ if (!$id) {
 $pubModel     = new Publication();
 $commentModel = new Comment();
 $post         = $pubModel->getById($id);
+$notifModel = new Notification();
 
 if (!$post) {
     header('Location: /index.php');
@@ -29,6 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_id'])) {
         $error = 'El comentario no puede estar vacío.';
     } else {
         $commentModel->create($id, $_SESSION['user_id'], $content, $parentId);
+
+        if ($_SESSION['user_id'] != $post['id_user']) {
+            $notifModel->create(
+                $post['id_user'],
+                'comment_on_post',
+                '@' . $_SESSION['username'] . ' ha comentado en tu publicación: ' . mb_strimwidth($post['title'], 0, 50, '...'),
+                '/pages/post.php?id=' . $id
+            );
+        }
+
         header('Location: /pages/post.php?id=' . $id);
         exit;
     }

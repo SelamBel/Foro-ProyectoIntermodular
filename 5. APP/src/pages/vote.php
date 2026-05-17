@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../models/Notification.php';
 
 $publicationId = (int) ($_POST['id']   ?? 0);
 $type          = (int) ($_POST['type'] ?? -1);
@@ -54,3 +55,17 @@ echo json_encode([
     'upvotes'   => (int) $counts['upvotes'],
     'downvotes' => (int) $counts['downvotes'],
 ]);
+
+$owner = $db->prepare('SELECT id_user FROM publication WHERE id = ?');
+$owner->execute([$publicationId]);
+$ownerId = (int) $owner->fetchColumn();
+
+if ($type === 1 && $userId !== $ownerId && !$existing) {
+    $notifModel = new Notification();
+    $notifModel->create(
+        $ownerId,
+        'like_post',
+        '@' . $_SESSION['username'] . ' ha votado positivamente tu publicación.',
+        '/pages/post.php?id=' . $publicationId
+    );
+}

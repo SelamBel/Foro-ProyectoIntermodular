@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once __DIR__ . '/../models/Comment.php';
+require_once __DIR__ . '/../models/Notification.php';
 
 $id           = (int) ($_POST['id'] ?? 0);
 $commentModel = new Comment();
@@ -25,4 +26,15 @@ if ($_SESSION['user_id'] != $comment['id_user'] && $_SESSION['role'] !== 'modera
 }
 
 $commentModel->delete($id);
+
+if ($_SESSION['role'] === 'moderator' && $_SESSION['user_id'] != $comment['id_user']) {
+    $notifModel = new Notification();
+    $notifModel->create(
+        $comment['id_user'],
+        'mod_delete_comment',
+        'Un moderador ha eliminado tu comentario: ' . mb_strimwidth($comment['content'], 0, 50, '...'),
+        null
+    );
+}
+
 echo json_encode(['success' => true]);

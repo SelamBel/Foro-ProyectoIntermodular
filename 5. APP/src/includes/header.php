@@ -1,5 +1,10 @@
 <?php
 $pageTitle = $pageTitle ?? 'AntHive';
+$unreadNotifs = 0;
+if (isset($_SESSION['user_id'])) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Notification.php';
+    $unreadNotifs = (new Notification())->countUnread($_SESSION['user_id']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -46,8 +51,11 @@ $pageTitle = $pageTitle ?? 'AntHive';
                 <a href="/pages/messages.php" class="icon-btn" title="Mensajes">
                     <i class="fa-solid fa-envelope"></i>
                 </a>
-                <a href="/pages/notifications.php" class="icon-btn" title="Notificaciones">
+                <a href="/pages/notifications.php" class="icon-btn" title="Notificaciones" style="position:relative">
                     <i class="fa-solid fa-bell"></i>
+                    <?php if ($unreadNotifs > 0): ?>
+                        <span class="notif-badge"><?= $unreadNotifs ?></span>
+                    <?php endif; ?>
                 </a>
                 <a href="/pages/profile.php" class="icon-btn" title="Mi perfil">
                     <i class="fa-solid fa-circle-user"></i>
@@ -57,7 +65,7 @@ $pageTitle = $pageTitle ?? 'AntHive';
                 <a href="/pages/register.php" class="btn-primary">Registrarse</a>
             <?php endif; ?>
         </div>
-        
+
         <div id="customModal" class="modal-overlay" style="display: none;">
             <div class="modal-card">
                 <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
