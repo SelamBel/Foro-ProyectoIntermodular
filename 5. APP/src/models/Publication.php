@@ -65,10 +65,24 @@ class Publication
 
     public function update(int $id, string $title, string $content): void
     {
-        $stmt = $this->db->prepare(
+        $current = $this->getById($id);
+        if ($current) {
+            $this->db->prepare(
+                'INSERT INTO publication_history (id_publication, title, content, date_saved) VALUES (?, ?, ?, ?)'
+            )->execute([$id, $current['title'], $current['content'], $current['date_edited'] ?? $current['date_creation']]);
+        }
+        $this->db->prepare(
             'UPDATE publication SET title = ?, content = ?, date_edited = NOW() WHERE id = ?'
+        )->execute([$title, $content, $id]);
+    }
+
+    public function getHistory(int $id): array
+    {
+        $stmt = $this->db->prepare(
+            'SELECT * FROM publication_history WHERE id_publication = ? ORDER BY id DESC'
         );
-        $stmt->execute([$title, $content, $id]);
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
     }
 
     public function delete(int $id): void

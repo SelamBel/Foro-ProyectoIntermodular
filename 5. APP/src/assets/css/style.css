@@ -446,11 +446,11 @@ main {
     background: var(--border);
 }
 
-.vote-btn.up:hover {
+.vote-btn.down:hover {
     color: var(--primary);
 }
 
-.vote-btn.down:hover {
+.vote-btn.up:hover {
     color: #7193ff;
 }
 
@@ -731,12 +731,14 @@ main {
     border: 1px solid var(--border);
     border-radius: 4px;
     padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .form-card__title {
     font-size: 18px;
     font-weight: 600;
-    margin-bottom: 20px;
 }
 
 textarea {
@@ -1131,7 +1133,6 @@ body.dark .conversation-item.unread { background: #1a2a3a; }
 
 .form-title-button {
     display: flex;
-    padding: 5px;
 }
 .chat-messages {
     flex: 1;
@@ -1212,6 +1213,19 @@ body.dark .notif-item.unread { background: #1a2a3a; }
 .notif-body { flex: 1; }
 .notif-body p { font-size: 14px; margin-bottom: 4px; }
 .notif-body span { font-size: 12px; color: var(--muted); }
+
+/* ── HISTORICO VER ──────────────────────────────────────── */
+.history-nav {
+    border-top: 1px dashed var(--border);
+}
+
+.history-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+}
 
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media (max-width: 960px) {

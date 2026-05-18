@@ -19,7 +19,9 @@
 - [x] Añadir modales con mensaje para cuando votas sin sesión o creas editas un post o cambias nombre.
 - [ ] Que se pueda loggear tanto como con mail como con username
 - [ ] Subir fotos en posts o comments. Quiza también en msg privados
-
+- [ ] La página de ayuda, los correos, te lleven a una conversación con un usuario creado de soporte, para recibir feedback.
+- [X] Guardar las anteriores versiones de posts o commentarios editados, que puedas scrollear a través de ellos
+- [ ] Subir fotos en posts o comments. Quiza también en msg privados.
 
 ### Crear páginas:
 - [ ] Explorar

@@ -15,7 +15,8 @@ if (!$id) {
 $pubModel     = new Publication();
 $commentModel = new Comment();
 $post         = $pubModel->getById($id);
-$notifModel = new Notification();
+$notifModel   = new Notification();
+$history      = $pubModel->getHistory($post['id']);
 
 if (!$post) {
     header('Location: /index.php');
@@ -141,9 +142,33 @@ require_once __DIR__ . '/../includes/header.php';
                     <span class="author"><?= htmlspecialchars($post['username']) ?></span>
                     &middot;
                     <span class="post-date" data-date="<?= $post['date_creation'] ?>"><?= $post['date_creation'] ?></span>
+                    <?php if (!empty($history)): ?>
+                        <div class="history-nav" id="historyNav"
+                            data-current-title="<?= htmlspecialchars($post['title']) ?>"
+                            data-current-content="<?= htmlspecialchars($post['content']) ?>">
+                            <div class="history-controls">
+                                <button class="action-btn" id="histPrev"><i class="fa-solid fa-chevron-left"></i></button>
+                                <span id="histLabel">Versión actual</span>
+                                <button class="action-btn" id="histNext" disabled><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                            <div id="histContent" style="display:none">
+                                <div class="history-versions" style="display:none">
+                                    <?php foreach ($history as $i => $v): ?>
+                                        <div class="history-version"
+                                            data-index="<?= $i ?>"
+                                            data-title="<?= htmlspecialchars($v['title']) ?>"
+                                            data-content="<?= htmlspecialchars($v['content']) ?>"
+                                            data-date="<?= $v['date_saved'] ?>">
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <h1 class="post-title"><?= htmlspecialchars($post['title']) ?></h1>
                 <p class="post-body post-body--full"><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+
                 <div class="post-actions">
                     <div class="vote-group">
                         <button class="vote-btn up <?= isset($_SESSION['user_id']) ? 'js-vote' : 'js-vote-guest' ?>"

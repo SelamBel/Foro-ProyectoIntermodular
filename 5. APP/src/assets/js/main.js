@@ -352,4 +352,42 @@ $(function () {
         if (!valid) e.preventDefault();
     });
 
+    if ($('#historyNav').length) {
+        const versions = [];
+        $('.history-version').each(function () {
+            versions.push({
+                title: $(this).data('title'),
+                content: $(this).data('content'),
+                date: $(this).data('date')
+            });
+        });
+
+        const currentTitle = $('#historyNav').data('current-title');
+        const currentContent = $('#historyNav').data('current-content');
+        let index = -1;
+
+        function showVersion(i) {
+            if (i === -1) {
+                $('.post-title').first().text(currentTitle);
+                $('.post-body--full').first().text(currentContent);
+                $('#histLabel').text('Versión actual (' + (versions.length + 1) + ' de ' + (versions.length + 1) + ')');
+                $('#histPrev').prop('disabled', versions.length === 0);
+                $('#histNext').prop('disabled', true);
+            } else {
+                const v = versions[i];
+                $('.post-title').first().text(v.title);
+                $('.post-body--full').first().html(v.content.replace(/\n/g, '<br>'));
+                $('#histLabel').text('Versión ' + (versions.length - i) + ' de ' + (versions.length + 1) + ' — ' + timeAgo(v.date));
+                $('#histPrev').prop('disabled', i >= versions.length - 1);
+                $('#histNext').prop('disabled', false);
+            }
+            index = i;
+        }
+
+        $('#histPrev').on('click', function () { showVersion(index + 1); });
+        $('#histNext').on('click', function () { showVersion(index - 1); });
+
+        showVersion(-1);
+    }
+
 });
