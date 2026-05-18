@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pageTitle  = 'Reglas de AntHive';
+$pageTitle  = 'Reglas de AntNet';
 $activePage = 'rules';
 require_once __DIR__ . '/../includes/header.php';
 ?>
@@ -14,7 +14,7 @@ require_once __DIR__ . '/../includes/header.php';
             <h1 class="form-card__title"><i class="fa-solid fa-clipboard-list"></i> Reglas de la comunidad</h1>
 
             <p style="margin-bottom:24px; color:#3c3c3c; line-height:1.7">
-                AntHive es una comunidad construida sobre el respeto mutuo y la colaboración. Estas reglas aplican a todas las publicaciones, comentarios y mensajes dentro de la plataforma.
+                AntNet es una comunidad construida sobre el respeto mutuo y la colaboración. Estas reglas aplican a todas las publicaciones, comentarios y mensajes dentro de la plataforma.
             </p>
 
             <div class="help-section">
@@ -44,7 +44,7 @@ require_once __DIR__ . '/../includes/header.php';
 
             <div class="help-section">
                 <h2>6. Contenido apropiado</h2>
-                <p>Queda prohibido publicar contenido violento, explícito o ilegal. AntHive es una plataforma apta para todos los públicos y debe mantenerse así.</p>
+                <p>Queda prohibido publicar contenido violento, explícito o ilegal. AntNet es una plataforma apta para todos los públicos y debe mantenerse así.</p>
             </div>
 
             <div class="help-section">

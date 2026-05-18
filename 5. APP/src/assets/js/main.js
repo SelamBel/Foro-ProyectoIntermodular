@@ -250,30 +250,30 @@ $(function () {
         $('#customColor').val(color);
     }
 
-    const savedDark = localStorage.getItem('anthive_dark') === 'true';
-    const savedColor = localStorage.getItem('anthive_color') || '#e20000';
+    const savedDark = localStorage.getItem('antnet_dark') === 'true';
+    const savedColor = localStorage.getItem('antnet_color') || '#e20000';
     applyTheme(savedDark, savedColor);
 
     $('#darkBtn').on('click', function () {
-        localStorage.setItem('anthive_dark', 'true');
-        applyTheme(true, localStorage.getItem('anthive_color') || '#e20000');
+        localStorage.setItem('antnet_dark', 'true');
+        applyTheme(true, localStorage.getItem('antnet_color') || '#e20000');
     });
 
     $('#lightBtn').on('click', function () {
-        localStorage.setItem('anthive_dark', 'false');
-        applyTheme(false, localStorage.getItem('anthive_color') || '#e20000');
+        localStorage.setItem('antnet_dark', 'false');
+        applyTheme(false, localStorage.getItem('antnet_color') || '#e20000');
     });
 
     $(document).on('click', '.color-swatch', function () {
         const color = $(this).data('color');
-        localStorage.setItem('anthive_color', color);
-        applyTheme(localStorage.getItem('anthive_dark') === 'true', color);
+        localStorage.setItem('antnet_color', color);
+        applyTheme(localStorage.getItem('antnet_dark') === 'true', color);
     });
 
     $('#customColor').on('input', function () {
         const color = $(this).val();
-        localStorage.setItem('anthive_color', color);
-        applyTheme(localStorage.getItem('anthive_dark') === 'true', color);
+        localStorage.setItem('antnet_color', color);
+        applyTheme(localStorage.getItem('antnet_dark') === 'true', color);
     });
 
     $(document).on('click', '.js-delete-user', function () {
@@ -309,7 +309,7 @@ $(function () {
 
         openModal(
             'Cerrar sesión',
-            '¿Estás seguro de que deseas salir de AntHive?',
+            '¿Estás seguro de que deseas salir de AntNet?',
             function () {
                 window.location.href = logoutUrl;
             }

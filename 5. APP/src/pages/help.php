@@ -14,8 +14,8 @@ require_once __DIR__ . '/../includes/header.php';
             <h1 class="form-card__title"><i class="fa-solid fa-circle-question"></i> Ayuda</h1>
 
             <div class="help-section">
-                <h2>¿Qué es AntHive?</h2>
-                <p>AntHive es un foro temático inspirado en la mentalidad de colmena. Aquí puedes crear publicaciones, comentar, responder a otros usuarios y votar el contenido que más te guste.</p>
+                <h2>¿Qué es AntNet?</h2>
+                <p>AntNet es un foro temático inspirado en la mentalidad de colmena. Aquí puedes crear publicaciones, comentar, responder a otros usuarios y votar el contenido que más te guste.</p>
             </div>
 
             <div class="help-section">
@@ -56,7 +56,7 @@ require_once __DIR__ . '/../includes/header.php';
             <div class="help-section">
                 <h2>Contacto</h2>
                 <p>Si tienes algún problema técnico o quieres ponerte en contacto conmigo, escribe a <a href="conversation.php?user=1
-                ">ayuda@anthive.com</a> o a <a href="https://github.com/SelamBel"> <i class="fa-brands fa-github"></i> SelamBel</a>.</p>
+                ">ayuda@antnet.com</a> o a <a href="https://github.com/SelamBel"> <i class="fa-brands fa-github"></i> SelamBel</a>.</p>
             </div>
         </div>
     </main>

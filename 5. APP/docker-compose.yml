@@ -2,7 +2,7 @@ services:
 
   php:
     build: ./docker/php
-    container_name: anthive_php
+    container_name: antnet_php
     restart: unless-stopped
     volumes:
       - ./src:/var/www/html
@@ -17,11 +17,11 @@ services:
       DB_USER: ${DB_USER}
       DB_PASS: ${DB_PASS}
     networks:
-      - anthive_net
+      - antnet_net
 
   mysql:
     image: mysql:8.0
-    container_name: anthive_mysql
+    container_name: antnet_mysql
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DB_NAME}
@@ -34,11 +34,11 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - anthive_net
+      - antnet_net
 
   phpmyadmin:
     image: phpmyadmin:latest
-    container_name: anthive_phpmyadmin
+    container_name: antnet_phpmyadmin
     restart: unless-stopped
     ports:
       - "8081:80"
@@ -49,11 +49,11 @@ services:
     depends_on:
       - mysql
     networks:
-      - anthive_net
+      - antnet_net
 
 volumes:
   mysql_data:
 
 networks:
-  anthive_net:
+  antnet_net:
     driver: bridge

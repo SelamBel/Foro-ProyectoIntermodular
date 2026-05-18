@@ -1,4 +1,4 @@
--- AntHive - Esquema inicial de base de datos
+-- AntNet - Esquema inicial de base de datos
 
 DROP TABLE IF EXISTS publication_history, notification, message, vote, comment, publication, user_has_role, user, role;
 
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `publication_history` (
 
 INSERT INTO `role` (`role_name`) VALUES ('user'), ('moderator');
 
-INSERT INTO `user` (`email`, `username`, `password`, `avatar`) VALUES ('ayuda@anthive.com', 'Soporte', '$2y$10$31fJ.UgTyTb4PHrNEQzptuKBVutm4.kzX0Ko31nWDZtl5OOYx1Kzm', '/assets/img/logos/favicon.svg');
+INSERT INTO `user` (`email`, `username`, `password`, `avatar`) VALUES ('ayuda@antnet.com', 'Soporte', '$2y$10$31fJ.UgTyTb4PHrNEQzptuKBVutm4.kzX0Ko31nWDZtl5OOYx1Kzm', '/assets/img/logos/favicon.svg');
 
 INSERT INTO `user_has_role` (`id_user`, `id_role`) VALUES (LAST_INSERT_ID(), (SELECT `id` FROM `role` WHERE `role_name` = 'moderator'));
 INSERT INTO `user` (`email`, `username`, `password`) VALUES ('s@s.s', 'Sel', '$2y$10$31fJ.UgTyTb4PHrNEQzptuKBVutm4.kzX0Ko31nWDZtl5OOYx1Kzm');

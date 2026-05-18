@@ -14,7 +14,7 @@ require_once __DIR__ . '/../includes/header.php';
             <h1 class="form-card__title"><i class="fa-solid fa-lock"></i> Política de privacidad</h1>
 
             <p style="margin-bottom:24px; color:#3c3c3c; line-height:1.7">
-                Última actualización: <?= date('d/m/Y') ?>. En AntHive nos tomamos tu privacidad en serio. Esta política explica qué datos recogemos, cómo los usamos y qué derechos tienes sobre ellos.
+                Última actualización: <?= date('d/m/Y') ?>. En AntNet nos tomamos tu privacidad en serio. Esta política explica qué datos recogemos, cómo los usamos y qué derechos tienes sobre ellos.
             </p>
 
             <div class="help-section">
@@ -29,12 +29,12 @@ require_once __DIR__ . '/../includes/header.php';
 
             <div class="help-section">
                 <h2>3. Cookies y sesiones</h2>
-                <p>AntHive usa cookies de sesión para mantenerte identificado mientras navegas. Estas cookies son estrictamente necesarias y desaparecen al cerrar el navegador o al cerrar sesión. No usamos cookies de seguimiento ni publicidad.</p>
+                <p>AntNet usa cookies de sesión para mantenerte identificado mientras navegas. Estas cookies son estrictamente necesarias y desaparecen al cerrar el navegador o al cerrar sesión. No usamos cookies de seguimiento ni publicidad.</p>
             </div>
 
             <div class="help-section">
                 <h2>4. Almacenamiento de datos</h2>
-                <p>Tus datos se almacenan en servidores seguros. Las contraseñas se guardan siempre cifradas mediante bcrypt y nunca son accesibles en texto plano, ni siquiera por el equipo de AntHive.</p>
+                <p>Tus datos se almacenan en servidores seguros. Las contraseñas se guardan siempre cifradas mediante bcrypt y nunca son accesibles en texto plano, ni siquiera por el equipo de AntNet.</p>
             </div>
 
             <div class="help-section">
@@ -44,17 +44,17 @@ require_once __DIR__ . '/../includes/header.php';
 
             <div class="help-section">
                 <h2>6. Tus derechos</h2>
-                <p>Tienes derecho a acceder, rectificar y eliminar tus datos en cualquier momento. Puedes editar tu perfil desde la sección de perfil o solicitar la eliminación completa de tu cuenta escribiendo a <a href="mailto:privacidad@anthive.com">privacidad@anthive.com</a>.</p>
+                <p>Tienes derecho a acceder, rectificar y eliminar tus datos en cualquier momento. Puedes editar tu perfil desde la sección de perfil o solicitar la eliminación completa de tu cuenta escribiendo a <a href="mailto:privacidad@antnet.com">privacidad@antnet.com</a>.</p>
             </div>
 
             <div class="help-section">
                 <h2>7. Cambios en esta política</h2>
-                <p>Podemos actualizar esta política ocasionalmente. Los cambios significativos se comunicarán a los usuarios mediante un aviso en la plataforma. El uso continuado de AntHive tras los cambios implica la aceptación de la nueva política.</p>
+                <p>Podemos actualizar esta política ocasionalmente. Los cambios significativos se comunicarán a los usuarios mediante un aviso en la plataforma. El uso continuado de AntNet tras los cambios implica la aceptación de la nueva política.</p>
             </div>
 
             <div class="help-section">
                 <h2>Contacto</h2>
-                <p>Para cualquier consulta sobre privacidad, contacta con nosotros en <a href="mailto:privacidad@anthive.com">privacidad@anthive.com</a>.</p>
+                <p>Para cualquier consulta sobre privacidad, contacta con nosotros en <a href="mailto:privacidad@antnet.com">privacidad@antnet.com</a>.</p>
             </div>
         </div>
     </main>

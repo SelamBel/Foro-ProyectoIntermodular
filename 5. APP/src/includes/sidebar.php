@@ -35,7 +35,7 @@ $activePage = $activePage ?? 'home';
             <span class="nav-icon"><i class="fa-solid fa-circle-question"></i></span> Ayuda
         </a>
         <a href="/pages/rules.php" class="nav-item <?= $activePage === 'rules' ? 'active' : '' ?>">
-            <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span> Reglas de AntHive
+            <span class="nav-icon"><i class="fa-solid fa-clipboard-list"></i></span> Reglas de AntNet
         </a>
         <a href="/pages/privacy.php" class="nav-item <?= $activePage === 'privacy' ? 'active' : '' ?>">
             <span class="nav-icon"><i class="fa-solid fa-lock"></i></span> Política de privacidad
@@ -60,7 +60,7 @@ $activePage = $activePage ?? 'home';
     <?php endif; ?>
 
     <div class="sidebar-footer">
-        AntHive, Inc. &copy; <?= date('Y') ?>. Todos los derechos reservados.<br>
+        AntNet, Inc. &copy; <?= date('Y') ?>. Todos los derechos reservados.<br>
         <a href="/pages/privacy.php">Privacidad</a> &middot;
         <a href="/pages/terms.php">Términos</a>
     </div>

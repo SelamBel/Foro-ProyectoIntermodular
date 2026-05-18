@@ -18,7 +18,7 @@ $items  = $pubModel->getAllFiltered($order, $search);
 $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 16);
-$pdf->Cell(0, 10, 'AntHive - Listado de publicaciones', 0, 1, 'C');
+$pdf->Cell(0, 10, 'AntNet - Listado de publicaciones', 0, 1, 'C');
 $pdf->SetFont('Arial', '', 9);
 $pdf->Cell(0, 6, 'Generado el ' . date('d/m/Y H:i') . ' por ' . $_SESSION['username'], 0, 1, 'C');
 $pdf->Ln(4);
@@ -51,4 +51,4 @@ $pdf->Ln(4);
 $pdf->SetFont('Arial', 'I', 8);
 $pdf->Cell(0, 6, 'Total: ' . count($items) . ' publicaciones', 0, 1, 'R');
 
-$pdf->Output('D', 'anthive_publicaciones_' . date('Ymd') . '.pdf');
+$pdf->Output('D', 'antnet_publicaciones_' . date('Ymd') . '.pdf');

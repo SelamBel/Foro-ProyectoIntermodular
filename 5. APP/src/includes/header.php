@@ -1,5 +1,5 @@
 <?php
-$pageTitle = $pageTitle ?? 'AntHive';
+$pageTitle = $pageTitle ?? 'AntNet';
 $unreadNotifs = 0;
 if (isset($_SESSION['user_id'])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Notification.php';
@@ -12,13 +12,13 @@ if (isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($pageTitle) ?> - AntHive</title>
+    <title><?= htmlspecialchars($pageTitle) ?> - AntNet</title>
     <script>
         (function() {
-            if (localStorage.getItem('anthive_dark') === 'true') {
+            if (localStorage.getItem('antnet_dark') === 'true') {
                 document.documentElement.classList.add('dark');
             }
-            const color = localStorage.getItem('anthive_color');
+            const color = localStorage.getItem('antnet_color');
             if (color) {
                 document.documentElement.style.setProperty('--primary', color);
             }
@@ -36,14 +36,14 @@ if (isset($_SESSION['user_id'])) {
 
     <header class="site-header">
         <a href="/index.php" class="header-logo">
-            <img src="/assets/img/logos/logo plain weight.svg" alt="AntHive logo"
+            <img src="/assets/img/logos/logo plain weight.svg" alt="AntNet logo"
                 onerror="this.style.display='none'">
-            <span>AntHive</span>
+            <span>AntNet</span>
         </a>
 
         <div class="header-search">
             <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-            <input type="text" placeholder="Buscar en AntHive" id="searchInput">
+            <input type="text" placeholder="Buscar en AntNet" id="searchInput">
         </div>
 
         <div class="header-actions">
