@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Por favor, rellena todos los campos.';
     } else {
         $userModel = new User();
-        $user = $userModel->findByEmail($email);
+        $user = $userModel->findByEmailOrUsername($email);
 
         if ($user && $userModel->verifyPassword($password, $user['password'])) {
             $roles = $userModel->getRoles($user['id']);
@@ -57,10 +57,8 @@ require_once __DIR__ . '/../includes/header.php';
 
         <form method="POST" action="/pages/login.php" id="loginForm" novalidate>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email"
-                    value="<?= htmlspecialchars($_POST['email'] ?? $_GET['email'] ?? '') ?>"
-                    placeholder="tu@email.com" autocomplete="email">
+                <label for="email">Email o username</label>
+                <input type="text" id="email" name="email" placeholder="Email o nombre de usuario">
                 <span class="field-error" id="emailError"></span>
             </div>
 

@@ -19,6 +19,15 @@ class User
         return $stmt->fetch();
     }
 
+    public function findByEmailOrUsername(string $value): array|false
+    {
+        $stmt = $this->db->prepare(
+            'SELECT * FROM `user` WHERE email = ? OR username = ? LIMIT 1'
+        );
+        $stmt->execute([$value, $value]);
+        return $stmt->fetch();
+    }
+
     public function findById(int $id): array|false
     {
         $stmt = $this->db->prepare('SELECT * FROM `user` WHERE id = ? LIMIT 1');

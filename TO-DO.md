@@ -1,37 +1,36 @@
 ### TO-DO:
 - [X] Crear modo noche.
-- [ ] Separar estilos por página???
 - [X] Que el nombre y apellido pase a ser solo el usuario.
 - [X] Que en los posts se vea el avatar de quién lo ha publicado.
 - [X] Que en la barra superior se vea quién lo ha publicado.
-- [ ] Que los usuarios tengan un estado (ocupado siponible ausente..)
 - [X] Implementar un sistema de mensajeria entre usuarios
-- [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
-- [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
 - [X] Crear sistema de notificaciones cuando te comentan o llega a un hito de likes.
 - [X] Cambiar sistema de guardado de fotos. Debería guardarse con nombre diferente, y a ser posible en otra base de datos. Checkear apuntes germán.
-- [ ] Implementar sistema de búsqueda
 - [X] Que se pueda cambiar la contraseña en perfil
-- [ ] Slideshow de imágenes con lo de jquery ese.
-- [ ] Protección en los formularios
 - [X] Validación de tamaño máximo en subida de avatar
-- [ ] Paginación para comentarios en moderación
 - [x] Añadir modales con mensaje para cuando votas sin sesión o creas editas un post o cambias nombre.
-- [ ] Que se pueda loggear tanto como con mail como con username
-- [ ] Subir fotos en posts o comments. Quiza también en msg privados
+- [X] Que se pueda loggear tanto como con mail como con username
 - [X] La página de ayuda, los correos, te lleven a una conversación con un usuario creado de soporte, para recibir feedback.
 - [X] Guardar las anteriores versiones de posts o commentarios editados, que puedas scrollear a través de ellos
-- [ ] Subir fotos en posts o comments. Quiza también en msg privados.
+- [ ] Separar estilos por página???
+- [ ] Que los usuarios tengan un estado (ocupado siponible ausente..)
+- [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
+- [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
+- [ ] Implementar sistema de búsqueda
+- [ ] Slideshow de imágenes con lo de jquery ese.
+- [ ] Protección en los formularios
+- [ ] Paginación para comentarios en moderación
+- [ ] Subir fotos en posts o comments. Quiza también en msg privados
 
 ### Crear páginas:
-- [ ] Explorar
-- [ ] Popular
 - [X] Moderadores
 - [X] Temas
 - [X] Ayuda
 - [X] Reglas
 - [X] Política de privacidad
 - [X] Acuerdo de usuario
+- [ ] Explorar
+- [ ] Popular
 - [ ] Accesibilidad
 
 ## BUF FIXES:

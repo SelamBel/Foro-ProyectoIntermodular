@@ -53,8 +53,8 @@ $(function () {
         const email = $('#email').val().trim();
         const password = $('#password').val().trim();
 
-        if (!emailRegex.test(email)) {
-            showError('emailError', 'Introduce un email válido.');
+        if (email.length === 0) {
+            showError('emailError', 'Introduce tu email o nombre de usuario.');
             valid = false;
         } else {
             clearError('emailError');
