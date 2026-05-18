@@ -134,6 +134,9 @@ header {
     pointer-events: none;
 }
 
+.search-section { margin-bottom: 24px; }
+.search-section .comments-title { margin-bottom: 10px; }
+
 .header-actions {
     display: flex;
     align-items: center;

@@ -12,11 +12,11 @@
 - [X] Que se pueda loggear tanto como con mail como con username
 - [X] La página de ayuda, los correos, te lleven a una conversación con un usuario creado de soporte, para recibir feedback.
 - [X] Guardar las anteriores versiones de posts o commentarios editados, que puedas scrollear a través de ellos
+- [X] Implementar sistema de búsqueda
 - [ ] Separar estilos por página???
 - [ ] Que los usuarios tengan un estado (ocupado siponible ausente..)
 - [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
 - [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
-- [ ] Implementar sistema de búsqueda
 - [ ] Slideshow de imágenes con lo de jquery ese.
 - [ ] Protección en los formularios
 - [ ] Paginación para comentarios en moderación

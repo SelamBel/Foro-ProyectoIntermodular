@@ -66,4 +66,18 @@ class Comment
     {
         return (int) $this->db->query('SELECT COUNT(*) FROM comment')->fetchColumn();
     }
+
+    public function search(string $query): array
+    {
+        $stmt = $this->db->prepare("
+        SELECT c.*, u.username, u.avatar
+        FROM comment c
+        INNER JOIN user u ON c.id_user = u.id
+        WHERE c.content LIKE ?
+        ORDER BY c.date_creation DESC
+        LIMIT 30
+    ");
+        $stmt->execute(['%' . $query . '%']);
+        return $stmt->fetchAll();
+    }
 }

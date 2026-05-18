@@ -41,10 +41,11 @@ if (isset($_SESSION['user_id'])) {
             <span>AntNet</span>
         </a>
 
-        <div class="header-search">
+        <form method="GET" action="/pages/search.php" class="header-search">
             <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-            <input type="text" placeholder="Buscar en AntNet" id="searchInput">
-        </div>
+            <input type="text" name="q" placeholder="Buscar en AntHive"
+                value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
+        </form>
 
         <div class="header-actions">
             <?php if (isset($_SESSION['user_id'])): ?>
