@@ -55,7 +55,8 @@ require_once __DIR__ . '/../includes/header.php';
 
             <div class="help-section">
                 <h2>Contacto</h2>
-                <p>Si tienes algún problema técnico o quieres ponerte en contacto conmigo, escribe a <a href="https://github.com/SelamBel"> <i class="fa-brands fa-github"></i> SelamBel</a>.</p>
+                <p>Si tienes algún problema técnico o quieres ponerte en contacto conmigo, escribe a <a href="conversation.php?user=1
+                ">ayuda@anthive.com</a> o a <a href="https://github.com/SelamBel"> <i class="fa-brands fa-github"></i> SelamBel</a>.</p>
             </div>
         </div>
     </main>
