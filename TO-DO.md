@@ -22,6 +22,7 @@
 - [ ] Paginación para comentarios en moderación
 - [ ] Subir fotos en posts o comments. Quiza también en msg privados
 
+
 ### Crear páginas:
 - [X] Moderadores
 - [X] Temas
@@ -29,9 +30,8 @@
 - [X] Reglas
 - [X] Política de privacidad
 - [X] Acuerdo de usuario
+- [X] Popular
 - [ ] Explorar
-- [ ] Popular
-- [ ] Accesibilidad
 
 ## BUF FIXES:
 - [X] Las votaciones van raras. Si votas con una cuenta, cambias de cuenta, votas con la nueva, y empiezas a desvotar y refrescar, a veces se duplican
@@ -39,6 +39,7 @@
 - [X] Aparte de Principal, el resto no te marca correctamente la sidebar cuando estás en ellos
 - [X] Las horas aparecen mal. Algo que acaba de salir aparece como que lleva ya 2 horas.
 - [ ] Debería en el header aparecer +1 en los mensajes cuando tienes mensajes pendientes por ver.
+- [ ] Arreglar las páginas de mods. No va editar usuario
 
 # FINAL:
 - [ ] Editar estilos de toda la página.

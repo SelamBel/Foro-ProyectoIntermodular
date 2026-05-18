@@ -43,9 +43,6 @@ $activePage = $activePage ?? 'home';
         <a href="/pages/terms.php" class="nav-item <?= $activePage === 'terms' ? 'active' : '' ?>">
             <span class="nav-icon"><i class="fa-solid fa-file-contract"></i></span> Acuerdo de usuario
         </a>
-        <a href="/pages/accessibility.php" class="nav-item <?= $activePage === 'accessibility' ? 'active' : '' ?>">
-            <span class="nav-icon"><i class="fa-solid fa-universal-access"></i></span> Accesibilidad
-        </a>
     </div>
 
     <?php if (isset($_SESSION['user_id'])): ?>

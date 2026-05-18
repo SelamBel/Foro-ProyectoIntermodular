@@ -153,4 +153,23 @@ class Publication
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function getPopular(int $limit = 20): array
+    {
+        $stmt = $this->db->prepare("
+        SELECT p.*,
+               u.username, u.avatar,
+               (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 1) AS upvotes,
+               (SELECT COUNT(*) FROM vote v WHERE v.id_publication = p.id AND v.type = 0) AS downvotes,
+               (SELECT COUNT(*) FROM comment c WHERE c.id_publication = p.id) AS comment_count
+        FROM publication p
+        INNER JOIN user u ON p.id_user = u.id
+        WHERE p.date_creation >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+        ORDER BY upvotes DESC, p.date_creation DESC
+        LIMIT :limit
+    ");
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
