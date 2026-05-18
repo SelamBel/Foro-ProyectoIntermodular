@@ -434,7 +434,13 @@ $(function () {
     });
 
     $(document).on('click', '#cancelEdit', function () {
-        $('#editPanel').fadeOut(200);
+        openModal(
+            'Confirmar cancelación',
+            '¿Estás seguro de que deseas perder los datos modificados?',
+            function () {
+                $('#editPanel').fadeOut(200);
+            }
+        );
     });
 
 });

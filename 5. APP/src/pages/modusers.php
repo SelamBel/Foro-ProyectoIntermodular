@@ -161,7 +161,7 @@ require_once __DIR__ . '/../includes/header.php';
                         </select>
                     </div>
                     <div class="form-actions">
-                        <button type="button" class="btn-outline js-cancel-btn" id="cancelEdit">Cancelar</button>
+                        <button type="button" class="btn-outline" id="cancelEdit">Cancelar</button>
                         <button type="submit" class="btn-primary">Guardar cambios</button>
                     </div>
                 </form>
