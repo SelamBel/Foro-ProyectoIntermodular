@@ -154,7 +154,7 @@ require_once __DIR__ . '/../includes/header.php';
                     </div>
                     <div class="form-group">
                         <label for="editRole">Roles</label>
-                        <select id="editRole" name="role_ids[]" multiple style="height: auto; min-height: 100px;">
+                        <select id="editRole" name="role_ids[]" multiple size="<?= count($roles) ?>">
                             <?php foreach ($roles as $role): ?>
                                 <option value="<?= $role['id'] ?>"><?= htmlspecialchars($role['role_name']) ?></option>
                             <?php endforeach; ?>

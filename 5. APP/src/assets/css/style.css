@@ -120,7 +120,7 @@ header {
 }
 
 .header-search input:focus {
-    border-color: #0079d3;
+    border-color: var(--primary);
     background: var(--surface);
 }
 
@@ -575,7 +575,7 @@ main {
 }
 
 .form-group input:focus {
-    border-color: #0079d3;
+    border-color: var(--primary);
 }
 
 .form-row {
@@ -757,7 +757,7 @@ textarea {
 }
 
 textarea:focus {
-    border-color: #0079d3;
+    border-color: var(--primary);
 }
 
 .form-actions {
@@ -1064,6 +1064,32 @@ textarea:focus {
 
 .mod-edit-panel {
     animation: fadeIn 0.2s ease-in-out;
+}
+
+#editRole {
+    background-color: var(--bg);
+    color: var(--text);
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color .2s;
+    overflow: hidden;
+}
+
+#editRole:focus {
+    border-color: var(--primary);
+}
+
+#editRole option {
+    padding: 6px 8px;
+}
+
+#editRole option:checked {
+    background-color: var(--primary);
+    color: var(--bg);
 }
 
 @keyframes fadeIn {
