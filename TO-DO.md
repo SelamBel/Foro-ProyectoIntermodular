@@ -14,7 +14,6 @@
 - [X] Guardar las anteriores versiones de posts o commentarios editados, que puedas scrollear a través de ellos
 - [X] Implementar sistema de búsqueda
 - [ ] Separar estilos por página???
-- [ ] Que los usuarios tengan un estado (ocupado siponible ausente..)
 - [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
 - [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
 - [ ] Slideshow de imágenes con lo de jquery ese.

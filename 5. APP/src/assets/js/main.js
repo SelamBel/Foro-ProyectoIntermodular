@@ -303,6 +303,32 @@ $(function () {
         );
     });
 
+    $(document).on('click', '.js-remove-avatar', function () {
+        const userId = $(this).data('id');
+
+        openModal(
+            'Eliminar Avatar',
+            '¿Estás seguro de que deseas eliminar el avatar de este usuario?',
+            function () {
+                const form = $('<form>', {
+                    method: 'POST',
+                    action: ''
+                }).append($('<input>', {
+                    type: 'hidden',
+                    name: 'action',
+                    value: 'remove_avatar'
+                })).append($('<input>', {
+                    type: 'hidden',
+                    name: 'id',
+                    value: userId
+                }));
+
+                $('body').append(form);
+                form.submit();
+            }
+        );
+    });
+
     $(document).on('click', '#logoutBtn', function (e) {
         e.preventDefault();
         const logoutUrl = $(this).attr('href');
@@ -389,5 +415,26 @@ $(function () {
 
         showVersion(-1);
     }
+
+    $(document).on('click', '.js-edit-user', function () {
+        const id = $(this).data('id');
+        const username = $(this).data('username');
+        const email = $(this).data('email');
+
+        const rolesAttr = $(this).data('roles');
+        const rolesArray = rolesAttr ? String(rolesAttr).split(',') : [];
+
+        $('#editId').val(id);
+        $('#editUsername').val(username);
+        $('#editEmail').val(email);
+
+        $('#editRole').val(rolesArray);
+
+        $('#editPanel').fadeIn(200);
+    });
+
+    $(document).on('click', '#cancelEdit', function () {
+        $('#editPanel').fadeOut(200);
+    });
 
 });

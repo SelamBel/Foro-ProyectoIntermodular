@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'edit' && $targetId) {
         $username = trim($_POST['username'] ?? '');
         $email    = trim($_POST['email']    ?? '');
-        $roleId   = (int) ($_POST['role_id'] ?? 1);
+        $roleIds  = $_POST['role_ids']      ?? [];
 
         if (strlen($username) < 2) {
             $error = 'El nombre de usuario debe tener al menos 2 caracteres.';
@@ -28,12 +28,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($userModel->usernameExists($username, $targetId)) {
             $error = 'Ese nombre de usuario ya está en uso.';
         } else {
-            $userModel->updateByMod($targetId, $username, $email, $roleId);
+            $userModel->updateByMod($targetId, $username, $email, $roleIds);
+            $success = 'Usuario actualizado correctamente.';
+        }
+        $username = trim($_POST['username'] ?? '');
+        $email    = trim($_POST['email']    ?? '');
+        $roleIds  = $_POST['role_ids']      ??  [];
+
+        if (strlen($username) < 2) {
+            $error = 'El nombre de usuario debe tener al menos 2 caracteres.';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = 'El email no es válido.';
+        } elseif ($userModel->usernameExists($username, $targetId)) {
+            $error = 'Ese nombre de usuario ya está en uso.';
+        } else {
+            $userModel->updateByMod($targetId, $username, $email, $roleIds);
             $success = 'Usuario actualizado correctamente.';
         }
     } elseif ($action === 'delete' && $targetId && $targetId !== $_SESSION['user_id']) {
         $userModel->delete($targetId);
         $success = 'Usuario eliminado.';
+    } elseif ($action === 'remove_avatar' && $targetId) {
+        $userModel->removeAvatar($targetId);
+        $success = 'Avatar eliminado correctamente.';
     }
 }
 
@@ -79,34 +96,39 @@ require_once __DIR__ . '/../includes/header.php';
                 </thead>
                 <tbody>
                     <?php foreach ($users as $u): ?>
-                    <tr id="row-<?= $u['id'] ?>">
-                        <td><?= $u['id'] ?></td>
-                        <td>
-                            <?php if (!empty($u['avatar'])): ?>
-                                <img src="<?= htmlspecialchars($u['avatar']) ?>" class="meta-avatar" alt="">
-                            <?php else: ?>
-                                <i class="fa-solid fa-circle-user meta-avatar-icon" style="font-size:32px; color:var(--text-muted, #ccc);"></i>
-                            <?php endif; ?>
-                        </td>
-                        <td><?= htmlspecialchars($u['username']) ?></td>
-                        <td><?= htmlspecialchars($u['email']) ?></td>
-                        <td><?= htmlspecialchars($u['roles_names'] ?: 'sin rol') ?></td>
-                        <td><?= date('d/m/Y', strtotime($u['date_registered'])) ?></td>
-                        <td>
-                            <button class="action-btn js-edit-user"
-                                    data-id="<?= $u['id'] ?>"
-                                    data-username="<?= htmlspecialchars($u['username']) ?>"
-                                    data-email="<?= htmlspecialchars($u['email']) ?>"
-                                    data-role="<?= $u['id_role'] ?? 1 ?>">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            <?php if ($u['id'] !== $_SESSION['user_id']): ?>
-                            <button class="action-btn js-delete-user" data-id="<?= $u['id'] ?>" data-username="<?= htmlspecialchars($u['username']) ?>">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
+                        <tr id="row-<?= $u['id'] ?>">
+                            <td><?= $u['id'] ?></td>
+                            <td>
+                                <?php if (!empty($u['avatar'])): ?>
+                                    <img src="<?= htmlspecialchars($u['avatar']) ?>" class="meta-avatar" alt="">
+                                <?php else: ?>
+                                    <i class="fa-solid fa-circle-user meta-avatar-icon" style="font-size:32px; color:var(--text-muted, #ccc);"></i>
+                                <?php endif; ?>
+                            </td>
+                            <td><?= htmlspecialchars($u['username']) ?></td>
+                            <td><?= htmlspecialchars($u['email']) ?></td>
+                            <td><?= htmlspecialchars($u['roles_names'] ?: 'sin rol') ?></td>
+                            <td><?= date('d/m/Y', strtotime($u['date_registered'])) ?></td>
+                            <td>
+                                <?php if (strpos($u['roles_names'] ?? '', 'moderator') === false || strpos($u['roles_names'] ?? '', 'sel') !== false): ?>
+                                    <button class="action-btn js-edit-user"
+                                        data-id="<?= $u['id'] ?>"
+                                        data-username="<?= htmlspecialchars($u['username']) ?>"
+                                        data-email="<?= htmlspecialchars($u['email']) ?>"
+                                        data-roles="<?= htmlspecialchars($u['roles_ids'] ?? '') ?>">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+                                    <button class="action-btn js-delete-user" data-id="<?= $u['id'] ?>" data-username="<?= htmlspecialchars($u['username']) ?>">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                    <button class="action-btn js-remove-avatar"
+                                        data-id="<?= $u['id'] ?>"
+                                        title="Eliminar avatar">
+                                        <i class="fa-solid fa-user-xmark"></i>
+                                    </button>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -131,15 +153,15 @@ require_once __DIR__ . '/../includes/header.php';
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="editRole">Rol</label>
-                        <select id="editRole" name="role_id">
+                        <label for="editRole">Roles</label>
+                        <select id="editRole" name="role_ids[]" multiple style="height: auto; min-height: 100px;">
                             <?php foreach ($roles as $role): ?>
-                            <option value="<?= $role['id'] ?>"><?= htmlspecialchars($role['role_name']) ?></option>
+                                <option value="<?= $role['id'] ?>"><?= htmlspecialchars($role['role_name']) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-actions">
-                        <button type="button" class="btn-outline" id="cancelEdit js-cancel-btn">Cancelar</button>
+                        <button type="button" class="btn-outline js-cancel-btn" id="cancelEdit">Cancelar</button>
                         <button type="submit" class="btn-primary">Guardar cambios</button>
                     </div>
                 </form>

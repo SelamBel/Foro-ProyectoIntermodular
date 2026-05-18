@@ -103,7 +103,9 @@ class User
     public function getAll(): array
     {
         $stmt = $this->db->prepare(
-            'SELECT u.*, GROUP_CONCAT(r.role_name SEPARATOR ", ") as roles_names
+            'SELECT u.*, 
+             GROUP_CONCAT(r.role_name SEPARATOR ", ") as roles_names,
+             GROUP_CONCAT(r.id SEPARATOR ",") as roles_ids
              FROM `user` u
              LEFT JOIN user_has_role uhr ON u.id = uhr.id_user
              LEFT JOIN role r ON uhr.id_role = r.id
@@ -160,6 +162,12 @@ class User
             $this->db->rollBack();
             throw $e;
         }
+    }
+
+    public function removeAvatar(int $id): void
+    {
+        $stmt = $this->db->prepare('UPDATE `user` SET avatar = NULL WHERE id = ?');
+        $stmt->execute([$id]);
     }
 
     public function updatePassword(int $id, string $newPassword): void
