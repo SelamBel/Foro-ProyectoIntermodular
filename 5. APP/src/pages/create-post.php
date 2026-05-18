@@ -21,6 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $pubModel = new Publication();
         $id = $pubModel->create($_SESSION['user_id'], $title, $content);
+        if (!empty($_FILES['images']['tmp_name'][0])) {
+            $pubModel->saveImages($id, $_FILES['images']);
+        }
+
         header('Location: /pages/post.php?id=' . $id);
         exit;
     }
@@ -45,7 +49,7 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
             <?php endif; ?>
 
-            <form method="POST" action="/pages/create-post.php" id="createPostForm" novalidate>
+            <form method="POST" action="/pages/create-post.php" id="createPostForm" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
                     <label for="title">Título</label>
                     <input type="text" id="title" name="title" maxlength="300"
@@ -59,6 +63,11 @@ require_once __DIR__ . '/../includes/header.php';
                     <textarea id="content" name="content" rows="10"
                         placeholder="Escribe aquí tu publicación..."><?= htmlspecialchars($_POST['content'] ?? '') ?></textarea>
                     <span class="field-error" id="contentError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="images">Imágenes (máximo 3)</label>
+                    <input type="file" id="images" name="images[]" accept="image/jpeg,image/png,image/webp" multiple>
                 </div>
 
                 <div class="form-actions">

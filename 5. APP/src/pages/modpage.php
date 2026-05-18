@@ -58,6 +58,7 @@ require_once __DIR__ . '/../includes/header.php';
 
         <?php if ($tab === 'posts'): ?>
             <?php foreach ($items as $post): ?>
+                <?php $images = $pubModel->getImages($post['id']); ?>
                 <article class="post">
                     <div class="post-inner">
                         <div class="post-meta">
@@ -74,6 +75,15 @@ require_once __DIR__ . '/../includes/header.php';
                             <a href="/pages/post.php?id=<?= $post['id'] ?>"><?= htmlspecialchars($post['title']) ?></a>
                         </h2>
                         <p class="post-body"><?= htmlspecialchars($post['content']) ?></p>
+                        <?php if (!empty($images)): ?>
+                            <div class="post-images">
+                                <?php foreach ($images as $img): ?>
+                                    <a class="post-image-link" href="<?= htmlspecialchars($img['path']) ?>">
+                                        <img src="<?= htmlspecialchars($img['path']) ?>" alt="" class="post-image">
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
                         <div class="post-actions">
                             <a href="/pages/edit-post.php?id=<?= $post['id'] ?>" class="action-btn">
                                 <i class="fa-solid fa-pen"></i> Editar

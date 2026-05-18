@@ -24,14 +24,14 @@ require_once __DIR__ . '/includes/header.php';
     <main class="site-main">
 
         <div class="sort-bar">
-            <a href="?order=votes"  class="sort-btn <?= $order === 'votes'  ? 'active' : '' ?>"><i class="fa-solid fa-arrow-up-wide-short"></i> Más votados</a>
+            <a href="?order=votes" class="sort-btn <?= $order === 'votes'  ? 'active' : '' ?>"><i class="fa-solid fa-arrow-up-wide-short"></i> Más votados</a>
             <a href="?order=newest" class="sort-btn <?= $order === 'newest' ? 'active' : '' ?>"><i class="fa-solid fa-clock"></i> Más recientes</a>
             <a href="?order=oldest" class="sort-btn <?= $order === 'oldest' ? 'active' : '' ?>"><i class="fa-solid fa-hourglass-start"></i> Más antiguos</a>
 
             <?php if (isset($_SESSION['user_id'])): ?>
-            <a href="/pages/create-post.php" class="btn-primary" style="margin-left:auto">
-                <i class="fa-solid fa-plus"></i> Nueva publicación
-            </a>
+                <a href="/pages/create-post.php" class="btn-primary" style="margin-left:auto">
+                    <i class="fa-solid fa-plus"></i> Nueva publicación
+                </a>
             <?php endif; ?>
         </div>
 
@@ -43,75 +43,87 @@ require_once __DIR__ . '/includes/header.php';
         <?php endif; ?>
 
         <?php foreach ($posts as $post): ?>
-        <article class="post">
-            <div class="post-inner">
-                <div class="post-meta">
-                    <?php if (!empty($post['avatar'])): ?>
-                        <img src="<?= htmlspecialchars($post['avatar']) ?>" class="meta-avatar" alt="">
-                    <?php else: ?>
-                        <i class="fa-solid fa-circle-user meta-avatar-icon"></i>
-                    <?php endif; ?>
-                    <span class="author"><?= htmlspecialchars($post['username']) ?></span>
-                    &middot;
-                    <span class="post-date" data-date="<?= $post['date_creation'] ?>"><?= $post['date_creation'] ?></span>
-                </div>
-                <h2 class="post-title">
-                    <a href="/pages/post.php?id=<?= $post['id'] ?>">
-                        <?= htmlspecialchars($post['title']) ?>
-                    </a>
-                </h2>
-                <p class="post-body"><?= htmlspecialchars($post['content']) ?></p>
-                <div class="post-actions">
-                    <div class="vote-group">
-                        <button class="vote-btn up <?= isset($_SESSION['user_id']) ? 'js-vote' : 'js-vote-guest' ?>"
-                                data-id="<?= $post['id'] ?>" data-type="1">
-                            <i class="fa-solid fa-arrow-up"></i>
-                            <span class="upvote-count"><?= $post['upvotes'] ?></span>
-                        </button>
-                        <button class="vote-btn down <?= isset($_SESSION['user_id']) ? 'js-vote' : 'js-vote-guest' ?>"
-                                data-id="<?= $post['id'] ?>" data-type="0">
-                            <i class="fa-solid fa-arrow-down"></i>
-                            <span class="downvote-count"><?= $post['downvotes'] ?></span>
-                        </button>
+            <?php $images = $pubModel->getImages($post['id']); ?>
+            <article class="post">
+                <div class="post-inner">
+                    <div class="post-meta">
+                        <?php if (!empty($post['avatar'])): ?>
+                            <img src="<?= htmlspecialchars($post['avatar']) ?>" class="meta-avatar" alt="">
+                        <?php else: ?>
+                            <i class="fa-solid fa-circle-user meta-avatar-icon"></i>
+                        <?php endif; ?>
+                        <span class="author"><?= htmlspecialchars($post['username']) ?></span>
+                        &middot;
+                        <span class="post-date" data-date="<?= $post['date_creation'] ?>"><?= $post['date_creation'] ?></span>
                     </div>
-                    <a href="/pages/post.php?id=<?= $post['id'] ?>" class="action-btn">
-                        <i class="fa-solid fa-comment"></i>
-                        <?= $post['comment_count'] ?> comentarios
-                    </a>
-                    <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post['id_user']): ?>
-                    <a href="/pages/edit-post.php?id=<?= $post['id'] ?>" class="action-btn">
-                        <i class="fa-solid fa-pen"></i> Editar
-                    </a>
-                    <button class="action-btn js-delete-post" data-id="<?= $post['id'] ?>">
-                        <i class="fa-solid fa-trash"></i> Eliminar
-                    </button>
+                    <h2 class="post-title">
+                        <a href="/pages/post.php?id=<?= $post['id'] ?>">
+                            <?= htmlspecialchars($post['title']) ?>
+                        </a>
+                    </h2>
+                    <p class="post-body"><?= htmlspecialchars($post['content']) ?></p>
+
+                    <?php if (!empty($images)): ?>
+                        <div class="post-images">
+                            <?php foreach ($images as $img): ?>
+                                <a class="post-image-link" href="<?= htmlspecialchars($img['path']) ?>">
+                                    <img src="<?= htmlspecialchars($img['path']) ?>" alt="" class="post-image">
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
                     <?php endif; ?>
+
+                    <div class="post-actions">
+                        <div class="vote-group">
+                            <button class="vote-btn up <?= isset($_SESSION['user_id']) ? 'js-vote' : 'js-vote-guest' ?>"
+                                data-id="<?= $post['id'] ?>" data-type="1">
+                                <i class="fa-solid fa-arrow-up"></i>
+                                <span class="upvote-count"><?= $post['upvotes'] ?></span>
+                            </button>
+                            <button class="vote-btn down <?= isset($_SESSION['user_id']) ? 'js-vote' : 'js-vote-guest' ?>"
+                                data-id="<?= $post['id'] ?>" data-type="0">
+                                <i class="fa-solid fa-arrow-down"></i>
+                                <span class="downvote-count"><?= $post['downvotes'] ?></span>
+                            </button>
+                        </div>
+                        <a href="/pages/post.php?id=<?= $post['id'] ?>" class="action-btn">
+                            <i class="fa-solid fa-comment"></i>
+                            <?= $post['comment_count'] ?> comentarios
+                        </a>
+                        <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post['id_user']): ?>
+                            <a href="/pages/edit-post.php?id=<?= $post['id'] ?>" class="action-btn">
+                                <i class="fa-solid fa-pen"></i> Editar
+                            </a>
+                            <button class="action-btn js-delete-post" data-id="<?= $post['id'] ?>">
+                                <i class="fa-solid fa-trash"></i> Eliminar
+                            </button>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
         <?php endforeach; ?>
 
         <?php if ($pages > 1): ?>
-        <div class="pagination">
-            <?php if ($page > 1): ?>
-                <a href="?order=<?= $order ?>&page=<?= $page - 1 ?>" class="page-btn">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </a>
-            <?php endif; ?>
+            <div class="pagination">
+                <?php if ($page > 1): ?>
+                    <a href="?order=<?= $order ?>&page=<?= $page - 1 ?>" class="page-btn">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                <?php endif; ?>
 
-            <?php for ($i = 1; $i <= $pages; $i++): ?>
-                <a href="?order=<?= $order ?>&page=<?= $i ?>"
-                   class="page-btn <?= $i === $page ? 'active' : '' ?>">
-                    <?= $i ?>
-                </a>
-            <?php endfor; ?>
+                <?php for ($i = 1; $i <= $pages; $i++): ?>
+                    <a href="?order=<?= $order ?>&page=<?= $i ?>"
+                        class="page-btn <?= $i === $page ? 'active' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
 
-            <?php if ($page < $pages): ?>
-                <a href="?order=<?= $order ?>&page=<?= $page + 1 ?>" class="page-btn">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </a>
-            <?php endif; ?>
-        </div>
+                <?php if ($page < $pages): ?>
+                    <a href="?order=<?= $order ?>&page=<?= $page + 1 ?>" class="page-btn">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                <?php endif; ?>
+            </div>
         <?php endif; ?>
 
     </main>

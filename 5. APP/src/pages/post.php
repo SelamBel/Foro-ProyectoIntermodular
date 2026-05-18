@@ -17,6 +17,7 @@ $commentModel = new Comment();
 $post         = $pubModel->getById($id);
 $notifModel   = new Notification();
 $history      = $pubModel->getHistory($post['id']);
+$images       = $pubModel->getImages($post['id']);
 
 if (!$post) {
     header('Location: /index.php');
@@ -169,6 +170,15 @@ require_once __DIR__ . '/../includes/header.php';
                 <h1 class="post-title"><?= htmlspecialchars($post['title']) ?></h1>
                 <p class="post-body post-body--full"><?= nl2br(htmlspecialchars($post['content'])) ?></p>
 
+                <?php if (!empty($images)): ?>
+                    <div class="post-images">
+                        <?php foreach ($images as $img): ?>
+                            <a class="post-image-link" href="<?= htmlspecialchars($img['path']) ?>">
+                                <img src="<?= htmlspecialchars($img['path']) ?>" alt="" class="post-image">
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
                 <div class="post-actions">
                     <div class="vote-group">
                         <button class="vote-btn up <?= isset($_SESSION['user_id']) ? 'js-vote' : 'js-vote-guest' ?>"

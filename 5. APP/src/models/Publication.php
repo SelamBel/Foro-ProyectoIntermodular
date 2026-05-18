@@ -172,4 +172,33 @@ class Publication
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function saveImages(int $publicationId, array $files): void
+    {
+        $allowed = ['image/jpeg', 'image/png', 'image/webp'];
+        $dir     = __DIR__ . '/../assets/img/posts/';
+        if (!is_dir($dir)) mkdir($dir, 0775, true);
+
+        $count = 0;
+        foreach ($files['tmp_name'] as $i => $tmp) {
+            if ($count >= 3 || empty($tmp)) continue;
+            $mime = mime_content_type($tmp);
+            if (!in_array($mime, $allowed)) continue;
+            $ext      = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+            $filename = 'post_' . $publicationId . '_' . $i . '_' . time() . '.' . $ext;
+            move_uploaded_file($tmp, $dir . $filename);
+            $this->db->prepare(
+                'INSERT INTO publication_image (id_publication, path, `order`) VALUES (?, ?, ?)'
+            )->execute([$publicationId, '/assets/img/posts/' . $filename, $count]);
+            $count++;
+        }
+    }
+
+    public function getImages(int $publicationId): array
+    {
+        $stmt = $this->db->prepare(
+            'SELECT * FROM publication_image WHERE id_publication = ? ORDER BY `order`'
+        );
+        $stmt->execute([$publicationId]);
+        return $stmt->fetchAll();
+    }
 }

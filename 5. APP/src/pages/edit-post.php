@@ -34,6 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'El título no puede superar los 300 caracteres.';
     } else {
         $pubModel->update($id, $title, $content);
+        if (!empty($_FILES['images']['tmp_name'][0])) {
+            $pubModel->saveImages($id, $_FILES['images']);
+        }
         header('Location: /pages/post.php?id=' . $id);
         exit;
     }
@@ -58,7 +61,7 @@ require_once __DIR__ . '/../includes/header.php';
                 </div>
             <?php endif; ?>
 
-            <form method="POST" id="createPostForm" novalidate>
+            <form method="POST" id="createPostForm" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
                     <label for="title">Título</label>
                     <input type="text" id="title" name="title" maxlength="300"
@@ -70,6 +73,12 @@ require_once __DIR__ . '/../includes/header.php';
                     <textarea id="content" name="content" rows="10"><?= htmlspecialchars($_POST['content'] ?? $post['content']) ?></textarea>
                     <span class="field-error" id="contentError"></span>
                 </div>
+                
+                <div class="form-group">
+                    <label for="images">Imágenes (máximo 3)</label>
+                    <input type="file" id="images" name="images[]" accept="image/jpeg,image/png,image/webp" multiple>
+                </div>
+
                 <div class="form-actions">
                     <a href="/pages/post.php?id=<?= $id ?>" class="btn-outline js-cancel-btn">Cancelar</a>
                     <button type="submit" class="btn-primary">Guardar cambios</button>

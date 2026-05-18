@@ -1,6 +1,6 @@
 -- AntNet - Esquema inicial de base de datos
 
-DROP TABLE IF EXISTS publication_history, notification, message, vote, comment, publication, user_has_role, user, role;
+DROP TABLE IF EXISTS comment_image, publication_image, publication_history, notification, message, vote, comment, publication, user_has_role, user, role;
 
 CREATE TABLE IF NOT EXISTS `role` (
     `id`        BIGINT      NOT NULL AUTO_INCREMENT,
@@ -94,6 +94,23 @@ CREATE TABLE IF NOT EXISTS `publication_history` (
     `date_saved`   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`id_publication`) REFERENCES `publication`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS `publication_image` (
+    `id`             BIGINT       NOT NULL AUTO_INCREMENT,
+    `id_publication` BIGINT       NOT NULL,
+    `path`           VARCHAR(255) NOT NULL,
+    `order`          TINYINT      NOT NULL DEFAULT 0,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`id_publication`) REFERENCES `publication`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS `comment_image` (
+    `id`         BIGINT       NOT NULL AUTO_INCREMENT,
+    `id_comment` BIGINT       NOT NULL,
+    `path`       VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`id_comment`) REFERENCES `comment`(`id`) ON DELETE CASCADE
 );
 
 INSERT INTO `role` (`role_name`) VALUES ('user'), ('moderator');

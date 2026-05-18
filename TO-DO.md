@@ -13,13 +13,14 @@
 - [X] La página de ayuda, los correos, te lleven a una conversación con un usuario creado de soporte, para recibir feedback.
 - [X] Guardar las anteriores versiones de posts o commentarios editados, que puedas scrollear a través de ellos
 - [X] Implementar sistema de búsqueda
+- [X] Subir fotos en posts
 - [ ] Separar estilos por página???
 - [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
 - [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
 - [ ] Slideshow de imágenes con lo de jquery ese.
 - [ ] Protección en los formularios
 - [ ] Paginación para comentarios en moderación
-- [ ] Subir fotos en posts o comments. Quiza también en msg privados
+- [ ] Subir foto en comments y quizá msgs
 
 
 ### Crear páginas:
@@ -38,7 +39,7 @@
 - [X] Aparte de Principal, el resto no te marca correctamente la sidebar cuando estás en ellos
 - [X] Las horas aparecen mal. Algo que acaba de salir aparece como que lleva ya 2 horas.
 - [ ] Debería en el header aparecer +1 en los mensajes cuando tienes mensajes pendientes por ver.
-- [ ] Arreglar las páginas de mods. No va editar usuario
+- [X] Arreglar las páginas de mods. No va editar usuario
 
 # FINAL:
 - [ ] Editar estilos de toda la página.
