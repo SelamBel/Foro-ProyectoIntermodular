@@ -1,5 +1,7 @@
 <?php
+error_reporting(0);
 session_start();
+ob_start();
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: /pages/login.php');
@@ -51,4 +53,5 @@ $pdf->Ln(4);
 $pdf->SetFont('Arial', 'I', 8);
 $pdf->Cell(0, 6, 'Total: ' . count($items) . ' publicaciones', 0, 1, 'R');
 
-$pdf->Output('D', 'antnet_publicaciones_' . date('Ymd') . '.pdf');
+ob_end_clean();
+$pdf->Output('D', 'anthive_publicaciones_' . date('Ymd') . '.pdf');

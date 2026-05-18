@@ -16,10 +16,8 @@
 - [X] Subir fotos en posts
 - [ ] Separar estilos por página???
 - [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
-- [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
 - [ ] Slideshow de imágenes con lo de jquery ese.
 - [ ] Protección en los formularios
-- [ ] Paginación para comentarios en moderación
 - [ ] Subir foto en comments y quizá msgs
 
 
@@ -31,7 +29,6 @@
 - [X] Política de privacidad
 - [X] Acuerdo de usuario
 - [X] Popular
-- [ ] Explorar
 
 ## BUF FIXES:
 - [X] Las votaciones van raras. Si votas con una cuenta, cambias de cuenta, votas con la nueva, y empiezas a desvotar y refrescar, a veces se duplican

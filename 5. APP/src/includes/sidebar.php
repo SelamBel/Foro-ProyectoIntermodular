@@ -10,9 +10,6 @@ $activePage = $activePage ?? 'home';
         <a href="/pages/popular.php" class="nav-item <?= $activePage === 'popular' ? 'active' : '' ?>">
             <span class="nav-icon"><i class="fa-solid fa-fire"></i></span> Popular
         </a>
-        <a href="/pages/explore.php" class="nav-item <?= $activePage === 'explore' ? 'active' : '' ?>">
-            <span class="nav-icon"><i class="fa-solid fa-compass"></i></span> Explorar
-        </a>
         <a href="/pages/themes.php" class="nav-item <?= $activePage === 'themes' ? 'active' : '' ?>">
             <span class="nav-icon"><i class="fa-solid fa-tags"></i></span> Temas
         </a>
