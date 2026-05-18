@@ -1,9 +1,13 @@
 <?php
 $pageTitle = $pageTitle ?? 'AntNet';
 $unreadNotifs = 0;
+$unreadMessages = 0;
 if (isset($_SESSION['user_id'])) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Notification.php';
     $unreadNotifs = (new Notification())->countUnread($_SESSION['user_id']);
+
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/models/Message.php';
+    $unreadMessages = (new Message())->countUnread($_SESSION['user_id']);
 }
 ?>
 <!DOCTYPE html>
@@ -49,8 +53,11 @@ if (isset($_SESSION['user_id'])) {
 
         <div class="header-actions">
             <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="/pages/messages.php" class="icon-btn" title="Mensajes">
+                <a href="/pages/messages.php" class="icon-btn" title="Mensajes" style="position:relative">
                     <i class="fa-solid fa-envelope"></i>
+                    <?php if ($unreadMessages > 0): ?>
+                        <span class="notif-badge"><?= $unreadMessages ?></span>
+                    <?php endif; ?>
                 </a>
                 <a href="/pages/notifications.php" class="icon-btn" title="Notificaciones" style="position:relative">
                     <i class="fa-solid fa-bell"></i>
