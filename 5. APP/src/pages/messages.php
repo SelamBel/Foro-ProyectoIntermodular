@@ -11,6 +11,7 @@ require_once __DIR__ . '/../models/Message.php';
 $messageModel   = new Message();
 $conversations  = $messageModel->getConversations($_SESSION['user_id']);
 
+$extraCss = ['chat.css'];
 $pageTitle  = 'Mensajes';
 $activePage = '';
 require_once __DIR__ . '/../includes/header.php';

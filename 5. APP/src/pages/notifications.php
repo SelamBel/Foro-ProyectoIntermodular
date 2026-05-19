@@ -26,6 +26,7 @@ $icons = [
     'post_milestone'     => 'fa-fire',
 ];
 
+$extraCss = ['chat.css'];
 $pageTitle  = 'Notificaciones';
 $activePage = '';
 require_once __DIR__ . '/../includes/header.php';

@@ -14,13 +14,14 @@
 - [X] Guardar las anteriores versiones de posts o commentarios editados, que puedas scrollear a través de ellos
 - [X] Implementar sistema de búsqueda
 - [X] Subir fotos en posts
-- [ ] Separar estilos por página???
+- [X] Separar estilos por página???
 - [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
 - [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
 - [ ] Slideshow de imágenes con lo de jquery ese.
 - [ ] Protección en los formularios
 - [ ] Paginación para comentarios en moderación
 - [ ] Subir foto en comments y quizá msgs
+- [ ] Chats a tiempo real. Quizá publicaciones?
 
 
 ### Crear páginas:

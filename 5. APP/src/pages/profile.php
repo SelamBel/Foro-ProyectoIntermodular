@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         }
     }
 }
-
+$extraCss = ['feed.css', 'profile.css'];
 $pageTitle  = 'Mi perfil';
 $activePage = 'profile';
 require_once __DIR__ . '/../includes/header.php';

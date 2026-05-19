@@ -121,6 +121,7 @@ function renderComments(array $comments, int $depth = 0): void
 <?php endforeach;
 }
 
+$extraCss = ['feed.css', 'post.css'];
 $tree      = buildTree($comments);
 $pageTitle = htmlspecialchars($post['title']);
 $activePage = 'post';

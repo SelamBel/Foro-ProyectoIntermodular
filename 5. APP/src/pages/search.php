@@ -21,6 +21,7 @@ if (strlen($q) >= 2) {
     $users    = $userModel->search($q, $_SESSION['user_id'] ?? 0);
 }
 
+$extraCss = ['feed.css'];
 $pageTitle  = $q ? 'Búsqueda: ' . htmlspecialchars($q) : 'Buscar';
 $activePage = '';
 require_once __DIR__ . '/../includes/header.php';
