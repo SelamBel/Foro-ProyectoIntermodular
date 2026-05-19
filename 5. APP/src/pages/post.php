@@ -125,7 +125,7 @@ function renderComments(array $comments, int $depth = 0): void
                             <input type="file" id="reply_images_<?= $c['id'] ?>" name="comment_images[]" accept="image/jpeg,image/png,image/webp" multiple>
                         </div>
                         <div class="form-actions">
-                            <button type="button" class="btn-outline js-reply-cancel js-cancel-btn" data-id="<?= $c['id'] ?>">Cancelar</button>
+                            <button type="button" class="btn-outline js-reply-cancel" data-id="<?= $c['id'] ?>">Cancelar</button>
                             <button type="submit" class="btn-primary">Responder</button>
                         </div>
                     </form>

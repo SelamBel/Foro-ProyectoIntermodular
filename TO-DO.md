@@ -37,7 +37,7 @@
 - [X] Las horas aparecen mal. Algo que acaba de salir aparece como que lleva ya 2 horas.
 - [x] Debería en el header aparecer +1 en los mensajes cuando tienes mensajes pendientes por ver.
 - [X] Arreglar las páginas de mods. No va editar usuario
-- [ ] El botón de cancelar el escribir comment a un post hace cosas raras con el modal.
+- [X] El botón de cancelar el escribir comment a un post hace cosas raras con el modal.
 
 # FINAL:
 - [ ] Editar estilos de toda la página.

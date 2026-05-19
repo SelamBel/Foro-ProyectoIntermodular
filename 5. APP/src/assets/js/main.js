@@ -175,7 +175,14 @@ $(function () {
 
     $(document).on('click', '.js-reply-cancel', function () {
         const id = $(this).data('id');
-        $('#reply-' + id).slideUp(200);
+
+        openModal(
+            'Descartar comentario',
+            'Esto descartará tu comentario',
+            function () {
+                $('#reply-' + id).slideUp(200);
+            }
+        );
     });
 
     $(document).on('click', '.js-vote-guest', function () {
