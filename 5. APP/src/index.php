@@ -67,7 +67,7 @@ require_once __DIR__ . '/includes/header.php';
                     <?php if (!empty($images)): ?>
                         <div class="post-images">
                             <?php foreach ($images as $img): ?>
-                                <a class="post-image-link" href="<?= htmlspecialchars($img['path']) ?>">
+                                <a class="post-image-link" href="<?= htmlspecialchars($img['path']) ?>" data-fancybox="galeria">
                                     <img src="<?= htmlspecialchars($img['path']) ?>" alt="" class="post-image">
                                 </a>
                             <?php endforeach; ?>

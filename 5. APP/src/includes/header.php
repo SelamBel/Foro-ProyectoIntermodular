@@ -37,6 +37,7 @@ if (isset($_SESSION['user_id'])) {
     <?php foreach ($extraCss ?? [] as $css): ?>
         <link rel="stylesheet" href="/assets/css/<?= $css ?>">
     <?php endforeach; ?>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.6/jquery.fancybox.min.css"> 
 </head>
 
 <body>

@@ -237,3 +237,41 @@ html.dark .post-body {
 .nav-item--danger:hover {
     background: #fff0f0;
 }
+
+.fancybox-thumbs {
+    background: #1e1e1e !important;
+    padding: 10px 0 !important;
+}
+
+.fancybox-thumbs__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.fancybox-thumbs__list a {
+    width: 90% !important;
+    height: 20% !important;
+    border-radius: 4px !important;
+    margin: 6px auto !important;
+    transition: opacity 0.2s ease;
+    opacity: 0.6;
+}
+
+.fancybox-thumbs__list a>img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.fancybox-thumbs__list a::before {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.fancybox-thumbs__list a.fancybox-thumbs-active {
+    opacity: 1 !important;
+    box-shadow: 0 0 0 2px var(--primary) !important;
+}

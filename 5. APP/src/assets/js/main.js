@@ -450,4 +450,8 @@ $(function () {
         );
     });
 
+$('[data-fancybox="galeria"]').fancybox({
+    animationEffect: "fade",
+    transitionEffect: "fade"
+});
 });
