@@ -15,12 +15,9 @@
 - [X] Implementar sistema de búsqueda
 - [X] Subir fotos en posts
 - [X] Separar estilos por página???
+- [X] Subir foto en comments y quizá msgs
 - [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
-- [ ] En principal, cuando usas los botones de sort, se recarga la página entera.
 - [ ] Slideshow de imágenes con lo de jquery ese.
-- [ ] Protección en los formularios
-- [ ] Paginación para comentarios en moderación
-- [ ] Subir foto en comments y quizá msgs
 - [ ] Chats a tiempo real. Quizá publicaciones?
 
 
@@ -32,15 +29,15 @@
 - [X] Política de privacidad
 - [X] Acuerdo de usuario
 - [X] Popular
-- [ ] Explorar
 
-## BUF FIXES:
+## BUG FIXES:
 - [X] Las votaciones van raras. Si votas con una cuenta, cambias de cuenta, votas con la nueva, y empiezas a desvotar y refrescar, a veces se duplican
 - [X] Puedes tanto crear usuarios como modificar usuarios existentes con un username ya en uso. Deben ser únicos.
 - [X] Aparte de Principal, el resto no te marca correctamente la sidebar cuando estás en ellos
 - [X] Las horas aparecen mal. Algo que acaba de salir aparece como que lleva ya 2 horas.
 - [x] Debería en el header aparecer +1 en los mensajes cuando tienes mensajes pendientes por ver.
 - [X] Arreglar las páginas de mods. No va editar usuario
+- [ ] El botón de cancelar el escribir comment a un post hace cosas raras con el modal.
 
 # FINAL:
 - [ ] Editar estilos de toda la página.
