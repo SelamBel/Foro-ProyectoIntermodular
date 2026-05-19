@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $users = $userModel->getAll();
 $roles = $userModel->getRoleList();
 
+$extraCss = ['feed.css', 'mod.css'];
 $pageTitle  = 'Moderadores';
 $activePage = 'modusers';
 require_once __DIR__ . '/../includes/header.php';

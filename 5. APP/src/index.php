@@ -13,6 +13,7 @@ $posts    = $pubModel->getAll($order, $limit, $offset);
 $total    = $pubModel->countAll();
 $pages    = (int) ceil($total / $limit);
 
+$extraCss = ['feed.css'];
 $pageTitle  = 'Principal';
 $activePage = 'home';
 require_once __DIR__ . '/includes/header.php';

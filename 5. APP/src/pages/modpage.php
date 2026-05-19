@@ -28,6 +28,7 @@ if ($tab === 'posts') {
 
 $pages = (int) ceil($total / $limit);
 
+$extraCss = ['feed.css', 'mod.css'];
 $pageTitle  = 'Moderación';
 $activePage = 'modpage';
 require_once __DIR__ . '/../includes/header.php';

@@ -1,0 +1,239 @@
+.sort-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.sort-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--text);
+    transition: border-color .15s, background .15s;
+}
+
+.sort-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--hover-bg);
+}
+
+.sort-btn.active {
+    border-color: #0079d3;
+    color: #0079d3;
+}
+
+.sort-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+.post {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    transition: border-color .15s;
+}
+
+.post:hover {
+    border-color: #818384;
+}
+
+.post-inner {
+    padding: 8px 10px;
+}
+
+.post-meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.post-meta .author {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.post-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    color: var(--text);
+}
+
+.post-title a {
+    color: var(--text);
+    transition: color 0.3s ease;
+}
+
+.post-title a:hover {
+    color: var(--primary);
+}
+
+.post-body {
+    font-size: 14px;
+    color: #3c3c3c;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+html.dark .post-body {
+    color: #b0b3b8;
+}
+
+.post-body.expanded {
+    -webkit-line-clamp: unset;
+}
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.vote-group {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: var(--bg);
+    border-radius: 20px;
+    padding: 2px 4px;
+}
+
+.vote-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    transition: color .12s, background .12s;
+}
+
+.vote-btn:hover {
+    background: var(--border);
+}
+
+.vote-btn.down:hover {
+    color: var(--primary);
+}
+
+.vote-btn.up:hover {
+    color: #7193ff;
+}
+
+.vote-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.vote-btn.voted {
+    color: var(--primary);
+}
+
+.vote-btn.down.voted {
+    color: #7193ff;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    background: transparent;
+    padding: 6px 8px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    font-family: inherit;
+    transition: background .12s, color .12s;
+}
+
+.action-btn:hover {
+    background: var(--hover-bg);
+    color: var(--text);
+}
+
+.action-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.more-btn {
+    margin-left: auto;
+    width: 28px;
+    height: 28px;
+    border-radius: 2px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background .12s;
+}
+
+.more-btn:hover {
+    background: var(--hover-bg);
+    color: var(--text);
+}
+
+.post-images {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.post-image-link {
+    max-height: 300px;
+    max-width: 33%;
+    border-radius: 4px;
+    object-fit: cover;
+    cursor: pointer;
+    flex: 1;
+}
+
+.post-image {
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.nav-item--danger {
+    color: var(--primary);
+}
+
+.nav-item--danger:hover {
+    background: #fff0f0;
+}

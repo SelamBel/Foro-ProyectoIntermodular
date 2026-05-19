@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $messageModel->markReadFrom($otherId, $_SESSION['user_id']);
 $messages = $messageModel->getConversationWith($_SESSION['user_id'], $otherId);
 
+$extraCss = ['chat.css'];
 $pageTitle  = 'Conversación con ' . htmlspecialchars($other['username']);
 $activePage = '';
 require_once __DIR__ . '/../includes/header.php';

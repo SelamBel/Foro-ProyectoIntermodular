@@ -33,7 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_id'])) {
     if (empty($content)) {
         $error = 'El comentario no puede estar vacío.';
     } else {
-        $commentModel->create($id, $_SESSION['user_id'], $content, $parentId);
+        $commentId = $commentModel->create($id, $_SESSION['user_id'], $content, $parentId);
+
+        if (!empty($_FILES['comment_images']['tmp_name'][0])) {
+            $commentModel->saveImages($commentId, $_FILES['comment_images']);
+        }
 
         if ($_SESSION['user_id'] != $post['id_user']) {
             $notifModel->create(
@@ -71,7 +75,9 @@ function buildTree(array $comments): array
 
 function renderComments(array $comments, int $depth = 0): void
 {
+    global $commentModel;
     foreach ($comments as $c): ?>
+        <?php $commentImages = $commentModel->getImages($c['id']); ?>
         <div class="comment <?= $depth > 0 ? 'comment--nested' : '' ?>">
             <div class="comment-meta">
                 <?php if (!empty($c['avatar'])): ?>
@@ -84,6 +90,16 @@ function renderComments(array $comments, int $depth = 0): void
                 <span class="post-date" data-date="<?= $c['date_creation'] ?>"><?= $c['date_creation'] ?></span>
             </div>
             <p class="comment-body"><?= nl2br(htmlspecialchars($c['content'])) ?></p>
+
+            <?php if (!empty($commentImages)): ?>
+                <div class="post-images">
+                    <?php foreach ($commentImages as $img): ?>
+                        <a class="post-image-link" href="<?= htmlspecialchars($img['path']) ?>">
+                            <img src="<?= htmlspecialchars($img['path']) ?>" alt="" class="post-image">
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
             <div class="comment-actions">
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <button class="action-btn js-reply-toggle" data-id="<?= $c['id'] ?>">
@@ -99,10 +115,14 @@ function renderComments(array $comments, int $depth = 0): void
 
             <?php if (isset($_SESSION['user_id'])): ?>
                 <div class="reply-form" id="reply-<?= $c['id'] ?>" style="display:none">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="parent_id" value="<?= $c['id'] ?>">
                         <div class="form-group">
                             <textarea name="content" rows="3" placeholder="Escribe tu respuesta..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="reply_images_<?= $c['id'] ?>">Imágenes (máximo 3)</label>
+                            <input type="file" id="reply_images_<?= $c['id'] ?>" name="comment_images[]" accept="image/jpeg,image/png,image/webp" multiple>
                         </div>
                         <div class="form-actions">
                             <button type="button" class="btn-outline js-reply-cancel js-cancel-btn" data-id="<?= $c['id'] ?>">Cancelar</button>
@@ -121,6 +141,7 @@ function renderComments(array $comments, int $depth = 0): void
 <?php endforeach;
 }
 
+$extraCss = ['feed.css', 'post.css'];
 $tree      = buildTree($comments);
 $pageTitle = htmlspecialchars($post['title']);
 $activePage = 'post';
@@ -221,11 +242,15 @@ require_once __DIR__ . '/../includes/header.php';
                             <?= htmlspecialchars($error) ?>
                         </div>
                     <?php endif; ?>
-                    <form method="POST" id="commentForm" novalidate>
+                    <form method="POST" id="commentForm" enctype="multipart/form-data" novalidate>
                         <div class="form-group">
                             <textarea id="commentContent" name="content" rows="4"
                                 placeholder="Escribe un comentario..."></textarea>
                             <span class="field-error" id="commentError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment_images">Imágenes (máximo 3)</label>
+                            <input type="file" id="comment_images" name="comment_images[]" accept="image/jpeg,image/png,image/webp" multiple>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn-primary">Comentar</button>

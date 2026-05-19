@@ -80,4 +80,34 @@ class Comment
         $stmt->execute(['%' . $query . '%']);
         return $stmt->fetchAll();
     }
+
+    public function saveImages(int $commentId, array $files): void
+    {
+        $allowed = ['image/jpeg', 'image/png', 'image/webp'];
+        $dir     = __DIR__ . '/../assets/img/comments/';
+        if (!is_dir($dir)) mkdir($dir, 0775, true);
+
+        $count = 0;
+        foreach ($files['tmp_name'] as $i => $tmp) {
+            if ($count >= 3 || empty($tmp)) continue;
+            $mime = mime_content_type($tmp);
+            if (!in_array($mime, $allowed)) continue;
+            $ext      = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+            $filename = 'comment_' . $commentId . '_' . $i . '_' . time() . '.' . $ext;
+            move_uploaded_file($tmp, $dir . $filename);
+            $this->db->prepare(
+                'INSERT INTO comment_image (id_comment, path) VALUES (?, ?)'
+            )->execute([$commentId, '/assets/img/comments/' . $filename]);
+            $count++;
+        }
+    }
+
+    public function getImages(int $commentId): array
+    {
+        $stmt = $this->db->prepare(
+            'SELECT * FROM comment_image WHERE id_comment = ?'
+        );
+        $stmt->execute([$commentId]);
+        return $stmt->fetchAll();
+    }
 }

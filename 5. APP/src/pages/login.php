@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$extraCss = ['auth.css'];
 $pageTitle  = 'Iniciar sesión';
 $activePage = '';
 require_once __DIR__ . '/../includes/header.php';

@@ -10,6 +10,7 @@ if (empty($posts)) {
     $posts = $pubModel->getPopular(20, 30);
 }
 
+$extraCss = ['feed.css'];
 $pageTitle  = 'Popular';
 $activePage = 'popular';
 require_once __DIR__ . '/../includes/header.php';

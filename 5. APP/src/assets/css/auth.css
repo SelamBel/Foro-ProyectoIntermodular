@@ -1,0 +1,36 @@
+.auth-wrapper {
+    min-height: calc(100vh - var(--header-h));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.auth-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    width: 100%;
+    max-width: 440px;
+}
+
+.auth-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+#registerForm,
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--muted);
+}
