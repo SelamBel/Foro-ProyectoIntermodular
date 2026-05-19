@@ -16,6 +16,7 @@ $pages    = (int) ceil($total / $limit);
 $extraCss = ['feed.css'];
 $pageTitle  = 'Principal';
 $activePage = 'home';
+require_once __DIR__ . '/config/lang.php';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
@@ -25,13 +26,13 @@ require_once __DIR__ . '/includes/header.php';
     <main class="site-main">
 
         <div class="sort-bar">
-            <a href="?order=votes" class="sort-btn <?= $order === 'votes'  ? 'active' : '' ?>"><i class="fa-solid fa-arrow-up-wide-short"></i> Más votados</a>
-            <a href="?order=newest" class="sort-btn <?= $order === 'newest' ? 'active' : '' ?>"><i class="fa-solid fa-clock"></i> Más recientes</a>
-            <a href="?order=oldest" class="sort-btn <?= $order === 'oldest' ? 'active' : '' ?>"><i class="fa-solid fa-hourglass-start"></i> Más antiguos</a>
+            <a href="?order=votes" class="sort-btn <?= $order === 'votes'  ? 'active' : '' ?>"><i class="fa-solid fa-arrow-up-wide-short"></i><?= t('home.sort_votes') ?></a>
+            <a href="?order=newest" class="sort-btn <?= $order === 'newest' ? 'active' : '' ?>"><i class="fa-solid fa-clock"></i><?= t('home.sort_newest') ?></a>
+            <a href="?order=oldest" class="sort-btn <?= $order === 'oldest' ? 'active' : '' ?>"><i class="fa-solid fa-hourglass-start"></i><?= t('home.sort_oldest') ?></a>
 
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="/pages/create-post.php" class="btn-primary" style="margin-left:auto">
-                    <i class="fa-solid fa-plus"></i> Nueva publicación
+                    <i class="fa-solid fa-plus"></i> <?= t('home.new_post') ?>
                 </a>
             <?php endif; ?>
         </div>
@@ -39,7 +40,7 @@ require_once __DIR__ . '/includes/header.php';
         <?php if (empty($posts)): ?>
             <div class="empty-state">
                 <i class="fa-solid fa-wind"></i>
-                <p>No hay publicaciones todavía. ¡Sé el primero!</p>
+                <p><?= t('home.empty_state') ?></p>
             </div>
         <?php endif; ?>
 
@@ -89,14 +90,14 @@ require_once __DIR__ . '/includes/header.php';
                         </div>
                         <a href="/pages/post.php?id=<?= $post['id'] ?>" class="action-btn">
                             <i class="fa-solid fa-comment"></i>
-                            <?= $post['comment_count'] ?> comentarios
+                            <?= $post['comment_count'] ?> <?= t('home.comments_count') ?>
                         </a>
                         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post['id_user']): ?>
                             <a href="/pages/edit-post.php?id=<?= $post['id'] ?>" class="action-btn">
-                                <i class="fa-solid fa-pen"></i> Editar
+                                <i class="fa-solid fa-pen"></i> <?= t('home.edit_post') ?>
                             </a>
                             <button class="action-btn js-delete-post" data-id="<?= $post['id'] ?>">
-                                <i class="fa-solid fa-trash"></i> Eliminar
+                                <i class="fa-solid fa-trash"></i> <?= t('home.delete_post') ?>
                             </button>
                         <?php endif; ?>
                     </div>

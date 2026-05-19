@@ -2,9 +2,10 @@
 session_start();
 
 header('Content-Type: application/json');
+require_once __DIR__ . '/config/lang.php';
 
 if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['error' => 'No autenticado.']);
+    echo json_encode(['error' => t('delete_post.error_unauthenticated')]);
     exit;
 }
 
@@ -16,12 +17,12 @@ $pubModel = new Publication();
 $post   = $pubModel->getById($id);
 
 if (!$post) {
-    echo json_encode(['error' => 'Publicación no encontrada.']);
+    echo json_encode(['error' => t('delete_post.error_not_found')]);
     exit;
 }
 
 if ($_SESSION['user_id'] != $post['id_user'] && $_SESSION['role'] !== 'moderator') {
-    echo json_encode(['error' => 'Sin permisos.']);
+    echo json_encode(['error' => t('delete_post.error_unauthorized')]);
     exit;
 }
 
@@ -32,7 +33,7 @@ if ($_SESSION['role'] === 'moderator' && $_SESSION['user_id'] != $post['id_user'
     $notifModel->create(
         $post['id_user'],
         'mod_delete_post',
-        'Un moderador ha eliminado tu publicación: ' . mb_strimwidth($post['title'], 0, 50, '...'),
+        t('delete_post.mod_notification') . mb_strimwidth($post['title'], 0, 50, '...'),
         null
     );
 }

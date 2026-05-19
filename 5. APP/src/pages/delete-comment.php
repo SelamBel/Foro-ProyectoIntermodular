@@ -2,9 +2,10 @@
 session_start();
 
 header('Content-Type: application/json');
+require_once __DIR__ . '/config/lang.php';
 
 if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['error' => 'No autenticado.']);
+    echo json_encode(['error' =>  t('delete_comment.error_unauthenticated') ]);
     exit;
 }
 
@@ -16,12 +17,12 @@ $commentModel = new Comment();
 $comment      = $commentModel->findById($id);
 
 if (!$comment) {
-    echo json_encode(['error' => 'Comentario no encontrado.']);
+    echo json_encode(['error' => t('delete_comment.error_not_found')]);
     exit;
 }
 
 if ($_SESSION['user_id'] != $comment['id_user'] && $_SESSION['role'] !== 'moderator') {
-    echo json_encode(['error' => 'Sin permisos.']);
+    echo json_encode(['error' => t('delete_comment.error_unauthorized')]);
     exit;
 }
 
@@ -32,7 +33,7 @@ if ($_SESSION['role'] === 'moderator' && $_SESSION['user_id'] != $comment['id_us
     $notifModel->create(
         $comment['id_user'],
         'mod_delete_comment',
-        'Un moderador ha eliminado tu comentario: ' . mb_strimwidth($comment['content'], 0, 50, '...'),
+         t('delete_comment.mod_notification')  . mb_strimwidth($comment['content'], 0, 50, '...'),
         null
     );
 }

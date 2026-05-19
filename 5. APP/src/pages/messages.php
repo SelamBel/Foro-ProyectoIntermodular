@@ -6,6 +6,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+require_once __DIR__ . '/../config/lang.php';
 require_once __DIR__ . '/../models/Message.php';
 
 $messageModel   = new Message();
@@ -23,15 +24,15 @@ require_once __DIR__ . '/../includes/header.php';
     <main class="site-main">
         <div class="form-card">
             <div class="form-title-button">
-                <h1 class="form-card__title"><i class="fa-solid fa-envelope"></i> Mensajes</h1>
+                <h1 class="form-card__title"><i class="fa-solid fa-envelope"></i> <?= t('messages.title') ?></h1>
                 <a href="/pages/users.php" class="btn-primary" style="margin-left:auto">
-                    <i class="fa-solid fa-user-plus"></i> Nuevo mensaje
+                    <i class="fa-solid fa-user-plus"></i> <?= t('messages.new_message') ?>
                 </a>
             </div>
             <?php if (empty($conversations)): ?>
                 <div class="empty-state">
                     <i class="fa-solid fa-envelope-open"></i>
-                    <p>No tienes conversaciones todavía.</p>
+                    <p><?= t('messages.empty_state') ?></p>
                 </div>
             <?php else: ?>
                 <div class="conversation-list">

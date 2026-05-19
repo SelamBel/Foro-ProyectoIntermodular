@@ -16,8 +16,8 @@
 - [X] Subir fotos en posts
 - [X] Separar estilos por página???
 - [X] Subir foto en comments y quizá msgs
-- [ ] Que los strings de lenguaje lleguen por una api, como en perseo.
-- [ ] Slideshow de imágenes con lo de jquery ese.
+- [X] Slideshow de imágenes con lo de jquery ese.
+- [X] Lenguajes por json
 - [ ] Chats a tiempo real. Quizá publicaciones?
 
 

@@ -39,6 +39,7 @@ $messages = $messageModel->getConversationWith($_SESSION['user_id'], $otherId);
 $extraCss = ['chat.css'];
 $pageTitle  = 'Conversación con ' . htmlspecialchars($other['username']);
 $activePage = '';
+require_once __DIR__ . '/../config/lang.php';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 
@@ -65,22 +66,22 @@ require_once __DIR__ . '/../includes/header.php';
                 <?php if (empty($messages)): ?>
                     <div class="empty-state">
                         <i class="fa-solid fa-comment"></i>
-                        <p>Empieza la conversación.</p>
+                        <p><?= t('conversation.empty_state') ?></p>
                     </div>
                 <?php endif; ?>
 
                 <?php foreach ($messages as $msg): ?>
-                <?php $isMine = $msg['id_sender'] === $_SESSION['user_id']; ?>
-                <div class="chat-bubble <?= $isMine ? 'mine' : 'theirs' ?>">
-                    <p><?= nl2br(htmlspecialchars($msg['content'])) ?></p>
-                    <span class="bubble-time post-date" data-date="<?= $msg['date_creation'] ?>"><?= $msg['date_creation'] ?></span>
-                </div>
+                    <?php $isMine = $msg['id_sender'] === $_SESSION['user_id']; ?>
+                    <div class="chat-bubble <?= $isMine ? 'mine' : 'theirs' ?>">
+                        <p><?= nl2br(htmlspecialchars($msg['content'])) ?></p>
+                        <span class="bubble-time post-date" data-date="<?= $msg['date_creation'] ?>"><?= $msg['date_creation'] ?></span>
+                    </div>
                 <?php endforeach; ?>
             </div>
 
             <form method="POST" class="chat-form" id="chatForm">
                 <textarea name="content" id="chatInput" rows="2"
-                          placeholder="Escribe un mensaje..."></textarea>
+                    placeholder="<?= t('conversation.input_placeholder') ?>"></textarea>
                 <button type="submit" class="btn-primary">
                     <i class="fa-solid fa-paper-plane"></i>
                 </button>

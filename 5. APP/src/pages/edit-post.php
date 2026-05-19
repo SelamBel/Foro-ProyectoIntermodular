@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once __DIR__ . '/../models/Publication.php';
+require_once __DIR__ . '/config/lang.php';
 
 $id       = (int) ($_GET['id'] ?? 0);
 $pubModel = new Publication();
@@ -29,9 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $content = trim($_POST['content'] ?? '');
 
     if (empty($title) || empty($content)) {
-        $error = 'El título y el contenido son obligatorios.';
+        $error = t('edit_post.error_required');
     } elseif (strlen($title) > 300) {
-        $error = 'El título no puede superar los 300 caracteres.';
+        $error = t('edit_post.error_length');
     } else {
         $pubModel->update($id, $title, $content);
         if (!empty($_FILES['images']['tmp_name'][0])) {
@@ -52,7 +53,7 @@ require_once __DIR__ . '/../includes/header.php';
 
     <main class="site-main">
         <div class="form-card">
-            <h1 class="form-card__title">Editar publicación</h1>
+            <h1 class="form-card__title"><?= t('edit_post.title') ?></h1>
 
             <?php if ($error): ?>
                 <div class="alert alert-error">
@@ -63,25 +64,25 @@ require_once __DIR__ . '/../includes/header.php';
 
             <form method="POST" id="createPostForm" enctype="multipart/form-data" novalidate>
                 <div class="form-group">
-                    <label for="title">Título</label>
+                    <label for="title"><?= t('edit_post.label_title') ?></label>
                     <input type="text" id="title" name="title" maxlength="300"
                         value="<?= htmlspecialchars($_POST['title'] ?? $post['title']) ?>">
                     <span class="field-error" id="titleError"></span>
                 </div>
                 <div class="form-group">
-                    <label for="content">Contenido</label>
+                    <label for="content"><?= t('edit_post.label_content') ?></label>
                     <textarea id="content" name="content" rows="10"><?= htmlspecialchars($_POST['content'] ?? $post['content']) ?></textarea>
                     <span class="field-error" id="contentError"></span>
                 </div>
                 
                 <div class="form-group">
-                    <label for="images">Imágenes (máximo 3)</label>
+                    <label for="images"><?= t('edit_post.label_images') ?></label>
                     <input type="file" id="images" name="images[]" accept="image/jpeg,image/png,image/webp" multiple>
                 </div>
 
                 <div class="form-actions">
-                    <a href="/pages/post.php?id=<?= $id ?>" class="btn-outline js-cancel-btn">Cancelar</a>
-                    <button type="submit" class="btn-primary">Guardar cambios</button>
+                    <a href="/pages/post.php?id=<?= $id ?>" class="btn-outline js-cancel-btn"><?= t('edit_post.btn_cancel') ?></a>
+                    <button type="submit" class="btn-primary"><?= t('edit_post.btn_submit') ?></button>
                 </div>
             </form>
         </div>
